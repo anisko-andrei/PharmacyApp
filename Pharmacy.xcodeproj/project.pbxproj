@@ -11,6 +11,13 @@
 		3403577E2A35D211005220F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3403577D2A35D211005220F1 /* ContentView.swift */; };
 		340357802A35D213005220F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3403577F2A35D213005220F1 /* Assets.xcassets */; };
 		340357832A35D213005220F1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 340357822A35D213005220F1 /* Preview Assets.xcassets */; };
+		3403578A2A35D5B7005220F1 /* OTPMobileNumberScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340357892A35D5B7005220F1 /* OTPMobileNumberScreen.swift */; };
+		3403578C2A35D5D6005220F1 /* OTPMobileNumberScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3403578B2A35D5D6005220F1 /* OTPMobileNumberScreenVM.swift */; };
+		340357902A35D640005220F1 /* OTPCodeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3403578F2A35D640005220F1 /* OTPCodeScreen.swift */; };
+		340357922A35D655005220F1 /* OTPCodeScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340357912A35D655005220F1 /* OTPCodeScreenVM.swift */; };
+		340357962A35DA32005220F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 340357982A35DA32005220F1 /* Localizable.strings */; };
+		3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3403579A2A35E90D005220F1 /* ContentViewVM.swift */; };
+		3403579E2A36027B005220F1 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 3403579D2A36027B005220F1 /* iPhoneNumberField */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,13 @@
 		3403577D2A35D211005220F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3403577F2A35D213005220F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		340357822A35D213005220F1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		340357892A35D5B7005220F1 /* OTPMobileNumberScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPMobileNumberScreen.swift; sourceTree = "<group>"; };
+		3403578B2A35D5D6005220F1 /* OTPMobileNumberScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPMobileNumberScreenVM.swift; sourceTree = "<group>"; };
+		3403578F2A35D640005220F1 /* OTPCodeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCodeScreen.swift; sourceTree = "<group>"; };
+		340357912A35D655005220F1 /* OTPCodeScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCodeScreenVM.swift; sourceTree = "<group>"; };
+		340357972A35DA32005220F1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		340357992A35DA6C005220F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3403579A2A35E90D005220F1 /* ContentViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3403579E2A36027B005220F1 /* iPhoneNumberField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +67,10 @@
 			isa = PBXGroup;
 			children = (
 				3403577B2A35D211005220F1 /* PharmacyApp.swift */,
+				3403578E2A35D5EB005220F1 /* OTPScreens */,
 				3403577D2A35D211005220F1 /* ContentView.swift */,
+				3403579A2A35E90D005220F1 /* ContentViewVM.swift */,
+				340357982A35DA32005220F1 /* Localizable.strings */,
 				3403577F2A35D213005220F1 /* Assets.xcassets */,
 				340357812A35D213005220F1 /* Preview Content */,
 			);
@@ -65,6 +83,33 @@
 				340357822A35D213005220F1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3403578D2A35D5E1005220F1 /* OTPMobileNumberScreen */ = {
+			isa = PBXGroup;
+			children = (
+				340357892A35D5B7005220F1 /* OTPMobileNumberScreen.swift */,
+				3403578B2A35D5D6005220F1 /* OTPMobileNumberScreenVM.swift */,
+			);
+			path = OTPMobileNumberScreen;
+			sourceTree = "<group>";
+		};
+		3403578E2A35D5EB005220F1 /* OTPScreens */ = {
+			isa = PBXGroup;
+			children = (
+				3403578D2A35D5E1005220F1 /* OTPMobileNumberScreen */,
+				340357932A35D65C005220F1 /* OTPCodeScreen */,
+			);
+			path = OTPScreens;
+			sourceTree = "<group>";
+		};
+		340357932A35D65C005220F1 /* OTPCodeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3403578F2A35D640005220F1 /* OTPCodeScreen.swift */,
+				340357912A35D655005220F1 /* OTPCodeScreenVM.swift */,
+			);
+			path = OTPCodeScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +128,9 @@
 			dependencies = (
 			);
 			name = Pharmacy;
+			packageProductDependencies = (
+				3403579D2A36027B005220F1 /* iPhoneNumberField */,
+			);
 			productName = Pharmacy;
 			productReference = 340357782A35D211005220F1 /* Pharmacy.app */;
 			productType = "com.apple.product-type.application";
@@ -104,13 +152,17 @@
 			};
 			buildConfigurationList = 340357732A35D211005220F1 /* Build configuration list for PBXProject "Pharmacy" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ru,
+				en,
 			);
 			mainGroup = 3403576F2A35D211005220F1;
+			packageReferences = (
+				3403579C2A36027B005220F1 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+			);
 			productRefGroup = 340357792A35D211005220F1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				340357832A35D213005220F1 /* Preview Assets.xcassets in Resources */,
+				340357962A35DA32005220F1 /* Localizable.strings in Resources */,
 				340357802A35D213005220F1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,17 +191,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				3403577E2A35D211005220F1 /* ContentView.swift in Sources */,
+				340357902A35D640005220F1 /* OTPCodeScreen.swift in Sources */,
+				3403578A2A35D5B7005220F1 /* OTPMobileNumberScreen.swift in Sources */,
+				340357922A35D655005220F1 /* OTPCodeScreenVM.swift in Sources */,
+				3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */,
 				3403577C2A35D211005220F1 /* PharmacyApp.swift in Sources */,
+				3403578C2A35D5D6005220F1 /* OTPMobileNumberScreenVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		340357982A35DA32005220F1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				340357972A35DA32005220F1 /* ru */,
+				340357992A35DA6C005220F1 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		340357842A35D213005220F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -209,6 +280,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -339,6 +411,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3403579C2A36027B005220F1 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3403579D2A36027B005220F1 /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3403579C2A36027B005220F1 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 340357702A35D211005220F1 /* Project object */;
 }
