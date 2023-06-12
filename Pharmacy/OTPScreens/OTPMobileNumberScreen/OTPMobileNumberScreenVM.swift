@@ -11,17 +11,26 @@ final class OTPMobileNumberScreenVM: ObservableObject {
     
     @Published var mobileNumberText = "+375"
     @Published var flagIsHidden = true
-    @Published var allertIsPresented = false
+    @Published var alertIsPresented = false
     @Published var alertMessage = ""
-  
+    @Published var alertBody : AppAlert? {
+        didSet {
+            self.alertIsPresented.toggle()
+        }
+    }
+    
     func getOTPCode() {
         let mobile =  mobileNumberText.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
         if mobile.count == 13 {
             print(mobile)
         }
         else {
-            alertMessage = String(localized: "Invalid phone number")
-            allertIsPresented.toggle()
+            alertBody = AppAlert(message: String(localized: "Invalid phone number"))
         }
     }
+}
+
+struct AppAlert : Identifiable {
+    var id: String {message}
+    var message: String
 }

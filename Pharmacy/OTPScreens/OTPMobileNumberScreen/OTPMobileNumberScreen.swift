@@ -60,11 +60,12 @@ struct OTPMobileNumberScreen: View {
                     .cornerRadius(14)
             }
             Spacer()
-                .alert("error", isPresented: $vm.allertIsPresented, actions: {
-                    Button("Ok", role: .cancel) {}
-                }, message: {
-                  Text(vm.alertMessage)
-                })
+                .alert("error", isPresented: $vm.alertIsPresented, presenting: vm.alertBody) { _ in
+                    Button("ok", role: .cancel) {}
+                } message: { bodyM in
+                    Text(bodyM.message)
+                }
+
         }
      
         .frame(maxWidth: .infinity, maxHeight: .infinity)
