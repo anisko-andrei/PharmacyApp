@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Pharmacy
+
+  Created by Андрей Аниськович on 11.06.23.
+  
+*/
+"hello" = "Hello world";
+"OTP Verification" = "OTP Verification";
+"We will send you one-time password to you mobile number" = "We will send you one-time password to you mobile number";
+"Enter Mobile number" = "Enter Mobile number";
+"Get OTP" = "Get OTP";
+"Done" = "Done";
+"error" = "Error";
+"Invalid phone number" = "Invalid phone number";

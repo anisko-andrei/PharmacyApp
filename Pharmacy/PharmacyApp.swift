@@ -11,7 +11,11 @@ import SwiftUI
 struct PharmacyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                
+                ContentView()
+                    .environmentObject(ContentViewVM())
+            }
         }
     }
 }

@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var vm: ContentViewVM
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        switch vm.authState {
+        case .loading :
+            EmptyView()
+        case .logged :
+            EmptyView()
+        case .unlogged :
+            OTPMobileNumberScreen()
+    
         }
-        .padding()
     }
 }
 

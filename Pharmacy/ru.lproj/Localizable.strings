@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Pharmacy
+
+  Created by Андрей Аниськович on 11.06.23.
+  
+*/
+"hello" = "Привет мир";
+"OTP Verification" = "ОТР Верификация";
+"We will send you one-time password to you mobile number" = "Мы вышлем вам одноразовый пароль на ваш номер мобильного телефона";
+"Enter Mobile number" = "Введите мобильный номер";
+"Get OTP" = "Получить OTP";
+"Done" = "Готово";
+"error" = "Ошибка";
+"Invalid phone number" = "Номер введен неправильно";
