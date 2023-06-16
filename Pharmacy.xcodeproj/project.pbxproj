@@ -67,9 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				3403577B2A35D211005220F1 /* PharmacyApp.swift */,
-				3403578E2A35D5EB005220F1 /* OTPScreens */,
-				3403577D2A35D211005220F1 /* ContentView.swift */,
-				3403579A2A35E90D005220F1 /* ContentViewVM.swift */,
+				34CC9F402A3C577A00D7291D /* Views */,
 				340357982A35DA32005220F1 /* Localizable.strings */,
 				3403577F2A35D213005220F1 /* Assets.xcassets */,
 				340357812A35D213005220F1 /* Preview Content */,
@@ -110,6 +108,24 @@
 				340357912A35D655005220F1 /* OTPCodeScreenVM.swift */,
 			);
 			path = OTPCodeScreen;
+			sourceTree = "<group>";
+		};
+		34CC9F3F2A3C576700D7291D /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				3403577D2A35D211005220F1 /* ContentView.swift */,
+				3403579A2A35E90D005220F1 /* ContentViewVM.swift */,
+			);
+			path = ContentView;
+			sourceTree = "<group>";
+		};
+		34CC9F402A3C577A00D7291D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3403578E2A35D5EB005220F1 /* OTPScreens */,
+				34CC9F3F2A3C576700D7291D /* ContentView */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -13,3 +13,7 @@
 "Done" = "Done";
 "error" = "Error";
 "Invalid phone number" = "Invalid phone number";
+"Enter the OTP sent to" = "Enter the OTP sent to %@";
+"Didn’t you receive the OTP?" = "Didn’t you receive the OTP?";
+"Resend OTP" = "Resend OTP";
+"Send OTP" = "Send OTP";
