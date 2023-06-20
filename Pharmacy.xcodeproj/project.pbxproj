@@ -18,6 +18,7 @@
 		340357962A35DA32005220F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 340357982A35DA32005220F1 /* Localizable.strings */; };
 		3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3403579A2A35E90D005220F1 /* ContentViewVM.swift */; };
 		3403579E2A36027B005220F1 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 3403579D2A36027B005220F1 /* iPhoneNumberField */; };
+		341FC7C82A3C80AE00E1FBF5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 341FC7C72A3C80AE00E1FBF5 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3403579E2A36027B005220F1 /* iPhoneNumberField in Frameworks */,
+				341FC7C82A3C80AE00E1FBF5 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +148,7 @@
 			name = Pharmacy;
 			packageProductDependencies = (
 				3403579D2A36027B005220F1 /* iPhoneNumberField */,
+				341FC7C72A3C80AE00E1FBF5 /* Alamofire */,
 			);
 			productName = Pharmacy;
 			productReference = 340357782A35D211005220F1 /* Pharmacy.app */;
@@ -178,6 +181,7 @@
 			mainGroup = 3403576F2A35D211005220F1;
 			packageReferences = (
 				3403579C2A36027B005220F1 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+				341FC7C62A3C80AE00E1FBF5 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 340357792A35D211005220F1 /* Products */;
 			projectDirPath = "";
@@ -437,6 +441,14 @@
 				minimumVersion = 0.10.1;
 			};
 		};
+		341FC7C62A3C80AE00E1FBF5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -444,6 +456,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3403579C2A36027B005220F1 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
 			productName = iPhoneNumberField;
+		};
+		341FC7C72A3C80AE00E1FBF5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 341FC7C62A3C80AE00E1FBF5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
