@@ -12,6 +12,8 @@ final class OTPCodeScreenVM: ObservableObject {
     @Published var otpText: String = ""
     @Published var fields: [String] = []
     
+    let AFManager: AlamofireManagerProtocol = AlamofireManager()
+    
     init() {
         fields = Array(repeating: "", count: self.otpLength)
     }

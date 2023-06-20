@@ -80,6 +80,9 @@ struct OTPMobileNumberScreen: View {
         .sheet(isPresented: $vm.showCodeScreen) {
             OTPCodeScreen(phoneNumber: $vm.mobileNumberText)
         }
+        .sheet(isPresented: $vm.showRegistrationView) {
+            RegistrationView(text: $vm.mobileNumberText)
+        }
     }
 }
 
