@@ -11,7 +11,13 @@ final class OTPCodeScreenVM: ObservableObject {
     let otpLength: Int = 6
     @Published var otpText: String = ""
     @Published var fields: [String] = []
-    
+    @Published var showTabBar = false
+    @Published var alertIsPresented = false
+    @Published var alertBody : AppAlert? {
+        didSet {
+            self.alertIsPresented.toggle()
+        }
+    }
     let AFManager: AlamofireManagerProtocol = AlamofireManager()
     
     init() {
@@ -27,11 +33,24 @@ final class OTPCodeScreenVM: ObservableObject {
         return false
     }
     
-    func verify() {
+    func verifyAndSend(phone: String) {
         otpText = fields.reduce("", { res, str in
             return res + str
         })
-        print("OTP \(otpText)")
+        Task {
+            do{
+                
+                _ = try await AFManager.sendOTPCode(otp: otpText, phone: phone.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: ""))
+                await MainActor.run(body: {
+                    showTabBar.toggle()
+                })
+            }
+            catch {
+                await MainActor.run(body: {
+                    alertBody = AppAlert(message: String(localized: "Invalid OTP code"))
+                })
+            }
+        }
     }
     
 }

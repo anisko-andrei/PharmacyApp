@@ -17,3 +17,4 @@
 "Didn’t you receive the OTP?" = "Не получили OTP код?";
 "Resend OTP" = "Отправить ещё раз";
 "Send OTP" = "Отправить OTP";
+"Invalid OTP code" = "Неправильный OTP код";

@@ -44,7 +44,7 @@ struct OTPCodeScreen: View {
             Spacer()
             
             OTPButton(title: "Send OTP", action: {
-                vm.verify()
+                vm.verifyAndSend(phone: phoneNumber)
             })
             .disabled(vm.checkState())
             .opacity(vm.checkState() ? 0.5 : 1.0)
@@ -52,6 +52,14 @@ struct OTPCodeScreen: View {
         }
         .onChange(of: vm.fields) { newValue in
             checkOTPFields(fields: newValue)
+        }
+        .fullScreenCover(isPresented: $vm.showTabBar) {
+            TabBarNavigationView()
+        }
+        .alert("error", isPresented: $vm.alertIsPresented, presenting: vm.alertBody) { _ in
+            Button("ok", role: .cancel) {}
+        } message: { bodyM in
+            Text(bodyM.message)
         }
     }
     

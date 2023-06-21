@@ -17,3 +17,4 @@
 "Didn’t you receive the OTP?" = "Didn’t you receive the OTP?";
 "Resend OTP" = "Resend OTP";
 "Send OTP" = "Send OTP";
+"Invalid OTP code" = "Invalid OTP code";
