@@ -16,41 +16,20 @@ protocol AlamofireManagerProtocol {
 class AlamofireManager : AlamofireManagerProtocol {
 
     func sendPhone(phone: String) async throws -> SendPhoneMessage {
-        try await withCheckedThrowingContinuation { continuation in
-            AF.request(Constants.phoneSendUrl,
-                       method: .post,
-                       parameters: ["phoneNumber" : phone],
-                       encoding: JSONEncoding.default)
-            .responseDecodable(of: SendPhoneMessage.self,
-                               completionHandler:  { response in
-                switch response.result {
-                case .success(let data):
-                    continuation.resume(returning: data)
-                case .failure(let error):
-                    continuation.resume(throwing: error)
-                }
-            })
-        }
+        return try await AF.request(Constants.phoneSendUrl,
+                                    method: .post,
+                                    parameters: ["phoneNumber" : phone],
+                                    encoding: JSONEncoding.default)
+                            .serializingDecodable(SendPhoneMessage.self).value
     }
 
     func sendOTPCode(otp: String, phone: String) async throws -> LoginInfo {
-        try await withCheckedThrowingContinuation { continuation in
-            AF.request(Constants.phoneAndOTPSendUrl,
-                       method: .post,
-                       parameters: ["phoneNumber" : phone,
-                                    "otp" : otp],
-                       encoding: JSONEncoding.default)
-            .responseDecodable(of: LoginInfo.self,
-                               completionHandler:  { response in
-                switch response.result {
-                case .success(let data):
-                    continuation.resume(returning: data)
-                case .failure(let error):
-                    continuation.resume(throwing: error)
-                    
-                }
-            })
-        }
+        return try await AF.request(Constants.phoneAndOTPSendUrl,
+                                    method: .post,
+                                    parameters: ["phoneNumber" : phone,
+                                                 "otp" : otp],
+                                    encoding: JSONEncoding.default)
+                            .serializingDecodable(LoginInfo.self).value
     }
 }
     
