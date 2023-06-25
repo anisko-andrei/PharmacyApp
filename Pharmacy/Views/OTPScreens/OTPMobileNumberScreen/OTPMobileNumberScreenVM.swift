@@ -13,7 +13,6 @@ final class OTPMobileNumberScreenVM: ObservableObject {
     @Published var mobileNumberText = "+375"
     @Published var flagIsHidden = true
     @Published var alertIsPresented = false
-    @Published var alertMessage = ""
     @Published var showCodeScreen = false
     @Published var showRegistrationView = false
     @Published var alertBody : AppAlert? {
@@ -21,6 +20,9 @@ final class OTPMobileNumberScreenVM: ObservableObject {
             self.alertIsPresented.toggle()
         }
     }
+    
+    @Published var sheetToShow : OTPScreens?
+    
     let AFManager: AlamofireManagerProtocol = AlamofireManager()
  
     
@@ -34,13 +36,15 @@ final class OTPMobileNumberScreenVM: ObservableObject {
                     let sendOTPStatus = try await AFManager.sendPhone(phone: mobile)
                     print(sendOTPStatus)
                     await MainActor.run(body: {
-                        showCodeScreen.toggle()
+                        //showCodeScreen.toggle()
+                        sheetToShow = .otpCodeScreen
                     })
                 }
                 catch {
                     await MainActor.run(body: {
                         //alertBody = AppAlert(message: String(localized: "no register"))
-                        showRegistrationView.toggle()
+                        //showRegistrationView.toggle()
+                        sheetToShow = .registration
                     })
                 }
             }
@@ -56,4 +60,9 @@ struct AppAlert : Identifiable {
     var message: String
 }
 
-
+enum OTPScreens: Int, Identifiable {
+    var id: Int { self.rawValue }
+    
+    case registration
+    case otpCodeScreen
+}

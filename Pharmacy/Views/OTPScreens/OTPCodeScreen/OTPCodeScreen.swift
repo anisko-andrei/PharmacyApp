@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct OTPCodeScreen: View {
-    @Binding var phoneNumber: String
+    
     @StateObject var vm: OTPCodeScreenVM = OTPCodeScreenVM()
     @FocusState var activeFieldIdx: Int?
-    
+    @ObservedObject var oVM: OTPMobileNumberScreenVM
     var body: some View {
         VStack{
             Spacer()
@@ -22,7 +22,7 @@ struct OTPCodeScreen: View {
                 .padding(.bottom)
             Text("OTP Verification")
                 .font(.system(size: 24))
-            Text(String.localizedStringWithFormat(NSLocalizedString("Enter the OTP sent to", comment: ""), phoneNumber))                .multilineTextAlignment(.center)
+            Text(String.localizedStringWithFormat(NSLocalizedString("Enter the OTP sent to", comment: ""), oVM.mobileNumberText))                .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
                 .padding(.vertical, 8)
             
@@ -31,6 +31,8 @@ struct OTPCodeScreen: View {
                     OTPInputField(text: $vm.fields[index], isFocused: activeFieldIdx == index)
                         .focused($activeFieldIdx, equals: index)
                 }
+                
+                
             }
             .padding(.horizontal, 16)
             HStack {
@@ -44,7 +46,7 @@ struct OTPCodeScreen: View {
             Spacer()
             
             OTPButton(title: "Send OTP", action: {
-                vm.verifyAndSend(phone: phoneNumber)
+                vm.verifyAndSend(phone: oVM.mobileNumberText)
             })
             .disabled(vm.checkState())
             .opacity(vm.checkState() ? 0.5 : 1.0)
@@ -117,7 +119,7 @@ struct OTPCodeScreen: View {
     
     struct OTPCodeScreen_Previews: PreviewProvider {
         static var previews: some View {
-            OTPCodeScreen(phoneNumber: .constant("+375 29 111 11 11"))
+            OTPCodeScreen(oVM: OTPMobileNumberScreenVM())
         }
     }
 

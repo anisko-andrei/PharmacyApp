@@ -46,19 +46,7 @@ struct OTPMobileNumberScreen: View {
                 .padding(.horizontal, 90)
                 .foregroundColor(.blue)
             Spacer()
-//            Button {
-//                isFocused = false
-//                print("send OTP to \(vm.mobileNumberText)")
-//                vm.getOTPCode()
-//            } label: {
-//                Text("Get OTP")
-//                    .foregroundColor(.white)
-//                    .font(.system(size: 20))
-//                    .padding(.vertical, 20)
-//                    .padding(.horizontal, 100)
-//                    .background(Color.blue)
-//                    .cornerRadius(14)
-//            }
+
             OTPButton(title: "Get OTP") {
                 isFocused = false
                 print("send OTP to \(vm.mobileNumberText)")
@@ -77,11 +65,14 @@ struct OTPMobileNumberScreen: View {
         .onTapGesture {
             isFocused = false
         }
-        .sheet(isPresented: $vm.showCodeScreen) {
-            OTPCodeScreen(phoneNumber: $vm.mobileNumberText)
-        }
-        .sheet(isPresented: $vm.showRegistrationView) {
-            RegistrationView(text: $vm.mobileNumberText)
+        .sheet(item: $vm.sheetToShow) { item in
+            switch item {
+            case .otpCodeScreen:
+                OTPCodeScreen(oVM: vm)
+            case .registration:
+                RegistrationView(text: $vm.mobileNumberText)
+                
+            }
         }
     }
 }
