@@ -68,7 +68,7 @@ struct OTPMobileNumberScreen: View {
         .sheet(item: $vm.sheetToShow) { item in
             switch item {
             case .otpCodeScreen:
-                OTPCodeScreen(oVM: vm)
+                OTPCodeScreen(vm: vm)
             case .registration:
                 RegistrationView(vm: vm)
                 
@@ -82,7 +82,7 @@ struct OTPButton: View {
     var action: ()->Void
     var body: some View {
         Button {
-           action()
+            action()
         } label: {
             Text(title)
                 .foregroundColor(.white)

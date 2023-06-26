@@ -9,28 +9,33 @@ import Foundation
 
 
 final class OTPMobileNumberScreenVM: ObservableObject {
+   
+    let otpLength: Int = 6
+    var profileLoginStatus: ProfileLoginStatus?
+    let AFManager: AlamofireManagerProtocol = AlamofireManager()
     
     @Published var mobileNumberText = "+375"
     @Published var flagIsHidden = true
     @Published var alertIsPresented = false
     @Published var showCodeScreen = false
     @Published var showRegistrationView = false
+    @Published var otpText: String = ""
+    @Published var fields: [String] = []
+    @Published var showTabBar = false
+    @Published var sheetToShow : OTPScreens?
+    @Published var name: String = ""
+    @Published var lastName: String = ""
     @Published var alertBody : AppAlert? {
         didSet {
             self.alertIsPresented.toggle()
         }
     }
-    
-    @Published var sheetToShow : OTPScreens?
-    @Published var name: String = ""
-    @Published var lastName: String = ""
-    var profileLoginStatus: ProfileLoginStatus?
-    let AFManager: AlamofireManagerProtocol = AlamofireManager()
- 
-    
+    var mobile : String  {
+        mobileNumberText.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
+    }
     
     func getOTPCode() {
-        let mobile =  mobileNumberText.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
+       
         if mobile.count == 13 {
             print(mobile)
             
@@ -46,8 +51,6 @@ final class OTPMobileNumberScreenVM: ObservableObject {
                 }
                 catch {
                     await MainActor.run(body: {
-                        //alertBody = AppAlert(message: String(localized: "no register"))
-                        //showRegistrationView.toggle()
                         sheetToShow = .registration
                         profileLoginStatus = .newProfile
                     })
@@ -57,6 +60,73 @@ final class OTPMobileNumberScreenVM: ObservableObject {
         else {
             alertBody = AppAlert(message: String(localized: "Invalid phone number"))
         }
+    }
+    
+ 
+
+    
+   
+    
+    init() {
+        fields = Array(repeating: "", count: self.otpLength)
+    }
+    
+    func checkState() -> Bool {
+        return fields.contains("")
+    }
+    
+    func verifyAndSend() {
+        
+        otpText = fields.reduce("", { res, str in
+            return res + str
+        })
+        Task {
+            do{
+                switch profileLoginStatus {
+                case .alradyExistProfile :
+                    _ = try await AFManager.sendOTPCode(otp: otpText,
+                                                        phone: mobile)
+                case .newProfile :
+                    _ = try await AFManager.registerNewProfile(name: name,
+                                                               lastName: lastName,
+                                                               phone: mobile,
+                                                               otp: otpText)
+                case .none:
+                    alertBody = AppAlert(message: String(localized: "Eror"))
+                }
+                
+               
+                await MainActor.run(body: {
+                    showTabBar.toggle()
+                })
+            }
+            catch {
+                await MainActor.run(body: {
+                    alertBody = AppAlert(message: String(localized: "Invalid OTP code"))
+                })
+            }
+        }
+    }
+    
+    func checkOtp(index: Int, newValue: String) -> Int? {
+        
+        if newValue.count == 6 {
+            fields =  newValue.map{String($0)}
+        }
+        if !checkState() {
+            return nil
+        }
+        if !newValue.isEmpty {
+            if newValue.count >= 1 {
+                fields[index] = String(newValue.first ?? " ")
+                return index + 1
+            }
+        }
+      
+        if index > 0, !fields[index - 1].isEmpty, fields[index].isEmpty{
+            return index - 1
+        }
+        return 0
     }
 }
 
@@ -68,8 +138,8 @@ struct AppAlert : Identifiable {
 enum OTPScreens: Int, Identifiable {
     var id: Int { self.rawValue }
     
-    case registration
-    case otpCodeScreen
+    case registration = 0
+    case otpCodeScreen = 1
 }
 
 enum ProfileLoginStatus {

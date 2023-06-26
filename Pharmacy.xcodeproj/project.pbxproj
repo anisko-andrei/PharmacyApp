@@ -14,7 +14,6 @@
 		3403578A2A35D5B7005220F1 /* OTPMobileNumberScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340357892A35D5B7005220F1 /* OTPMobileNumberScreen.swift */; };
 		3403578C2A35D5D6005220F1 /* OTPMobileNumberScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3403578B2A35D5D6005220F1 /* OTPMobileNumberScreenVM.swift */; };
 		340357902A35D640005220F1 /* OTPCodeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3403578F2A35D640005220F1 /* OTPCodeScreen.swift */; };
-		340357922A35D655005220F1 /* OTPCodeScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340357912A35D655005220F1 /* OTPCodeScreenVM.swift */; };
 		340357962A35DA32005220F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 340357982A35DA32005220F1 /* Localizable.strings */; };
 		3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3403579A2A35E90D005220F1 /* ContentViewVM.swift */; };
 		3403579E2A36027B005220F1 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 3403579D2A36027B005220F1 /* iPhoneNumberField */; };
@@ -23,7 +22,6 @@
 		340BDABA2A41B66800F34B66 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340BDAB92A41B66800F34B66 /* Constants.swift */; };
 		341FC7C82A3C80AE00E1FBF5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 341FC7C72A3C80AE00E1FBF5 /* Alamofire */; };
 		344731712A41C29F0013B513 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344731702A41C29F0013B513 /* RegistrationView.swift */; };
-		344731732A41C2B50013B513 /* RegistrationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344731722A41C2B50013B513 /* RegistrationVM.swift */; };
 		348FEFF72A41C99C002CB8D5 /* TabBarNavigationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FEFF62A41C99C002CB8D5 /* TabBarNavigationVM.swift */; };
 		348FEFF92A41C9CC002CB8D5 /* TabBarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */; };
 /* End PBXBuildFile section */
@@ -37,7 +35,6 @@
 		340357892A35D5B7005220F1 /* OTPMobileNumberScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPMobileNumberScreen.swift; sourceTree = "<group>"; };
 		3403578B2A35D5D6005220F1 /* OTPMobileNumberScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPMobileNumberScreenVM.swift; sourceTree = "<group>"; };
 		3403578F2A35D640005220F1 /* OTPCodeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCodeScreen.swift; sourceTree = "<group>"; };
-		340357912A35D655005220F1 /* OTPCodeScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCodeScreenVM.swift; sourceTree = "<group>"; };
 		340357972A35DA32005220F1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		340357992A35DA6C005220F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3403579A2A35E90D005220F1 /* ContentViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewVM.swift; sourceTree = "<group>"; };
@@ -45,7 +42,6 @@
 		340BDAB62A41B58800F34B66 /* AlamofireModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireModels.swift; sourceTree = "<group>"; };
 		340BDAB92A41B66800F34B66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		344731702A41C29F0013B513 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
-		344731722A41C2B50013B513 /* RegistrationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVM.swift; sourceTree = "<group>"; };
 		348FEFF62A41C99C002CB8D5 /* TabBarNavigationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationVM.swift; sourceTree = "<group>"; };
 		348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				3403578F2A35D640005220F1 /* OTPCodeScreen.swift */,
-				340357912A35D655005220F1 /* OTPCodeScreenVM.swift */,
 			);
 			path = OTPCodeScreen;
 			sourceTree = "<group>";
@@ -157,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				344731702A41C29F0013B513 /* RegistrationView.swift */,
-				344731722A41C2B50013B513 /* RegistrationVM.swift */,
 			);
 			path = RegistrationView;
 			sourceTree = "<group>";
@@ -276,9 +270,7 @@
 				3403577E2A35D211005220F1 /* ContentView.swift in Sources */,
 				340357902A35D640005220F1 /* OTPCodeScreen.swift in Sources */,
 				3403578A2A35D5B7005220F1 /* OTPMobileNumberScreen.swift in Sources */,
-				344731732A41C2B50013B513 /* RegistrationVM.swift in Sources */,
 				348FEFF92A41C9CC002CB8D5 /* TabBarNavigationView.swift in Sources */,
-				340357922A35D655005220F1 /* OTPCodeScreenVM.swift in Sources */,
 				340BDABA2A41B66800F34B66 /* Constants.swift in Sources */,
 				340BDAB42A41B4D600F34B66 /* AlamofireManager.swift in Sources */,
 				3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */,
