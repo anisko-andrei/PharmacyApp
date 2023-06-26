@@ -10,16 +10,23 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var vm: ContentViewVM
     var body: some View {
-        switch vm.authState {
-        case .loading :
-            EmptyView()
-        case .logged :
-            EmptyView()
-        case .unlogged :
-            OTPMobileNumberScreen()
-    
+        Group {
+            switch vm.authState {
+            case .loading :
+                LoadingView()
+            case .logged :
+                TabBarNavigationView()
+            case .unlogged :
+                OTPMobileNumberScreen()
+            }
+        
+        }.onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                vm.checkAuth()
+            }
         }
     }
+        
 }
 
 struct ContentView_Previews: PreviewProvider {

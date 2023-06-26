@@ -12,9 +12,17 @@ protocol AlamofireManagerProtocol {
     func sendPhone(phone: String) async throws  -> SendPhoneMessage
     func sendOTPCode(otp: String, phone: String) async throws -> LoginInfo
     func registerNewProfile(name: String, lastName: String, phone: String, otp: String) async throws -> LoginInfo
+    func loginWithToken(token: String) async throws -> AuthToken
 }
 
 class AlamofireManager : AlamofireManagerProtocol {
+    func loginWithToken(token: String) async throws -> AuthToken {
+        return try await AF.request(Constants.authWithToken,
+                                    method: .get,
+                                    headers: [.authorization(bearerToken: token)])
+                            .serializingDecodable(AuthToken.self).value
+    }
+    
     func registerNewProfile(name: String, lastName: String, phone: String, otp: String) async throws -> LoginInfo {
         return try await AF.request(Constants.registerUrl,
                                     method: .post,

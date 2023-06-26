@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import KeychainSwift
 
 enum AuthState{
     case loading, logged, unlogged
@@ -13,7 +14,32 @@ enum AuthState{
 
 
 final class ContentViewVM: ObservableObject {
+    var keychain = KeychainSwift()
+    var AFManager: AlamofireManagerProtocol = AlamofireManager()
+    @Published var authState: AuthState = .loading
     
-    @Published var authState: AuthState = .unlogged
-    
+    func checkAuth() {
+        guard let token = keychain.get("userToken"),
+              !token.isEmpty
+        else {
+            authState = .unlogged
+            return
+        }
+        Task {
+            do {
+                let user = try await AFManager.loginWithToken(token: token)
+                User.shared.writeUserData(userName: user.firstName, userLastName: user.lastName, userMobilePhone: user.phoneNumber)
+                await MainActor.run(body: {
+                    authState = .logged
+                })
+            }
+            catch {
+                await MainActor.run(body: {
+                    authState = .unlogged
+                })
+            }
+        }
+        
+        
+    }
 }

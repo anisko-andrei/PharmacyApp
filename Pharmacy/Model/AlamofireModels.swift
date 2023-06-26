@@ -29,7 +29,19 @@ struct Customer: Decodable {
         case entity = "__entity"
     }
 }
+struct AuthToken: Decodable {
+    let id: Int
+    let phoneNumber, provider, firstName, lastName: String
+    let createdAt, updatedAt: String
+    let deletedAt: String?
+    let role, status: Role
+    let entity: String
 
+    enum CodingKeys: String, CodingKey {
+        case id, phoneNumber, provider, firstName, lastName, createdAt, updatedAt, deletedAt, role, status
+        case entity = "__entity"
+    }
+}
 
 struct Role: Decodable {
     let id: Int

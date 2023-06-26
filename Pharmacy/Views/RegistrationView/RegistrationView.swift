@@ -43,13 +43,11 @@ struct RegistrationView: View {
             Spacer()
                 
             OTPButton(title: "Next") {
-                Task {
-                    await MainActor.run(body: {
-                        dismiss()
-                    })
+                dismiss()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     vm.sheetToShow = .otpCodeScreen
-             }
-    }
+                }
+            }
          
            
             .disabled(vm.name.isEmpty  || vm.lastName.isEmpty)

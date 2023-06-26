@@ -6,14 +6,15 @@
 //
 
 import Foundation
-
+import KeychainSwift
 
 final class OTPMobileNumberScreenVM: ObservableObject {
    
     let otpLength: Int = 6
     var profileLoginStatus: ProfileLoginStatus?
     let AFManager: AlamofireManagerProtocol = AlamofireManager()
-    
+    let keychain = KeychainSwift()
+    var user : LoginInfo?
     @Published var mobileNumberText = "+375"
     @Published var flagIsHidden = true
     @Published var alertIsPresented = false
@@ -84,10 +85,11 @@ final class OTPMobileNumberScreenVM: ObservableObject {
             do{
                 switch profileLoginStatus {
                 case .alradyExistProfile :
-                    _ = try await AFManager.sendOTPCode(otp: otpText,
+                    user = try await AFManager.sendOTPCode(otp: otpText,
                                                         phone: mobile)
+                    
                 case .newProfile :
-                    _ = try await AFManager.registerNewProfile(name: name,
+                    user = try await AFManager.registerNewProfile(name: name,
                                                                lastName: lastName,
                                                                phone: mobile,
                                                                otp: otpText)
@@ -95,7 +97,8 @@ final class OTPMobileNumberScreenVM: ObservableObject {
                     alertBody = AppAlert(message: String(localized: "Eror"))
                 }
                 
-               
+                keychain.set(user?.token ?? "", forKey: "userToken")
+                User.shared.writeUserData(userName: user?.customer.firstName, userLastName: user?.customer.lastName, userMobilePhone: mobile)
                 await MainActor.run(body: {
                     showTabBar.toggle()
                 })
