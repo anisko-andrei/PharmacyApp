@@ -25,12 +25,7 @@ final class OTPCodeScreenVM: ObservableObject {
     }
     
     func checkState() -> Bool {
-        for index in 0 ..< otpLength {
-            if fields[index].isEmpty {
-                return true
-            }
-        }
-        return false
+        return fields.contains("")
     }
     
     func verifyAndSend(phone: String) {
@@ -40,7 +35,8 @@ final class OTPCodeScreenVM: ObservableObject {
         Task {
             do{
                 
-                _ = try await AFManager.sendOTPCode(otp: otpText, phone: phone.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: ""))
+                _ = try await AFManager.sendOTPCode(otp: otpText,
+                                                    phone: phone.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: ""))
                 await MainActor.run(body: {
                     showTabBar.toggle()
                 })
@@ -52,5 +48,27 @@ final class OTPCodeScreenVM: ObservableObject {
             }
         }
     }
-    
+    func verifyAndSend(phone: String, name: String, lastName: String) {
+        otpText = fields.reduce("", { res, str in
+            return res + str
+        })
+        Task {
+            do {
+                print(phone.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: ""))
+                _ = try await AFManager.registerNewProfile(name: name,
+                                                           lastName: lastName,
+                                                           phone: phone.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: ""),
+                                                           otp: otpText)
+            
+            await MainActor.run(body: {
+                showTabBar.toggle()
+            })
+        }
+        catch {
+            await MainActor.run(body: {
+                alertBody = AppAlert(message: String(localized: "Invalid OTP code"))
+            })
+        }
+        }
+    }
 }

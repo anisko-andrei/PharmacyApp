@@ -22,7 +22,7 @@ struct Customer: Decodable {
     let firstName, lastName, createdAt, updatedAt: String
     let deletedAt: String?
     let role, status: Role
-    let entity: String
+    let entity: String?
 
     enum CodingKeys: String, CodingKey {
         case id, firstName, lastName, createdAt, updatedAt, deletedAt, role, status
@@ -33,10 +33,13 @@ struct Customer: Decodable {
 
 struct Role: Decodable {
     let id: Int
-    let name, entity: String
+    let name, entity: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name
         case entity = "__entity"
     }
 }
+
+
+

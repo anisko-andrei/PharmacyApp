@@ -18,3 +18,7 @@
 "Resend OTP" = "Resend OTP";
 "Send OTP" = "Send OTP";
 "Invalid OTP code" = "Invalid OTP code";
+"Registration" = "Registration";
+"Name" = "Name";
+"Last name" = "Last name";
+"Next" = "Next";

@@ -70,7 +70,7 @@ struct OTPMobileNumberScreen: View {
             case .otpCodeScreen:
                 OTPCodeScreen(oVM: vm)
             case .registration:
-                RegistrationView(text: $vm.mobileNumberText)
+                RegistrationView(vm: vm)
                 
             }
         }

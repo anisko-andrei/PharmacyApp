@@ -22,9 +22,12 @@ final class OTPMobileNumberScreenVM: ObservableObject {
     }
     
     @Published var sheetToShow : OTPScreens?
-    
+    @Published var name: String = ""
+    @Published var lastName: String = ""
+    var profileLoginStatus: ProfileLoginStatus?
     let AFManager: AlamofireManagerProtocol = AlamofireManager()
  
+    
     
     func getOTPCode() {
         let mobile =  mobileNumberText.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
@@ -38,6 +41,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
                     await MainActor.run(body: {
                         //showCodeScreen.toggle()
                         sheetToShow = .otpCodeScreen
+                        profileLoginStatus = .alradyExistProfile
                     })
                 }
                 catch {
@@ -45,6 +49,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
                         //alertBody = AppAlert(message: String(localized: "no register"))
                         //showRegistrationView.toggle()
                         sheetToShow = .registration
+                        profileLoginStatus = .newProfile
                     })
                 }
             }
@@ -65,4 +70,9 @@ enum OTPScreens: Int, Identifiable {
     
     case registration
     case otpCodeScreen
+}
+
+enum ProfileLoginStatus {
+    case newProfile
+    case alradyExistProfile
 }

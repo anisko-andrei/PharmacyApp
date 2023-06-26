@@ -18,3 +18,7 @@
 "Resend OTP" = "Отправить ещё раз";
 "Send OTP" = "Отправить OTP";
 "Invalid OTP code" = "Неправильный OTP код";
+"Registration" = "Регистрация";
+"Name" = "Имя";
+"Last name" = "Фамилия";
+"Next" = "Продолжить";

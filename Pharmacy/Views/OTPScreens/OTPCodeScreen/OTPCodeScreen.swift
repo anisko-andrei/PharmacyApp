@@ -31,8 +31,6 @@ struct OTPCodeScreen: View {
                     OTPInputField(text: $vm.fields[index], isFocused: activeFieldIdx == index)
                         .focused($activeFieldIdx, equals: index)
                 }
-                
-                
             }
             .padding(.horizontal, 16)
             HStack {
@@ -46,7 +44,16 @@ struct OTPCodeScreen: View {
             Spacer()
             
             OTPButton(title: "Send OTP", action: {
-                vm.verifyAndSend(phone: oVM.mobileNumberText)
+                
+                switch oVM.profileLoginStatus {
+                case .alradyExistProfile :
+                    vm.verifyAndSend(phone: oVM.mobileNumberText)
+                case .newProfile :
+                    vm.verifyAndSend(phone: oVM.mobileNumberText, name: oVM.name, lastName: oVM.lastName)
+                case .none:
+                    vm.alertBody = AppAlert(message: "Erorr")
+                }
+                
             })
             .disabled(vm.checkState())
             .opacity(vm.checkState() ? 0.5 : 1.0)
