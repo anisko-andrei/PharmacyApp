@@ -10,6 +10,7 @@ import SwiftUI
 struct RegistrationView: View {
     @ObservedObject var vm: OTPMobileNumberScreenVM
     @Environment(\.dismiss) private var dismiss
+    @FocusState var focusField : FormFields?
     var body: some View {
         VStack {
             Spacer()
@@ -20,12 +21,27 @@ struct RegistrationView: View {
                 .padding(.bottom)
             Text("Registration")
                 .font(.system(size: 24))
-           
-            RegistrationTextField(labelText: "Name", inputText: $vm.name)
-                .padding(.vertical,8)
-            RegistrationTextField(labelText: "Last name", inputText: $vm.lastName)
-                .padding(.vertical,8)
+            
+            Group {
+                RegistrationTextField(labelText: "Name", inputText: $vm.name)
+                    .padding(.vertical,8)
+                    .focused($focusField, equals: .name)
+                    .submitLabel(.next)
+                RegistrationTextField(labelText: "Last name", inputText: $vm.lastName)
+                    .focused($focusField, equals: .lastName)
+                    .submitLabel(.done)
+                    .padding(.vertical,8)
+            }
+            .onSubmit {
+                switch focusField {
+                case .name:
+                    focusField = .lastName
+                default :
+                    focusField = nil
+                }
+            }
             Spacer()
+                
             OTPButton(title: "Next") {
                 Task {
                     await MainActor.run(body: {
@@ -52,17 +68,24 @@ struct RegistrationView_Previews: PreviewProvider {
 struct RegistrationTextField: View {
     var labelText: LocalizedStringKey
     @Binding var inputText: String
-    
+    //@FocusedBinding var focusBinding : FormFields?
+    var submitLabel : SubmitLabel = .continue
     var body: some View {
         VStack {
             TextField(labelText, text: $inputText)
                 .padding(.horizontal,100)
                 .font(.system(size: 20))
-                .submitLabel(.done)
+            
+                //.submitLabel(submitLabel)
+               // .focused($focusBinding, equals: <#T##Hashable#>)
             Rectangle()
                 .frame(maxHeight: 1)
                 .padding(.horizontal, 90)
                 .foregroundColor(.blue)
         }
     }
+}
+
+enum FormFields {
+    case name, lastName
 }

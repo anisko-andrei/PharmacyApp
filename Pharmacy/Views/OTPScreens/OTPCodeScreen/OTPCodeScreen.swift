@@ -30,6 +30,23 @@ struct OTPCodeScreen: View {
                 ForEach(0..<vm.otpLength, id: \.self) { index in
                     OTPInputField(text: $vm.fields[index], isFocused: activeFieldIdx == index)
                         .focused($activeFieldIdx, equals: index)
+                        .onChange(of: vm.fields[index]) { newValue in
+                            if newValue.count == 6 {
+                                vm.fields =  newValue.map{String($0)}
+                            }
+                            if !newValue.isEmpty {
+                                if newValue.count >= 1 {
+                                    vm.fields[index] = String(newValue.first ?? " ")
+                                    activeFieldIdx = index + 1
+                                }
+                            }
+                            if !vm.checkState() {
+                                activeFieldIdx = nil
+                            }
+                            if index > 0, !vm.fields[index - 1].isEmpty, vm.fields[index].isEmpty{
+                                activeFieldIdx = index - 1
+                            }
+                        }
                 }
             }
             .padding(.horizontal, 16)
@@ -59,9 +76,6 @@ struct OTPCodeScreen: View {
             .opacity(vm.checkState() ? 0.5 : 1.0)
             Spacer()
         }
-        .onChange(of: vm.fields) { newValue in
-            checkOTPFields(fields: newValue)
-        }
         .fullScreenCover(isPresented: $vm.showTabBar) {
             TabBarNavigationView()
         }
@@ -71,39 +85,6 @@ struct OTPCodeScreen: View {
             Text(bodyM.message)
         }
     }
-    
-    func checkOTPFields(fields: [String]) {
-      
-        for index in 0 ..< vm.otpLength - 1 {
-            if fields[index].count == 1 && activeFieldIdx == index {
-                activeFieldIdx = index + 1
-            }
-        }
-       
-        for index in 1 ..< vm.otpLength  {
-            if fields[index].isEmpty && !fields[index - 1].isEmpty {
-                activeFieldIdx = index - 1
-            }
-        }
-        
-        for index in 0 ..< vm.otpLength {
-            if fields[index].count == 6 {
-                
-                for (elementIndex , element) in fields[index].enumerated() {
-                    vm.fields[elementIndex] = String(element)
-                }
-            }
-             else  if fields[index].count > 1 {
-                    vm.fields[index] = String(fields[index].first!)
-                }
-            }
-        
-        if !vm.checkState() {
-            activeFieldIdx = nil
-        }
-
-    }
-        
 }
     
     struct OTPInputField: View {
