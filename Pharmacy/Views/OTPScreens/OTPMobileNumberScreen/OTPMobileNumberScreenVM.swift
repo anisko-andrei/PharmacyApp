@@ -33,6 +33,22 @@ final class OTPMobileNumberScreenVM: ObservableObject {
     var mobile : String  {
         mobileNumberText.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
     }
+    func showOTP() {
+        if otpText.count > 6 {
+            otpText = String(otpText.prefix(6))
+        }
+        if otpText.count == 6 {
+            fields = otpText.map{String($0)}
+        }
+        if otpText.count  < otpLength {
+            fields[otpText.count] = ""
+        }
+        if otpText.count <= 6 && otpText.count > 0 {
+            fields[otpText.count - 1] = String(otpText[otpText.index(otpText.startIndex, offsetBy: otpText.count - 1)])
+            
+            
+        }
+    }
     
     func getOTPCode() {
        
@@ -76,10 +92,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
     }
     
     func verifyAndSend() {
-        
-        otpText = fields.reduce("", { res, str in
-            return res + str
-        })
+    
         Task {
             do{
                 switch profileLoginStatus {
@@ -107,27 +120,6 @@ final class OTPMobileNumberScreenVM: ObservableObject {
             }
         }
     }
-    
-    func checkOtp(index: Int, newValue: String) -> Int? {
-        
-        if newValue.count == 6 {
-            fields =  newValue.map{String($0)}
-        }
-        if !checkState() {
-            return nil
-        }
-        if !newValue.isEmpty {
-            if newValue.count >= 1 {
-                fields[index] = String(newValue.first ?? " ")
-                return index + 1
-            }
-        }
-      
-        if index > 0, !fields[index - 1].isEmpty, fields[index].isEmpty{
-            return index - 1
-        }
-        return 0
-    }
 }
 
 struct AppAlert : Identifiable {
@@ -145,4 +137,10 @@ enum OTPScreens: Int, Identifiable {
 enum ProfileLoginStatus {
     case newProfile
     case alradyExistProfile
+}
+
+
+struct RowModel: Identifiable {
+    let id = UUID()
+    var name: String
 }

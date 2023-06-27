@@ -10,7 +10,7 @@ import SwiftUI
 struct OTPCodeScreen: View {
     
    
-    @FocusState var activeFieldIdx: Int?
+    @FocusState var activeFieldIdx: Bool
     @ObservedObject var vm: OTPMobileNumberScreenVM
     var body: some View {
         VStack{
@@ -25,18 +25,30 @@ struct OTPCodeScreen: View {
             Text(String.localizedStringWithFormat(NSLocalizedString("Enter the OTP sent to", comment: ""), vm.mobileNumberText))                .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
                 .padding(.vertical, 8)
-            
-            HStack() {
-
-                ForEach(0..<vm.otpLength, id: \.self) { index in
-                    OTPInputField(text: $vm.fields[index], isFocused: activeFieldIdx == index)
-                        .focused($activeFieldIdx, equals: index)
-                        .onChange(of: vm.fields[index]) { newValue in
-                           activeFieldIdx = vm.checkOtp(index: index, newValue: newValue)
-                        }
+            ZStack {
+                
+                    
+                HStack() {
+                    ForEach($vm.fields, id: \.self) { field in
+                        OTPInputField(text: field)
+                    }
                 }
+                .onTapGesture {
+                    activeFieldIdx.toggle()
+                }
+                .padding(.horizontal, 16)
+                
+                TextField("", text: $vm.otpText)
+                    .focused($activeFieldIdx)
+                    .opacity(0)
+                    .foregroundColor(.white)
+                    .keyboardType(.numberPad)
+                    .textContentType(.oneTimeCode)
+                    .frame(maxWidth: .infinity)
+                    .onChange(of: vm.otpText) { newValue in
+                        vm.showOTP()
+                    }
             }
-            .padding(.horizontal, 16)
             HStack {
                 Text("Didn’t you receive the OTP?")
                     .foregroundColor(.gray)
@@ -54,6 +66,15 @@ struct OTPCodeScreen: View {
             .opacity(vm.checkState() ? 0.5 : 1.0)
             Spacer()
         }
+        .frame(maxWidth: .infinity)
+        .onAppear {
+           
+                activeFieldIdx = true
+           
+        }
+        .onTapGesture {
+            activeFieldIdx = false
+        }
         .fullScreenCover(isPresented: $vm.showTabBar) {
             TabBarNavigationView()
         }
@@ -67,16 +88,11 @@ struct OTPCodeScreen: View {
     
 struct OTPInputField: View {
         @Binding var text: String
-        var isFocused: Bool
         var body: some View {
             VStack(spacing: 8) {
-                TextField("", text: $text)
-                    .keyboardType(.numberPad)
-                    .textContentType(.oneTimeCode)
-                    .multilineTextAlignment(.center)
-                
+                Text(text)
                 Rectangle()
-                    .fill(isFocused ? .blue : .gray)
+                    .fill(!text.isEmpty ? .blue : .gray)
                     .frame(height: 4)
             }
             .frame(height: 40)
@@ -86,6 +102,7 @@ struct OTPInputField: View {
     struct OTPCodeScreen_Previews: PreviewProvider {
         static var previews: some View {
             OTPCodeScreen(vm: OTPMobileNumberScreenVM())
+          //  OTPInputField(text: .constant(""))
         }
     }
 
