@@ -14,7 +14,7 @@ struct OTPMobileNumberScreen: View {
     var body: some View {
         VStack(alignment: .center){
             Spacer()
-            Image("OTPImage")
+            Image(Constants.otpImage)
                 .resizable()
                 .scaledToFit()
                 .frame(maxHeight: 230)

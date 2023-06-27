@@ -15,7 +15,7 @@ struct OTPCodeScreen: View {
     var body: some View {
         VStack{
             Spacer()
-            Image("OTPImage")
+            Image(Constants.otpImage)
                 .resizable()
                 .scaledToFit()
                 .frame(maxHeight: 230)

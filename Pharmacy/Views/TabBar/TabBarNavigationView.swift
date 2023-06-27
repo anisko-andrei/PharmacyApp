@@ -13,13 +13,13 @@ struct TabBarNavigationView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $tabSelected) {
-                OTPMobileNumberScreen()
+                ContactsView()
                     .tag(Tab.house)
                 
                 LoadingView()
                     .tag(Tab.cart)
                 
-                ProstoView()
+                ContactsView()
                     .tag(Tab.phone)
                 
                 ProstoView()
@@ -50,8 +50,68 @@ struct ProstoView : View {
             Button("logOut") {
                 KeychainSwift().delete("userToken")
             }
+            Link("1234567890", destination: URL(string: "tel:1234567890")!)
     }
         
+    }
+}
+struct ContactsView : View {
+    var body: some View {
+        NavigationView {
+            VStack{
+                HStack {
+                    Image(Constants.pharmacyLogoImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxHeight: 80)
+                    Text("Pharmacy")
+                        .font(.system(size: 30))
+                }
+                Text("© Pharmacy Holding Management Company LLC, 2017. All rights reserved.")
+                    .padding(.horizontal, 16)
+                List {
+                    
+                    Link(destination: URL(string: "tel:+375295158494")!) {
+                        Label {
+                            Text("+375-29-515-84-94")
+                        } icon: {
+                            Image(systemName: "phone")
+                                .foregroundColor(.green)
+                        }
+                    }
+                    
+                    Link(destination: URL(string: "tel:+375295158495")!) {
+                        Label {
+                            Text("+375-29-515-84-95")
+                        } icon: {
+                        Image(systemName: "phone")
+                                .foregroundColor(.green)
+                        }
+                    }
+                    
+                    Link(destination: Constants.telegramUrl) {
+                        Label {
+                            Text("Telegram")
+                        } icon: {
+                            Image(Constants.telegramIco)
+                                .resizable()
+                                .scaledToFit()
+                                //.foregroundColor(.green)
+                        }
+                    }
+
+                }
+                .listStyle(.inset)
+                
+                Spacer()
+            
+        }
+            .navigationTitle("About us")
+            .navigationBarBackButtonHidden(false)
+            .navigationBarTitleDisplayMode(.inline)
+            
+        }
+
     }
 }
 

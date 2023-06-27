@@ -13,8 +13,9 @@ struct PharmacyApp: App {
         WindowGroup {
             NavigationView {
                 
-                ContentView()
-                    .environmentObject(ContentViewVM())
+//                ContentView()
+//                    .environmentObject(ContentViewVM())
+                TabBarNavigationView()
             }
         }
     }
