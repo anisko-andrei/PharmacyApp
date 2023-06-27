@@ -11,57 +11,28 @@ import KeychainSwift
 struct TabBarNavigationView: View {
     @State var tabSelected: Tab = .house
     var body: some View {
-//        TabView {
-//            ProstoView()
-//                .tabItem {
-//                    Image(systemName: "house") //house.fill
-//                    Text("Home")
-//                }
-//            ProstoView()
-//                .tabItem {
-//                    Image(systemName: "cart") //cart.fill
-//                    Text("Cart")
-//                }
-//            ProstoView()
-//                .tabItem {
-//                    Image(systemName: "phone") //phone.fill
-//                    Text("Contact")
-//                }
-//            ProstoView()
-//                .tabItem {
-//                    Image(systemName: "person") //person.fill
-//                    Text("Account")
-//                }
-//        }
-        ZStack {
-            VStack {
-                TabView(selection: $tabSelected) {
-                    ForEach(Tab.allCases, id: \.rawValue) { tab in
-                        HStack {
-                            switch tab {
-                            case .house :
-                                ProstoView()
-                            case.person :
-                                OTPMobileNumberScreen()
-                            default:
-                                LoadingView()
-                            }
-                        }
-                        .tag(tab)
-                        
-                    }
-                }
+        ZStack(alignment: .bottom) {
+            TabView(selection: $tabSelected) {
+                OTPMobileNumberScreen()
+                    .tag(Tab.house)
+                
+                LoadingView()
+                    .tag(Tab.cart)
+                
+                ProstoView()
+                    .tag(Tab.phone)
+                
+                ProstoView()
+                    .tag(Tab.person)
             }
-                VStack{
-                    Spacer()
-                    CustomTabBar(selectedTab: $tabSelected)
-                }
+        
+            ZStack{
+                CustomTabBar(selectedTab: $tabSelected)
+                    .padding(.bottom, -14)
             }
-            
-        
-        
+        }
+        .ignoresSafeArea(.keyboard , edges: .bottom)
     }
-    
 }
 
 struct TabBarNavigationView_Previews: PreviewProvider {
@@ -97,29 +68,26 @@ struct CustomTabBar: View {
     private var fillImage: String {
         selectedTab.rawValue.appending(".fill")
     }
-    
+
     var body: some View {
-        VStack {
-            HStack {
-                ForEach(Tab.allCases, id: \.rawValue) { tab in
-                    Spacer()
-                    Button {
-                        selectedTab = tab
-                    } label: {
-                        Image(systemName: selectedTab == tab ? fillImage : tab.rawValue)
-                            .scaleEffect(tab == selectedTab ? 1.25 : 1.0)
-                            .foregroundColor(tab == selectedTab ? .green : .gray)
-                            .font(.system(size: 20))
-                    }.background(Color.red)
-                    
-                    
-                    Spacer()
+       HStack {
+           ForEach(Tab.allCases, id: \.rawValue) { tab in
+               Spacer()
+               Button {
+                   selectedTab = tab
+               } label: {
+                   Image(systemName: selectedTab == tab ? fillImage : tab.rawValue)
+                       .scaleEffect(tab == selectedTab ? 1.25 : 1.0)
+                        .foregroundColor(tab == selectedTab ? .green : .gray)
+                        .font(.system(size: 20))
                 }
+               Spacer()
             }
-            .frame(height: 55)
-            .background(.thinMaterial)
-            .cornerRadius(9)
-            .padding()
         }
+       .frame(height: 50)
+       .background(.thinMaterial)
+       .cornerRadius(9)
+       .padding()
+       .shadow(color: .black, radius: 100)
     }
 }
