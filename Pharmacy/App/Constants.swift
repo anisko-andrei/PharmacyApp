@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class Constants {
     // String Urls
@@ -13,6 +14,7 @@ class Constants {
     static let phoneAndOTPSendUrl = "http://localhost:3000/api/v1/auth/phoneNumber/confirm"
     static let registerUrl = "http://localhost:3000/api/v1/auth/phoneNumber/register"
     static let authWithToken = "http://localhost:3000/api/v1/auth/me"
+    static let savedAddressesUrl = "https://parseapi.back4app.com/classes/MyAddresses/"
     // Images
     
     static let pharmacyLogoImage = "loadingImage"
@@ -27,4 +29,10 @@ class Constants {
             return URL(string: "https://google.com")!
         }
     }
+    
+    //HTTPHeaders
+    static let back4appHeader: HTTPHeaders = [
+        "X-Parse-Application-Id" : "jdvDvQao8tePsPKJuw3VVeU6xjZkIKzzvK1ry46N",
+        "X-Parse-REST-API-Key" : "BQ7HWLuwvUfyiD2SoqPTaHoEsCPeXptaOyOreAvw"
+    ]
 }

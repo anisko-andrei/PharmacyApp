@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Alamofire
 struct SavedAddresses: View {
     @StateObject var vm: SavedAddressesVM = SavedAddressesVM()
     @State var isEditing: Bool = false
@@ -63,6 +62,7 @@ struct SavedAddresses: View {
                                 .padding(.horizontal, -8)
                                 OTPButton(title: "Cancel") {
                                     vm.newAddressAdd.toggle()
+                                    vm.newAddress = ""
                                     
                                 }
                                 .padding(.horizontal, -8)
@@ -127,84 +127,6 @@ struct NavigationCustomBackButton : View {
 struct SavedAddresses_Previews: PreviewProvider {
     static var previews: some View {
         SavedAddresses()
-    }
-}
-
-
-class SavedAddressesVM : ObservableObject {
-    @Published var addresses: Addresses = Addresses(results: [])
-    @Published var newAddress: String = ""
-    @Published var newAddressAdd: Bool = false
-    func delete(at offsets: IndexSet) {
-
-        Task {
-            do {
-                let _ = try await deleteAddressAtServer(addressId: addresses.results[offsets.first ?? 0].objectID)
-                await MainActor.run(body: {
-                    addresses.results.remove(atOffsets: offsets)
-                })
-            }
-            catch {
-                print("ne ydalilos'")
-            }
-        }
-       
-        }
-    func deleteAddressAtServer (addressId: String) async throws -> String? {
-         return try await AF.request("https://parseapi.back4app.com/classes/MyAddresses/\(addressId)",
-                             method: .delete,
-                         headers: ["X-Parse-Application-Id" : "jdvDvQao8tePsPKJuw3VVeU6xjZkIKzzvK1ry46N",
-                                   "X-Parse-REST-API-Key" : "BQ7HWLuwvUfyiD2SoqPTaHoEsCPeXptaOyOreAvw"]).serializingString().value
-    }
-    
-  
-    
-    func getSaved() async throws -> Addresses {
-        return try await AF.request("https://parseapi.back4app.com/classes/MyAddresses",
-                                        method: .get,
-                                    headers: ["X-Parse-Application-Id" : "jdvDvQao8tePsPKJuw3VVeU6xjZkIKzzvK1ry46N",
-                                        "X-Parse-REST-API-Key" : "BQ7HWLuwvUfyiD2SoqPTaHoEsCPeXptaOyOreAvw"])
-                                .serializingDecodable(Addresses.self).value
-        
-    }
-    
-    func addAddress(newAddress: String) async throws  {
-       let _ = try await AF.request("https://parseapi.back4app.com/classes/MyAddresses",
-                             method: .post,
-                             parameters: ["address":newAddress],
-                             encoding: JSONEncoding.default,
-                             headers: ["X-Parse-Application-Id" : "jdvDvQao8tePsPKJuw3VVeU6xjZkIKzzvK1ry46N",
-                                       "X-Parse-REST-API-Key" : "BQ7HWLuwvUfyiD2SoqPTaHoEsCPeXptaOyOreAvw"]).serializingDecodable(Result.self).value
-    }
-    
-    func addNew(newAddress: String) {
-        Task {
-            do {
-                try await addAddress(newAddress: newAddress)
-                let newV = try await getSaved()
-                await MainActor.run(body: {
-                    addresses = newV
-                    newAddressAdd.toggle()
-                })
-            }
-            catch{
-                print("eerrr")
-            }
-        }
-    }
-    func loadAdres() {
-        Task {
-            do{
-                let result = try await getSaved()
-                await MainActor.run(body: {
-                    addresses = result
-                })
-                print(addresses)
-            }
-            catch {
-                print("eror")
-            }
-        }
     }
 }
 
