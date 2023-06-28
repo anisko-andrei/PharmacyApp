@@ -92,7 +92,7 @@ struct OTPInputField: View {
             VStack(spacing: 8) {
                 Text(text)
                 Rectangle()
-                    .fill(!text.isEmpty ? .blue : .gray)
+                    .fill(!text.isEmpty ? .green : .gray)
                     .frame(height: 4)
             }
             .frame(height: 40)

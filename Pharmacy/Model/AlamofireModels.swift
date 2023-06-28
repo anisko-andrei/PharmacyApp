@@ -54,4 +54,15 @@ struct Role: Decodable {
 }
 
 
+struct Addresses: Decodable {
+    var results: [Result]
+}
 
+struct Result: Decodable {
+    var objectID:String
+    var  address, createdAt, updatedAt : String?
+    enum CodingKeys: String, CodingKey {
+        case objectID = "objectId"
+        case address, createdAt, updatedAt
+    }
+}

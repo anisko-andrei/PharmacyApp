@@ -66,20 +66,16 @@ struct RegistrationView_Previews: PreviewProvider {
 struct RegistrationTextField: View {
     var labelText: LocalizedStringKey
     @Binding var inputText: String
-    //@FocusedBinding var focusBinding : FormFields?
     var submitLabel : SubmitLabel = .continue
     var body: some View {
         VStack {
             TextField(labelText, text: $inputText)
                 .padding(.horizontal,100)
                 .font(.system(size: 20))
-            
-                //.submitLabel(submitLabel)
-               // .focused($focusBinding, equals: <#T##Hashable#>)
             Rectangle()
                 .frame(maxHeight: 1)
                 .padding(.horizontal, 90)
-                .foregroundColor(.blue)
+                .foregroundColor(.green)
         }
     }
 }

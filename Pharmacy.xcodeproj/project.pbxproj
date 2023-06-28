@@ -17,6 +17,9 @@
 		340357962A35DA32005220F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 340357982A35DA32005220F1 /* Localizable.strings */; };
 		3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3403579A2A35E90D005220F1 /* ContentViewVM.swift */; };
 		3403579E2A36027B005220F1 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 3403579D2A36027B005220F1 /* iPhoneNumberField */; };
+		340878772A4C28B300F3BFC7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340878762A4C28B300F3BFC7 /* ProfileView.swift */; };
+		340878792A4C28EC00F3BFC7 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340878782A4C28EC00F3BFC7 /* ContactsView.swift */; };
+		3408787B2A4C4B6A00F3BFC7 /* SavedAdresses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3408787A2A4C4B6A00F3BFC7 /* SavedAdresses.swift */; };
 		340BDAB42A41B4D600F34B66 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340BDAB32A41B4D600F34B66 /* AlamofireManager.swift */; };
 		340BDAB72A41B58800F34B66 /* AlamofireModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340BDAB62A41B58800F34B66 /* AlamofireModels.swift */; };
 		340BDABA2A41B66800F34B66 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340BDAB92A41B66800F34B66 /* Constants.swift */; };
@@ -41,6 +44,9 @@
 		340357972A35DA32005220F1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		340357992A35DA6C005220F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3403579A2A35E90D005220F1 /* ContentViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewVM.swift; sourceTree = "<group>"; };
+		340878762A4C28B300F3BFC7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		340878782A4C28EC00F3BFC7 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		3408787A2A4C4B6A00F3BFC7 /* SavedAdresses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAdresses.swift; sourceTree = "<group>"; };
 		340BDAB32A41B4D600F34B66 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		340BDAB62A41B58800F34B66 /* AlamofireModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireModels.swift; sourceTree = "<group>"; };
 		340BDAB92A41B66800F34B66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -185,6 +191,9 @@
 			isa = PBXGroup;
 			children = (
 				34CB21402A4A2A49007FC873 /* LoadingView.swift */,
+				340878762A4C28B300F3BFC7 /* ProfileView.swift */,
+				3408787A2A4C4B6A00F3BFC7 /* SavedAdresses.swift */,
+				340878782A4C28EC00F3BFC7 /* ContactsView.swift */,
 				348FEFFA2A41C9D2002CB8D5 /* TabBar */,
 				344731742A41C2BC0013B513 /* RegistrationView */,
 				3403578E2A35D5EB005220F1 /* OTPScreens */,
@@ -282,11 +291,14 @@
 				3403578A2A35D5B7005220F1 /* OTPMobileNumberScreen.swift in Sources */,
 				348FEFF92A41C9CC002CB8D5 /* TabBarNavigationView.swift in Sources */,
 				34CB21432A4A2F1C007FC873 /* User.swift in Sources */,
+				340878792A4C28EC00F3BFC7 /* ContactsView.swift in Sources */,
+				340878772A4C28B300F3BFC7 /* ProfileView.swift in Sources */,
 				340BDABA2A41B66800F34B66 /* Constants.swift in Sources */,
 				340BDAB42A41B4D600F34B66 /* AlamofireManager.swift in Sources */,
 				3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */,
 				3403577C2A35D211005220F1 /* PharmacyApp.swift in Sources */,
 				348FEFF72A41C99C002CB8D5 /* TabBarNavigationVM.swift in Sources */,
+				3408787B2A4C4B6A00F3BFC7 /* SavedAdresses.swift in Sources */,
 				34CB21412A4A2A49007FC873 /* LoadingView.swift in Sources */,
 				3403578C2A35D5D6005220F1 /* OTPMobileNumberScreenVM.swift in Sources */,
 			);

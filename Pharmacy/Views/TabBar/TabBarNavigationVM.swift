@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+class TabBarNavigationVM : ObservableObject {
+    @Published var tabSelected: Tab = .house
+    @Published var isLogOut = false
+}

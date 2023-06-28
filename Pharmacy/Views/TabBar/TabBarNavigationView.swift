@@ -9,10 +9,11 @@ import SwiftUI
 import KeychainSwift
 
 struct TabBarNavigationView: View {
-    @State var tabSelected: Tab = .house
+   
+    @StateObject var vm: TabBarNavigationVM = TabBarNavigationVM()
     var body: some View {
         ZStack(alignment: .bottom) {
-            TabView(selection: $tabSelected) {
+            TabView(selection: $vm.tabSelected) {
                 ContactsView()
                     .tag(Tab.house)
                 
@@ -22,16 +23,19 @@ struct TabBarNavigationView: View {
                 ContactsView()
                     .tag(Tab.phone)
                 
-                ProstoView()
+                ProfileView(tabBarVM: vm)
                     .tag(Tab.person)
             }
         
             ZStack{
-                CustomTabBar(selectedTab: $tabSelected)
+                CustomTabBar(selectedTab: $vm.tabSelected)
                     .padding(.bottom, -14)
             }
         }
         .ignoresSafeArea(.keyboard , edges: .bottom)
+        .fullScreenCover(isPresented: $vm.isLogOut) {
+            OTPMobileNumberScreen()
+        }
     }
 }
 
@@ -55,65 +59,7 @@ struct ProstoView : View {
         
     }
 }
-struct ContactsView : View {
-    var body: some View {
-        NavigationView {
-            VStack{
-                HStack {
-                    Image(Constants.pharmacyLogoImage)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxHeight: 80)
-                    Text("Pharmacy")
-                        .font(.system(size: 30))
-                }
-                Text("© Pharmacy Holding Management Company LLC, 2017. All rights reserved.")
-                    .padding(.horizontal, 16)
-                List {
-                    
-                    Link(destination: URL(string: "tel:+375295158494")!) {
-                        Label {
-                            Text("+375-29-515-84-94")
-                        } icon: {
-                            Image(systemName: "phone")
-                                .foregroundColor(.green)
-                        }
-                    }
-                    
-                    Link(destination: URL(string: "tel:+375295158495")!) {
-                        Label {
-                            Text("+375-29-515-84-95")
-                        } icon: {
-                        Image(systemName: "phone")
-                                .foregroundColor(.green)
-                        }
-                    }
-                    
-                    Link(destination: Constants.telegramUrl) {
-                        Label {
-                            Text("Telegram")
-                        } icon: {
-                            Image(Constants.telegramIco)
-                                .resizable()
-                                .scaledToFit()
-                                //.foregroundColor(.green)
-                        }
-                    }
 
-                }
-                .listStyle(.inset)
-                
-                Spacer()
-            
-        }
-            .navigationTitle("About us")
-            .navigationBarBackButtonHidden(false)
-            .navigationBarTitleDisplayMode(.inline)
-            
-        }
-
-    }
-}
 
 enum Tab: String, CaseIterable {
     case house
