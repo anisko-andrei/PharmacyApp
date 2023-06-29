@@ -9,6 +9,7 @@ import SwiftUI
 import KeychainSwift
 struct ProfileView: View {
     @ObservedObject var tabBarVM: TabBarNavigationVM
+    @StateObject var user = User.shared
     var body: some View {
         NavigationView {
             
@@ -19,17 +20,19 @@ struct ProfileView: View {
                         .font(.system(size: 70))
                     Spacer()
                     VStack{
-                        Text("\(User.shared.username ?? "userName") \(User.shared.userLastName ?? "useerLastName")")
+                        Text(user.userNamePlusLastName)
                             .font(.system(size: 22))
-                        Text("\(User.shared.userMobilePhone ?? "+375292222222")")
+                        Text(user.userMobilePhone ?? "23")
                             .font(.system(size: 18))
                     }
+                    
                     Spacer()
+                    
                 }
                 .padding()
                 List {
                     NavigationLink {
-                        LoadingView()
+                        OrderHistoryView()
                     } label: {
                         Label {
                             Text("Order history")
@@ -51,7 +54,7 @@ struct ProfileView: View {
                     }
                     
                     NavigationLink {
-                        LoadingView()
+                       ChangeProfileInfoView()
                     } label: {
                         Label {
                             Text("Change profile information")
@@ -63,6 +66,7 @@ struct ProfileView: View {
                 }
                 .listStyle(.inset)
                 .scrollDisabled(true)
+                Spacer()
                 OTPButton(title: "Log Out") {
                     tabBarVM.isLogOut.toggle()
                     KeychainSwift().delete("userToken")
@@ -70,6 +74,7 @@ struct ProfileView: View {
                 .padding()
                 
             }
+            
         }
     }
 }
