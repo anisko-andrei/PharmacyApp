@@ -13,6 +13,9 @@ protocol AlamofireManagerProtocol {
     func sendOTPCode(otp: String, phone: String) async throws -> LoginInfo
     func registerNewProfile(name: String, lastName: String, phone: String, otp: String) async throws -> LoginInfo
     func loginWithToken(token: String) async throws -> AuthToken
+    func deleteAddressAtServer (addressId: String) async throws
+    func getSaved() async throws -> Addresses
+    func addAddress(newAddress: String) async throws
 }
 
 class AlamofireManager : AlamofireManagerProtocol {
@@ -51,6 +54,32 @@ class AlamofireManager : AlamofireManagerProtocol {
                                     encoding: JSONEncoding.default)
                             .serializingDecodable(LoginInfo.self).value
     }
+    
+    func deleteAddressAtServer (addressId: String) async throws {
+        _ = try await AF.request(Constants.savedAddressesUrl.appending(addressId),
+                             method: .delete,
+                              headers: Constants.back4appHeader).serializingDecodable(Empty.self, emptyResponseCodes: [200])
+            .value
+    }
+    
+  
+    
+    func getSaved() async throws -> Addresses {
+        return try await AF.request(Constants.savedAddressesUrl,
+                                        method: .get,
+                                    headers: Constants.back4appHeader)
+                                .serializingDecodable(Addresses.self).value
+        
+    }
+    
+    func addAddress(newAddress: String) async throws  {
+        let _ = try await AF.request(Constants.savedAddressesUrl,
+                             method: .post,
+                             parameters: ["address":newAddress],
+                             encoding: JSONEncoding.default,
+                             headers: Constants.back4appHeader).serializingDecodable(Result.self).value
+    }
+    
 }
     
     

@@ -17,10 +17,17 @@
 		340357962A35DA32005220F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 340357982A35DA32005220F1 /* Localizable.strings */; };
 		3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3403579A2A35E90D005220F1 /* ContentViewVM.swift */; };
 		3403579E2A36027B005220F1 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 3403579D2A36027B005220F1 /* iPhoneNumberField */; };
+		340878772A4C28B300F3BFC7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340878762A4C28B300F3BFC7 /* ProfileView.swift */; };
+		340878792A4C28EC00F3BFC7 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340878782A4C28EC00F3BFC7 /* ContactsView.swift */; };
+		3408787B2A4C4B6A00F3BFC7 /* SavedAdresses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3408787A2A4C4B6A00F3BFC7 /* SavedAdresses.swift */; };
 		340BDAB42A41B4D600F34B66 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340BDAB32A41B4D600F34B66 /* AlamofireManager.swift */; };
 		340BDAB72A41B58800F34B66 /* AlamofireModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340BDAB62A41B58800F34B66 /* AlamofireModels.swift */; };
 		340BDABA2A41B66800F34B66 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340BDAB92A41B66800F34B66 /* Constants.swift */; };
 		341FC7C82A3C80AE00E1FBF5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 341FC7C72A3C80AE00E1FBF5 /* Alamofire */; };
+		3423EF7E2A4CE2BD009EB6A9 /* SavedAddressesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423EF7D2A4CE2BD009EB6A9 /* SavedAddressesVM.swift */; };
+		3423EF822A4D7B5C009EB6A9 /* ChangeProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423EF812A4D7B5C009EB6A9 /* ChangeProfileInfoView.swift */; };
+		3423EF842A4D7B85009EB6A9 /* ChangeProfileInfoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423EF832A4D7B85009EB6A9 /* ChangeProfileInfoVM.swift */; };
+		3423EF872A4D9578009EB6A9 /* OrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423EF862A4D9578009EB6A9 /* OrderHistoryView.swift */; };
 		344731712A41C29F0013B513 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344731702A41C29F0013B513 /* RegistrationView.swift */; };
 		348FEFF72A41C99C002CB8D5 /* TabBarNavigationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FEFF62A41C99C002CB8D5 /* TabBarNavigationVM.swift */; };
 		348FEFF92A41C9CC002CB8D5 /* TabBarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */; };
@@ -41,9 +48,16 @@
 		340357972A35DA32005220F1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		340357992A35DA6C005220F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3403579A2A35E90D005220F1 /* ContentViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewVM.swift; sourceTree = "<group>"; };
+		340878762A4C28B300F3BFC7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		340878782A4C28EC00F3BFC7 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		3408787A2A4C4B6A00F3BFC7 /* SavedAdresses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAdresses.swift; sourceTree = "<group>"; };
 		340BDAB32A41B4D600F34B66 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		340BDAB62A41B58800F34B66 /* AlamofireModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireModels.swift; sourceTree = "<group>"; };
 		340BDAB92A41B66800F34B66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3423EF7D2A4CE2BD009EB6A9 /* SavedAddressesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAddressesVM.swift; sourceTree = "<group>"; };
+		3423EF812A4D7B5C009EB6A9 /* ChangeProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileInfoView.swift; sourceTree = "<group>"; };
+		3423EF832A4D7B85009EB6A9 /* ChangeProfileInfoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileInfoVM.swift; sourceTree = "<group>"; };
+		3423EF862A4D9578009EB6A9 /* OrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryView.swift; sourceTree = "<group>"; };
 		344731702A41C29F0013B513 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		348FEFF62A41C99C002CB8D5 /* TabBarNavigationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationVM.swift; sourceTree = "<group>"; };
 		348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationView.swift; sourceTree = "<group>"; };
@@ -155,6 +169,35 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		3423EF7F2A4CE5FE009EB6A9 /* ProfileViews */ = {
+			isa = PBXGroup;
+			children = (
+				340878762A4C28B300F3BFC7 /* ProfileView.swift */,
+				3423EF862A4D9578009EB6A9 /* OrderHistoryView.swift */,
+				3423EF852A4D7B8C009EB6A9 /* ChangeProfile */,
+				3423EF802A4CE61F009EB6A9 /* SavedAddresses */,
+			);
+			path = ProfileViews;
+			sourceTree = "<group>";
+		};
+		3423EF802A4CE61F009EB6A9 /* SavedAddresses */ = {
+			isa = PBXGroup;
+			children = (
+				3408787A2A4C4B6A00F3BFC7 /* SavedAdresses.swift */,
+				3423EF7D2A4CE2BD009EB6A9 /* SavedAddressesVM.swift */,
+			);
+			path = SavedAddresses;
+			sourceTree = "<group>";
+		};
+		3423EF852A4D7B8C009EB6A9 /* ChangeProfile */ = {
+			isa = PBXGroup;
+			children = (
+				3423EF812A4D7B5C009EB6A9 /* ChangeProfileInfoView.swift */,
+				3423EF832A4D7B85009EB6A9 /* ChangeProfileInfoVM.swift */,
+			);
+			path = ChangeProfile;
+			sourceTree = "<group>";
+		};
 		344731742A41C2BC0013B513 /* RegistrationView */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +228,8 @@
 			isa = PBXGroup;
 			children = (
 				34CB21402A4A2A49007FC873 /* LoadingView.swift */,
+				3423EF7F2A4CE5FE009EB6A9 /* ProfileViews */,
+				340878782A4C28EC00F3BFC7 /* ContactsView.swift */,
 				348FEFFA2A41C9D2002CB8D5 /* TabBar */,
 				344731742A41C2BC0013B513 /* RegistrationView */,
 				3403578E2A35D5EB005220F1 /* OTPScreens */,
@@ -276,18 +321,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				344731712A41C29F0013B513 /* RegistrationView.swift in Sources */,
+				3423EF872A4D9578009EB6A9 /* OrderHistoryView.swift in Sources */,
 				340BDAB72A41B58800F34B66 /* AlamofireModels.swift in Sources */,
 				3403577E2A35D211005220F1 /* ContentView.swift in Sources */,
+				3423EF822A4D7B5C009EB6A9 /* ChangeProfileInfoView.swift in Sources */,
 				340357902A35D640005220F1 /* OTPCodeScreen.swift in Sources */,
 				3403578A2A35D5B7005220F1 /* OTPMobileNumberScreen.swift in Sources */,
+				3423EF7E2A4CE2BD009EB6A9 /* SavedAddressesVM.swift in Sources */,
 				348FEFF92A41C9CC002CB8D5 /* TabBarNavigationView.swift in Sources */,
 				34CB21432A4A2F1C007FC873 /* User.swift in Sources */,
+				340878792A4C28EC00F3BFC7 /* ContactsView.swift in Sources */,
+				340878772A4C28B300F3BFC7 /* ProfileView.swift in Sources */,
 				340BDABA2A41B66800F34B66 /* Constants.swift in Sources */,
 				340BDAB42A41B4D600F34B66 /* AlamofireManager.swift in Sources */,
 				3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */,
 				3403577C2A35D211005220F1 /* PharmacyApp.swift in Sources */,
 				348FEFF72A41C99C002CB8D5 /* TabBarNavigationVM.swift in Sources */,
+				3408787B2A4C4B6A00F3BFC7 /* SavedAdresses.swift in Sources */,
 				34CB21412A4A2A49007FC873 /* LoadingView.swift in Sources */,
+				3423EF842A4D7B85009EB6A9 /* ChangeProfileInfoVM.swift in Sources */,
 				3403578C2A35D5D6005220F1 /* OTPMobileNumberScreenVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

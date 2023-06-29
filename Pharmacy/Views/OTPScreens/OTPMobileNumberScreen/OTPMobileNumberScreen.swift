@@ -14,7 +14,7 @@ struct OTPMobileNumberScreen: View {
     var body: some View {
         VStack(alignment: .center){
             Spacer()
-            Image("OTPImage")
+            Image(Constants.otpImage)
                 .resizable()
                 .scaledToFit()
                 .frame(maxHeight: 230)
@@ -44,7 +44,7 @@ struct OTPMobileNumberScreen: View {
             Rectangle()
                 .frame(maxHeight: 1)
                 .padding(.horizontal, 90)
-                .foregroundColor(.blue)
+                .foregroundColor(.green)
             Spacer()
 
             OTPButton(title: "Get OTP") {
@@ -87,10 +87,11 @@ struct OTPButton: View {
             Text(title)
                 .foregroundColor(.white)
                 .font(.system(size: 20))
-                .padding(.vertical, 20)
-                .padding(.horizontal, 100)
-                .background(Color.blue)
+                .frame(maxWidth: .infinity, maxHeight: 60)
+                .background(Color.green)
                 .cornerRadius(14)
+                .padding(.horizontal, 16)
+                
         }
     }
 }

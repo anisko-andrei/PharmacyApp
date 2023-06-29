@@ -7,12 +7,16 @@
 
 import Foundation
 
-class User {
+class User: ObservableObject {
     static let shared = User()
     
-    var username: String?
-    var userLastName : String?
-    var userMobilePhone : String?
+    @Published  var username: String?
+    @Published var userLastName : String?
+    @Published  var userMobilePhone : String?
+    
+    var userNamePlusLastName : String {
+        "\(username ?? "") \(userLastName ?? "")"
+    }
     
     private init() { }
  

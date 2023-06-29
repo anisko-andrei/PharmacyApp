@@ -15,6 +15,7 @@ struct PharmacyApp: App {
                 
                 ContentView()
                     .environmentObject(ContentViewVM())
+//                TabBarNavigationView()
             }
         }
     }
