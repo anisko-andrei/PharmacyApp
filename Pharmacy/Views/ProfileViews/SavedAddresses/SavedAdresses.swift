@@ -61,8 +61,7 @@ struct SavedAddresses: View {
                                 }
                                 .padding(.horizontal, -8)
                                 OTPButton(title: "Cancel") {
-                                    vm.newAddressAdd.toggle()
-                                    vm.newAddress = ""
+                                    vm.cancelButtonTaped()
                                     
                                 }
                                 .padding(.horizontal, -8)

@@ -22,13 +22,8 @@ class Constants {
     static let telegramIco = "telegramIco"
     
     //Urls
-    static var telegramUrl : URL {
-        if let url = URL(string: "https://t.me/oksinaa") {
-            return url
-        } else {
-            return URL(string: "https://google.com")!
-        }
-    }
+    static var telegramUrl : URL? = URL(string: "https://t.me/oksinaa")
+       
     
     //HTTPHeaders
     static let back4appHeader: HTTPHeaders = [

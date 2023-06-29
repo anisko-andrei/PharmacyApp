@@ -13,7 +13,7 @@ protocol AlamofireManagerProtocol {
     func sendOTPCode(otp: String, phone: String) async throws -> LoginInfo
     func registerNewProfile(name: String, lastName: String, phone: String, otp: String) async throws -> LoginInfo
     func loginWithToken(token: String) async throws -> AuthToken
-    func deleteAddressAtServer (addressId: String) async throws -> String?
+    func deleteAddressAtServer (addressId: String) async throws
     func getSaved() async throws -> Addresses
     func addAddress(newAddress: String) async throws
 }
@@ -55,10 +55,11 @@ class AlamofireManager : AlamofireManagerProtocol {
                             .serializingDecodable(LoginInfo.self).value
     }
     
-    func deleteAddressAtServer (addressId: String) async throws -> String? {
-        return try await AF.request(Constants.savedAddressesUrl.appending(addressId),
+    func deleteAddressAtServer (addressId: String) async throws {
+        _ = try await AF.request(Constants.savedAddressesUrl.appending(addressId),
                              method: .delete,
-                         headers: Constants.back4appHeader).serializingString().value
+                              headers: Constants.back4appHeader).serializingDecodable(Empty.self, emptyResponseCodes: [200])
+            .value
     }
     
   

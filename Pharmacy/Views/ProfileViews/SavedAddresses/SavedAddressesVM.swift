@@ -14,10 +14,10 @@ class SavedAddressesVM : ObservableObject {
     @Published var newAddressAdd: Bool = false
     let AFManager: AlamofireManagerProtocol = AlamofireManager()
     func delete(at offsets: IndexSet) {
-
+        guard let index = offsets.first else {return}
         Task {
             do {
-                let _ = try await AFManager.deleteAddressAtServer(addressId: addresses.results[offsets.first ?? 0].objectID)
+                try await AFManager.deleteAddressAtServer(addressId: addresses.results[index].objectID)
                 await MainActor.run(body: {
                     addresses.results.remove(atOffsets: offsets)
                 })
@@ -29,6 +29,11 @@ class SavedAddressesVM : ObservableObject {
        
         }
 
+    func cancelButtonTaped() {
+        newAddressAdd.toggle()
+        newAddress = ""
+    }
+    
     func addNew(newAddress: String) {
         Task {
             do {
@@ -36,7 +41,7 @@ class SavedAddressesVM : ObservableObject {
                 let newV = try await AFManager.getSaved()
                 await MainActor.run(body: {
                     addresses = newV
-                    newAddressAdd.toggle()
+                    cancelButtonTaped()
                 })
             }
             catch{

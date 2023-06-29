@@ -22,36 +22,40 @@ struct ContactsView : View {
                 Text("© Pharmacy Holding Management Company LLC, 2017. All rights reserved.")
                     .padding(.horizontal, 16)
                 List {
-                    
-                    Link(destination: URL(string: "tel:+375295158494")!) {
-                        Label {
-                            Text("+375-29-515-84-94")
-                        } icon: {
-                            Image(systemName: "phone")
-                                .foregroundColor(.green)
+                    if let firstPhoneUrl = URL(string: "tel:+375295158494") {
+                        Link(destination:
+                                firstPhoneUrl) {
+                            Label {
+                                Text("+375-29-515-84-94")
+                            } icon: {
+                                Image(systemName: "phone")
+                                    .foregroundColor(.green)
+                            }
+                        }
+                    }
+                    if let secondPhoneUrl = URL(string: "tel:+375295158495") {
+                        Link(destination: secondPhoneUrl ) {
+                            Label {
+                                Text("+375-29-515-84-95")
+                            } icon: {
+                                Image(systemName: "phone")
+                                    .foregroundColor(.green)
+                            }
                         }
                     }
                     
-                    Link(destination: URL(string: "tel:+375295158495")!) {
-                        Label {
-                            Text("+375-29-515-84-95")
-                        } icon: {
-                        Image(systemName: "phone")
-                                .foregroundColor(.green)
-                        }
-                    }
-                    
-                    Link(destination: Constants.telegramUrl) {
-                        Label {
-                            Text("Telegram")
-                        } icon: {
-                            Image(Constants.telegramIco)
-                                .resizable()
-                                .scaledToFit()
+                    if let telegramUrl = Constants.telegramUrl {
+                        Link(destination: telegramUrl) {
+                            Label {
+                                Text("Telegram")
+                            } icon: {
+                                Image(Constants.telegramIco)
+                                    .resizable()
+                                    .scaledToFit()
                                 //.foregroundColor(.green)
+                            }
                         }
                     }
-
                 }
                 .listStyle(.inset)
                 .scrollDisabled(true)
