@@ -74,6 +74,7 @@ struct ProfileView: View {
                 .padding()
                 
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
         }
     }

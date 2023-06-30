@@ -16,9 +16,17 @@ protocol AlamofireManagerProtocol {
     func deleteAddressAtServer (addressId: String) async throws
     func getSaved() async throws -> Addresses
     func addAddress(newAddress: String) async throws
+    func getSales() async throws -> SalePharm
 }
 
 class AlamofireManager : AlamofireManagerProtocol {
+    func getSales() async throws -> SalePharm {
+        return try await AF.request(Constants.salesPramUrl,
+                                        method: .get,
+                                    headers: Constants.back4appHeader)
+                                .serializingDecodable(SalePharm.self).value
+    }
+    
     func loginWithToken(token: String) async throws -> AuthToken {
         return try await AF.request(Constants.authWithToken,
                                     method: .get,

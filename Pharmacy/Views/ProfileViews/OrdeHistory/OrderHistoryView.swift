@@ -42,6 +42,3 @@ struct OrderHistoryView_Previews: PreviewProvider {
     }
 }
 
-class OrderHistoryVM : ObservableObject {
-    @Published var allOrders: [String] = []
-}

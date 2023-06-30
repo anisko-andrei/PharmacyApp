@@ -20,9 +20,11 @@ class User: ObservableObject {
     
     private init() { }
  
-   func writeUserData(userName: String?, userLastName: String?, userMobilePhone: String?) {
-        self.userLastName = userLastName
-        self.userMobilePhone = userMobilePhone
-        self.username = userName
+    func writeUserData(userName: String?, userLastName: String?, userMobilePhone: String?) async {
+        await MainActor.run {
+            self.userLastName = userLastName
+            self.userMobilePhone = userMobilePhone
+            self.username = userName
+        }
     }
 }
