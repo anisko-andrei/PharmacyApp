@@ -85,3 +85,17 @@ struct ResultSalePharm: Codable, Identifiable {
         case title, logo, price, oldPrice, description, createdAt, updatedAt
     }
 }
+
+struct Categories: Decodable {
+    let results: [ResultCategories]
+}
+
+
+struct ResultCategories: Decodable {
+    let objectID, name, createdAt, updatedAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case objectID = "objectId"
+        case name, createdAt, updatedAt
+    }
+}

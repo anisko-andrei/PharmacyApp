@@ -12,24 +12,8 @@ struct MainView: View {
     var body: some View {
         VStack {
             LogoView()
-            
-            Button {
-            print("open fullcover search")
-            } label: {
-                HStack() {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.green)
-                        .padding(.leading,8)
-                    Text("Catalog Search")
-                        .foregroundColor(.black)
-                        .padding(.vertical, 16)
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity)
-                .background(.thinMaterial)
-                .cornerRadius(9)
-                .padding(.horizontal,40)
-            }
+                .padding()
+            SearchButton()
             HStack{
                 ForEach(MainScreenButtons.allCases, id: \.self) { item in
                     HStack{
@@ -67,9 +51,6 @@ struct MainView: View {
                         ForEach(vm.salesResult, id: \.objectID) { item in
                            
                             PharmCard(item: item)
-                                .onTapGesture {
-                                    vm.sheetItem = item
-                                }
                             }
                         }
                     
@@ -82,45 +63,19 @@ struct MainView: View {
         .sheet(item: $vm.sheetToOpen) { sheet in
             switch sheet {
             case .myOrders :
-                LoadingView()
+                OrderHistoryView()
             case .catalog :
-                SavedAddresses()
+                CatalogView()
             case .delivery :
-                LogoView()
+                DeliveryScreen()
             }
         }
-        .sheet(item: $vm.sheetItem) { item in
-            PharmCard(item: item)
-        }
-       
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-        //        PharmCard(item: .constant(ResultSalePharm(objectID: "", title: "Paracetomall", logo: "https://apteka-adel.by/upload/iblock/901/6s66iuhoj2sy5a6umgg1eqgb74d1grot.jpg", price: 5.45, oldPrice: 6, description: "his file was generated from JSON Schema using quicktype, do not modify it directly.", createdAt: "", updatedAt: "")))
-        //    }
-    }
-}
-
-class MainVM : ObservableObject {
-    @Published var sheetToOpen: MainScreenButtons?
-    @Published var sheetItem : ResultSalePharm?
-    var AFManager: AlamofireManagerProtocol = AlamofireManager()
-    @Published var salesResult: [ResultSalePharm] = []
-    func getSales() {
-        Task {
-            do {
-                let result = try await AFManager.getSales()
-                await MainActor.run(body: {
-                    salesResult = result.results
-                })
-            }
-            catch {
-                print("nezagr")
-            }
-        }
     }
 }
 
@@ -154,17 +109,20 @@ enum MainScreenButtons: Int ,Identifiable, CaseIterable {
 
 struct PharmCard: View {
     var item : ResultSalePharm
+    @State var isPresented = false
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: item.logo)) { logo in
                 logo
                     .resizable()
+                    .scaledToFit()
                     .frame (maxWidth: 80,  maxHeight: 80)
                     .cornerRadius(9)
             } placeholder: {
                 Image(Constants.pharmPlaceholder)
                     .resizable()
-                    .frame (maxWidth: 55,  maxHeight: 55)
+                    .scaledToFit()
+                    .frame (maxWidth: 80,  maxHeight: 80)
             }
             .padding(.leading, 8)
             .padding(.vertical, 8)
@@ -172,20 +130,83 @@ struct PharmCard: View {
             VStack(alignment: .leading) {
                 Text(item.title)
                     .font(.system(size: 20))
-                if let oldPrice = item.oldPrice {
-                    Text(String(format: "%.2f", oldPrice))
-                        .strikethrough()
+                HStack {
+                    VStack {
+                        if let oldPrice = item.oldPrice {
+                            Text(String(format: "%.2f", oldPrice))
+                                .strikethrough()
+                        }
+                        Text(String(format: "%.2f", item.price))
+                            .font(.system(size: 20))
+                            .foregroundColor(.red)
+                    }
+                     Spacer()
+                    Button {
+                        print("minus")
+                    } label: {
+                     
+                        Image(systemName: "minus")
+                            .padding(.vertical,16)
+                            .padding(.horizontal, 8)
+                            .foregroundColor(.green)
+                            .background(.thinMaterial)
+                            .font(.system(size: 20))
+                            .mask(Circle())
+                    }
+                    
+                    Text("1")
+                        .multilineTextAlignment(.center)
+                    Button {
+                        print("add")
+                    } label: {
+                        Image(systemName: "plus")
+                            .padding(8)
+                            .foregroundColor(.green)
+                            .background(.thinMaterial)
+                            .font(.system(size: 20))
+                            .mask(Circle())
+                    }
+                    
+                    
+                    
                 }
-                Text(String(format: "%.2f", item.price))
-                    .font(.system(size: 20))
-                    .foregroundColor(.red)
+                
             }
             Spacer()
         }
+        .onTapGesture {
+            isPresented.toggle()
+        }
+        .sheet(isPresented: $isPresented, content: {
+            FullPharmCard(item: item)
+        })
         .frame(maxWidth: .infinity)
+        .frame(height:  110)
         .background(.thinMaterial)
         .cornerRadius(9)
         .padding(.horizontal)
        
+    }
+}
+
+struct SearchButton: View {
+    var body: some View {
+        Button {
+            print("open fullcover search")
+        } label: {
+            HStack() {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.green)
+                    .padding(.leading,8)
+                Text("Catalog Search")
+                    .foregroundColor(.green)
+                    .padding(.vertical, 16)
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+            .background(.thinMaterial)
+            .cornerRadius(9)
+            .padding(.horizontal,40)
+        }
     }
 }

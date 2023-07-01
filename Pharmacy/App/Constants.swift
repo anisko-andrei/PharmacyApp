@@ -16,6 +16,8 @@ class Constants {
     static let authWithToken = "https://teikly.com/api/v1/auth/me"
     static let savedAddressesUrl = "https://parseapi.back4app.com/classes/MyAddresses/"
     static let salesPramUrl = "https://parseapi.back4app.com/classes/salePharm"
+    static let categoriesPramUrl = "https://parseapi.back4app.com/classes/categories"
+    static let pramUrl = "https://parseapi.back4app.com/classes/"
     // Images
     
     static let pharmacyLogoImage = "loadingImage"
