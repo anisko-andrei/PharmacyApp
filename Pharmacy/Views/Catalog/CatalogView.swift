@@ -53,7 +53,7 @@ struct CatalogView: View {
         }
         
         .task {
-            vm.getCategories()
+          await vm.getCategories()
         }
     }
 }

@@ -12,8 +12,8 @@ class CatalogVM : ObservableObject {
     @Published var pharm : [ResultSalePharm] = []
     var AFMAnager: AlamofireManagerProtocol = AlamofireManager()
     
-    func getCategories() {
-        Task {
+    func getCategories() async {
+        
             do{
                 let result = try await AFMAnager.getCategories()
                 await MainActor.run(body: {
@@ -23,11 +23,11 @@ class CatalogVM : ObservableObject {
             catch {
                 print("=(")
             }
-        }
+    
     }
     
-    func getPharm(path: String) {
-        Task {
+    func getPharm(path: String)  async{
+   
             do{
                 let result = try await AFMAnager.getPharm(path: path)
                 await MainActor.run(body: {
@@ -40,7 +40,7 @@ class CatalogVM : ObservableObject {
                 })
                 print("=(")
             }
-        }
+    
     }
 
     

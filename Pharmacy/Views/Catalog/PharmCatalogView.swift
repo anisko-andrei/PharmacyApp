@@ -24,7 +24,7 @@ struct PharmCatalogView :View {
         }
         .navigationTitle(item.name)
         .task {
-            vm.getPharm(path: item.objectID)
+            await vm.getPharm(path: item.objectID)
         }
     }
         

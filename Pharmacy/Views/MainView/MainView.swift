@@ -58,7 +58,7 @@ struct MainView: View {
             }
         }
         .task {
-            vm.getSales()
+         await vm.getSales()
         }
         .sheet(item: $vm.sheetToOpen) { sheet in
             switch sheet {
@@ -111,72 +111,75 @@ struct PharmCard: View {
     var item : ResultSalePharm
     @State var isPresented = false
     var body: some View {
-        HStack {
-            AsyncImage(url: URL(string: item.logo)) { logo in
-                logo
-                    .resizable()
-                    .scaledToFit()
-                    .frame (maxWidth: 80,  maxHeight: 80)
-                    .cornerRadius(9)
-            } placeholder: {
-                Image(Constants.pharmPlaceholder)
-                    .resizable()
-                    .scaledToFit()
-                    .frame (maxWidth: 80,  maxHeight: 80)
-            }
-            .padding(.leading, 8)
-            .padding(.vertical, 8)
-            
-            VStack(alignment: .leading) {
-                Text(item.title)
-                    .font(.system(size: 20))
-                HStack {
-                    VStack {
-                        if let oldPrice = item.oldPrice {
-                            Text(String(format: "%.2f", oldPrice))
-                                .strikethrough()
-                        }
-                        Text(String(format: "%.2f", item.price))
-                            .font(.system(size: 20))
-                            .foregroundColor(.red)
-                    }
-                     Spacer()
-                    Button {
-                        print("minus")
-                    } label: {
-                     
-                        Image(systemName: "minus")
-                            .padding(.vertical,16)
-                            .padding(.horizontal, 8)
-                            .foregroundColor(.green)
-                            .background(.thinMaterial)
-                            .font(.system(size: 20))
-                            .mask(Circle())
-                    }
-                    
-                    Text("1")
-                        .multilineTextAlignment(.center)
-                    Button {
-                        print("add")
-                    } label: {
-                        Image(systemName: "plus")
-                            .padding(8)
-                            .foregroundColor(.green)
-                            .background(.thinMaterial)
-                            .font(.system(size: 20))
-                            .mask(Circle())
-                    }
-                    
-                    
-                    
-                }
-                
-            }
-            Spacer()
-        }
-        .onTapGesture {
+        Button {
             isPresented.toggle()
+        } label: {
+            HStack {
+                      AsyncImage(url: URL(string: item.logo)) { logo in
+                          logo
+                              .resizable()
+                              .scaledToFit()
+                              .frame (maxWidth: 80,  maxHeight: 80)
+                              .cornerRadius(9)
+                      } placeholder: {
+                          Image(Constants.pharmPlaceholder)
+                              .resizable()
+                              .scaledToFit()
+                              .frame (maxWidth: 80,  maxHeight: 80)
+                      }
+                      .padding(.leading, 8)
+                      .padding(.vertical, 8)
+                      
+                      VStack(alignment: .leading) {
+                          Text(item.title)
+                              .font(.system(size: 20))
+                          HStack {
+                              VStack {
+                                  if let oldPrice = item.oldPrice {
+                                      Text(String(format: "%.2f", oldPrice))
+                                          .strikethrough()
+                                  }
+                                  Text(String(format: "%.2f", item.price))
+                                      .font(.system(size: 20))
+                                      .foregroundColor(.red)
+                              }
+                               Spacer()
+                              Button {
+                                  print("minus")
+                              } label: {
+                               
+                                  Image(systemName: "minus")
+                                      .padding(.vertical,16)
+                                      .padding(.horizontal, 8)
+                                      .foregroundColor(.green)
+                                      .background(.thinMaterial)
+                                      .font(.system(size: 20))
+                                      .mask(Circle())
+                              }
+                              
+                              Text("1")
+                                  .multilineTextAlignment(.center)
+                              Button {
+                                  print("add")
+                              } label: {
+                                  Image(systemName: "plus")
+                                      .padding(8)
+                                      .foregroundColor(.green)
+                                      .background(.thinMaterial)
+                                      .font(.system(size: 20))
+                                      .mask(Circle())
+                              }
+                              
+                              
+                              
+                          }
+                          
+                      }
+                      Spacer()
+                  }
         }
+
+        .foregroundColor(.black)
         .sheet(isPresented: $isPresented, content: {
             FullPharmCard(item: item)
         })

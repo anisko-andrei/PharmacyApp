@@ -12,8 +12,8 @@ class MainVM : ObservableObject {
     @Published var sheetItem : ResultSalePharm?
     var AFManager: AlamofireManagerProtocol = AlamofireManager()
     @Published var salesResult: [ResultSalePharm] = []
-    func getSales() {
-        Task {
+    func getSales() async {
+    
             do {
                 let result = try await AFManager.getSales()
                 await MainActor.run(body: {
@@ -23,6 +23,6 @@ class MainVM : ObservableObject {
             catch {
                 print("nezagr")
             }
-        }
+        
     }
 }
