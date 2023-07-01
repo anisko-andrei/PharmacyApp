@@ -111,7 +111,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
                 }
                 
                 keychain.set(user?.token ?? "", forKey: "userToken")
-                User.shared.writeUserData(userName: user?.customer.firstName, userLastName: user?.customer.lastName, userMobilePhone: mobile)
+               await User.shared.writeUserData(userName: user?.customer.firstName, userLastName: user?.customer.lastName, userMobilePhone: mobile)
                 await MainActor.run(body: {
                     showTabBar.toggle()
                 })

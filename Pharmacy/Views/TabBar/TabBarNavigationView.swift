@@ -14,7 +14,7 @@ struct TabBarNavigationView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $vm.tabSelected) {
-                ContactsView()
+                MainView()
                     .tag(Tab.house)
                 
                 LoadingView()
@@ -44,22 +44,6 @@ struct TabBarNavigationView_Previews: PreviewProvider {
         TabBarNavigationView()
     }
 }
-
-struct ProstoView : View {
-    var body: some View {
-        VStack{
-            Text("hello, \(User.shared.username ?? "world")")
-            Text("hello, \(User.shared.userLastName ?? "world")")
-            Text("hello, \(User.shared.userMobilePhone ?? "world")")
-            Button("logOut") {
-                KeychainSwift().delete("userToken")
-            }
-            Link("1234567890", destination: URL(string: "tel:1234567890")!)
-    }
-        
-    }
-}
-
 
 enum Tab: String, CaseIterable {
     case house

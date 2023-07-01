@@ -14,10 +14,14 @@ class ChangeProfileInfoVM : ObservableObject {
    
     func saveChanges() {
         //waitBackEnd =(
-        
-        User.shared.writeUserData(userName: nameText, userLastName: lastName, userMobilePhone: phoneNumber)
+        Task {
+            await User.shared.writeUserData(userName: nameText, userLastName: lastName, userMobilePhone: phoneNumber)
+            
+            
+        }
         isEditing.toggle()
     }
+        
 }
 
 enum TextFieldType: CaseIterable {

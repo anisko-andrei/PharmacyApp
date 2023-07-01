@@ -9,16 +9,24 @@ import SwiftUI
 
 struct LoadingView: View {
     var body: some View {
-        VStack(alignment: .center) {
+        LogoView()
+    }
+}
+
+
+struct LogoView: View {
+    var body: some View {
+        HStack {
             Image(Constants.pharmacyLogoImage)
                 .resizable()
                 .scaledToFit()
                 .frame(maxHeight: 80)
-            Text("Pharmacy")
-                .font(.system(size: 30))
-            Text("Health first")
-                .font(.system(size: 18).italic())
-            
+            VStack {
+                Text("Pharmacy")
+                    .font(.system(size: 30))
+                Text("Health first")
+                    .font(.system(size: 18).italic())
+            }
         }
     }
 }

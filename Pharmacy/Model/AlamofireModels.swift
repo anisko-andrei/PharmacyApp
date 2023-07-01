@@ -66,3 +66,36 @@ struct Result: Decodable {
         case address, createdAt, updatedAt
     }
 }
+
+struct SalePharm: Codable {
+    let results: [ResultSalePharm]
+}
+
+struct ResultSalePharm: Codable, Identifiable {
+    var id: String {self.objectID}
+    
+    var objectID, title: String
+    var logo: String
+    var price : Double
+    var oldPrice: Double?
+    var description, createdAt, updatedAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case objectID = "objectId"
+        case title, logo, price, oldPrice, description, createdAt, updatedAt
+    }
+}
+
+struct Categories: Decodable {
+    let results: [ResultCategories]
+}
+
+
+struct ResultCategories: Decodable {
+    let objectID, name, createdAt, updatedAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case objectID = "objectId"
+        case name, createdAt, updatedAt
+    }
+}

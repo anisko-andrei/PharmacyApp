@@ -10,16 +10,20 @@ import Alamofire
 
 class Constants {
     // String Urls
-    static let phoneSendUrl = "http://localhost:3000/api/v1/auth/phoneNumber/login"
-    static let phoneAndOTPSendUrl = "http://localhost:3000/api/v1/auth/phoneNumber/confirm"
-    static let registerUrl = "http://localhost:3000/api/v1/auth/phoneNumber/register"
-    static let authWithToken = "http://localhost:3000/api/v1/auth/me"
+    static let phoneSendUrl = "https://teikly.com/api/v1/auth/phoneNumber/login"
+    static let phoneAndOTPSendUrl = "https://teikly.com/api/v1/auth/phoneNumber/confirm"
+    static let registerUrl = "https://teikly.com/api/v1/auth/phoneNumber/register"
+    static let authWithToken = "https://teikly.com/api/v1/auth/me"
     static let savedAddressesUrl = "https://parseapi.back4app.com/classes/MyAddresses/"
+    static let salesPramUrl = "https://parseapi.back4app.com/classes/salePharm"
+    static let categoriesPramUrl = "https://parseapi.back4app.com/classes/categories"
+    static let pramUrl = "https://parseapi.back4app.com/classes/"
     // Images
     
     static let pharmacyLogoImage = "loadingImage"
     static let otpImage = "OTPImage"
     static let telegramIco = "telegramIco"
+    static let pharmPlaceholder = "pharmPlaceholder"
     
     //Urls
     static var telegramUrl : URL? = URL(string: "https://t.me/oksinaa")
