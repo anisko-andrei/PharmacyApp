@@ -16,29 +16,29 @@ struct LoginInfo: Decodable {
     let token: String
 }
 
-
 struct Customer: Decodable {
     let id: Int
-    let firstName, lastName, createdAt, updatedAt: String
+    let firstName, lastName, phoneNumber : String
+    let createdAt, updatedAt: String?
     let deletedAt: String?
     let role, status: Role
     let entity: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, firstName, lastName, createdAt, updatedAt, deletedAt, role, status
+        case id, firstName, lastName, createdAt, updatedAt, deletedAt, role, status, phoneNumber
         case entity = "__entity"
     }
 }
+
 struct AuthToken: Decodable {
     let id: Int
-    let phoneNumber, provider, firstName, lastName: String
-    let createdAt, updatedAt: String
+    let firstName, lastName, createdAt, updatedAt, phoneNumber: String
     let deletedAt: String?
     let role, status: Role
     let entity: String
 
     enum CodingKeys: String, CodingKey {
-        case id, phoneNumber, provider, firstName, lastName, createdAt, updatedAt, deletedAt, role, status
+        case id, firstName, lastName, createdAt, updatedAt, deletedAt, role, status, phoneNumber
         case entity = "__entity"
     }
 }
@@ -52,7 +52,6 @@ struct Role: Decodable {
         case entity = "__entity"
     }
 }
-
 
 struct Addresses: Decodable {
     var results: [Result]

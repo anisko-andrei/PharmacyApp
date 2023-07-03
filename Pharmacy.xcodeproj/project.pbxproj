@@ -42,6 +42,7 @@
 		34D531832A505F11001CE36D /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D531822A505F11001CE36D /* CatalogView.swift */; };
 		34D531852A507E88001CE36D /* CatalogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D531842A507E88001CE36D /* CatalogVM.swift */; };
 		34D531872A507EBC001CE36D /* PharmCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D531862A507EBC001CE36D /* PharmCatalogView.swift */; };
+		34D5318A2A52027E001CE36D /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D531892A52027E001CE36D /* CartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		34D531822A505F11001CE36D /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		34D531842A507E88001CE36D /* CatalogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogVM.swift; sourceTree = "<group>"; };
 		34D531862A507EBC001CE36D /* PharmCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmCatalogView.swift; sourceTree = "<group>"; };
+		34D531892A52027E001CE36D /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +254,7 @@
 		34CC9F402A3C577A00D7291D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				34D531892A52027E001CE36D /* CartView.swift */,
 				34D5317E2A50534E001CE36D /* FullPharmCard.swift */,
 				34D531802A505E3D001CE36D /* DeliveryScreen.swift */,
 				34D531882A507F3B001CE36D /* Catalog */,
@@ -368,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34D5318A2A52027E001CE36D /* CartView.swift in Sources */,
 				344731712A41C29F0013B513 /* RegistrationView.swift in Sources */,
 				3423EF872A4D9578009EB6A9 /* OrderHistoryView.swift in Sources */,
 				340BDAB72A41B58800F34B66 /* AlamofireModels.swift in Sources */,

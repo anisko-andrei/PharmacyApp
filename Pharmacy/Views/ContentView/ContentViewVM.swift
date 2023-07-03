@@ -28,7 +28,7 @@ final class ContentViewVM: ObservableObject {
         Task {
             do {
                 let user = try await AFManager.loginWithToken(token: token)
-                 await User.shared.writeUserData(userName: user.firstName, userLastName: user.lastName, userMobilePhone: user.phoneNumber)
+                await User.shared.writeUserData(userName: user.firstName, userLastName: user.lastName, userMobilePhone: user.phoneNumber)
                 await MainActor.run(body: {
                     authState = .logged
                 })

@@ -16,23 +16,30 @@ struct TabBarNavigationView: View {
             TabView(selection: $vm.tabSelected) {
                 MainView()
                     .tag(Tab.house)
-                
-                LoadingView()
+                    .toolbar(.visible, for: .tabBar)
+                    .toolbarBackground(.hidden, for: .tabBar)
+                CartView()
                     .tag(Tab.cart)
-                
+                    .toolbar(.visible, for: .tabBar)
+                    .toolbarBackground(.hidden, for: .tabBar)
+
                 ContactsView()
                     .tag(Tab.phone)
-                
+                    .toolbar(.hidden, for: .tabBar)
                 ProfileView(tabBarVM: vm)
                     .tag(Tab.person)
+                    .toolbar(.visible, for: .tabBar)
             }
-        
+            
+            
             ZStack{
                 CustomTabBar(selectedTab: $vm.tabSelected)
                     .padding(.bottom, -14)
             }
         }
+    
         .ignoresSafeArea(.keyboard , edges: .bottom)
+        
         .fullScreenCover(isPresented: $vm.isLogOut) {
             OTPMobileNumberScreen()
         }
@@ -66,11 +73,27 @@ struct CustomTabBar: View {
                Button {
                    selectedTab = tab
                } label: {
-                   Image(systemName: selectedTab == tab ? fillImage : tab.rawValue)
-                       .scaleEffect(tab == selectedTab ? 1.25 : 1.0)
-                        .foregroundColor(tab == selectedTab ? .green : .gray)
-                        .font(.system(size: 20))
+                   ZStack {
+                       Image(systemName: selectedTab == tab ? fillImage : tab.rawValue)
+                           .scaleEffect(tab == selectedTab ? 1.25 : 1.0)
+                           .foregroundColor(tab == selectedTab ? .green : .gray)
+                           .font(.system(size: 20))
+                       if tab == .cart, selectedTab != .cart {
+                           Text("1")
+                               .lineLimit(1)
+                               .foregroundColor(.white)
+                               .font(.system(size: 20))
+                               .minimumScaleFactor(0.05)
+                               .frame(width: 14, height: 14)
+                               .padding(4)
+                               .background(.green)
+                               .clipShape(Circle())
+                              
+                               .offset(CGSize(width: 14, height: -10))
+                       }
+                   }
                 }
+                   
                Spacer()
             }
         }

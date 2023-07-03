@@ -42,3 +42,5 @@
 "Orders" = "Orders";
 "Catalog" = "Catalog";
 "Delivery" = "Delivery";
+"Total:" = "Total:";
+"r." = "%.2f r.";
