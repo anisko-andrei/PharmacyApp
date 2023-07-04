@@ -276,7 +276,6 @@
 			isa = PBXGroup;
 			children = (
 				34C9E3162A54199E00EB96BD /* Cart */,
-				34D5317E2A50534E001CE36D /* FullPharmCard.swift */,
 				34D531802A505E3D001CE36D /* DeliveryScreen.swift */,
 				34D531882A507F3B001CE36D /* Catalog */,
 				34D5317D2A505318001CE36D /* MainView */,
@@ -306,6 +305,7 @@
 				34D531822A505F11001CE36D /* CatalogView.swift */,
 				34D531842A507E88001CE36D /* CatalogVM.swift */,
 				34D531862A507EBC001CE36D /* PharmCatalogView.swift */,
+				34D5317E2A50534E001CE36D /* FullPharmCard.swift */,
 			);
 			path = Catalog;
 			sourceTree = "<group>";

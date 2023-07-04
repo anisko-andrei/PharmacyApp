@@ -65,7 +65,7 @@ struct MainView: View {
             case .myOrders :
                 OrderHistoryView()
             case .catalog :
-                CatalogView()
+                CatalogView(mainViewVM: vm)
             case .delivery :
                 DeliveryScreen()
             }
@@ -171,7 +171,7 @@ struct PharmCard: View {
 
         .foregroundColor(.black)
         .sheet(isPresented: $isPresented, content: {
-            FullPharmCard(item: item)
+            FullPharmCard(item: item, mainViewVM: vm)
         })
         .frame(maxWidth: .infinity)
         .frame(height:  110)
