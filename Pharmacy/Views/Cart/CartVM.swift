@@ -22,6 +22,11 @@ class CartVM: ObservableObject {
             self.alertIsPresented.toggle()
         }
     }
+    func placeOrderButtonTaped(total: Double) {
+        totalPrice = total
+        isContinue.toggle()
+        
+    }
     func loadAdres() async{
        
             do{

@@ -55,7 +55,8 @@ struct CartView: View {
                     .padding(4)
                     Spacer()
                     Button {
-                        vm.isContinue.toggle()
+                        vm.placeOrderButtonTaped(total: cartValues.reduce(0, { $0 + ($1.price * Double($1.count))
+                        }))
                     } label: {
                         
                         Text("Place an order")
@@ -93,10 +94,7 @@ struct CartView: View {
             .background(.green)
             .padding(.top, -8)
         }
-        .onChange(of: cartValues.reduce(0, { $0 + ($1.price * Double($1.count))
-        }), perform: { newValue in
-            vm.totalPrice = newValue
-        })
+      
         .sheet(isPresented: $vm.isContinue) {
             PlaceOrderView(vm: vm)
         }
