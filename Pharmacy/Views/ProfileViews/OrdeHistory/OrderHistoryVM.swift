@@ -7,5 +7,17 @@
 
 import Foundation
 class OrderHistoryVM : ObservableObject {
-    @Published var allOrders: [String] = []
+    @Published var allOrders: [OrdersResult] = []
+    let AFManager : AlamofireManagerProtocol = AlamofireManager()
+    func getOrders() async {
+        do {
+            let result = try await AFManager.getOrders()
+            await MainActor.run(body: {
+                allOrders = result.results
+            })
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+    }
 }

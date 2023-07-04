@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import RealmSwift
 
 class MainVM : ObservableObject {
     @Published var sheetToOpen: MainScreenButtons?
     @Published var sheetItem : ResultSalePharm?
     var AFManager: AlamofireManagerProtocol = AlamofireManager()
     @Published var salesResult: [ResultSalePharm] = []
+    @ObservedResults(CartItem.self) var realmDB
+    
     func getSales() async {
     
             do {
@@ -24,5 +27,30 @@ class MainVM : ObservableObject {
                 print("nezagr")
             }
         
+    }
+    
+    func addOrDeleteItemInCart(item: ResultSalePharm) {
+        if let itemInCart = realmDB.first(where: {$0.itemId == item.objectID}) {
+            deleteFromCart(item: itemInCart)
+        }
+        else {
+            addToCart(item: item)
+        }
+    }
+    
+    func addToCart(item: ResultSalePharm) {
+            $realmDB.append(CartItem(value: ["title":item.title,
+                                             "price":item.price,
+                                             "logo":item.logo,
+                                             "count": 1,
+                                             "itemId": item.objectID]))
+        }
+    
+    func deleteFromCart(item: CartItem) {
+       
+        $realmDB.remove(item)
+    }
+    func checkInCart(item: ResultSalePharm) -> Bool {
+        return realmDB.contains{$0.itemId == item.objectID}
     }
 }

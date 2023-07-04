@@ -17,7 +17,7 @@ struct PharmCatalogView :View {
                 .padding()
             ScrollView {
                 ForEach(vm.pharm, id: \.objectID) { item in
-                    PharmCard(item: item)
+                    PharmCard(item: item, vm: MainVM())
                 }
             }
         

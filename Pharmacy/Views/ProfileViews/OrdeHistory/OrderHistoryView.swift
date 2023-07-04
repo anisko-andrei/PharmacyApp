@@ -20,14 +20,18 @@ struct OrderHistoryView: View {
                 }
             } else {
                 List {
-                    ForEach (vm.allOrders, id: \.self) { order in
-                        NavigationLink(order) {
-                            //SomeView with orderInfo
+                
+                    ForEach (vm.allOrders, id: \.objectID) { order in
+                        HStack {
+                            Text(order.address ?? "")
+                            Text(String(order.price ?? 0))
                         }
-                        
                     }
                 }
             }
+        }
+        .task {
+            await vm.getOrders()
         }
         .navigationBarBackButtonHidden(true)
         .navigationTitle("Order history")

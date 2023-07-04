@@ -7,6 +7,7 @@
 
 import SwiftUI
 import KeychainSwift
+import RealmSwift
 
 struct TabBarNavigationView: View {
    
@@ -65,7 +66,7 @@ struct CustomTabBar: View {
     private var fillImage: String {
         selectedTab.rawValue.appending(".fill")
     }
-
+    @ObservedResults(CartItem.self) var realmDB
     var body: some View {
        HStack {
            ForEach(Tab.allCases, id: \.rawValue) { tab in
@@ -78,8 +79,8 @@ struct CustomTabBar: View {
                            .scaleEffect(tab == selectedTab ? 1.25 : 1.0)
                            .foregroundColor(tab == selectedTab ? .green : .gray)
                            .font(.system(size: 20))
-                       if tab == .cart, selectedTab != .cart {
-                           Text("1")
+                       if tab == .cart, selectedTab != .cart, realmDB.count > 0 {
+                           Text(String(realmDB.count))
                                .lineLimit(1)
                                .foregroundColor(.white)
                                .font(.system(size: 20))

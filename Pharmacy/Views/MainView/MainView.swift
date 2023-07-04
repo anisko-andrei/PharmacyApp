@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import RealmSwift
 struct MainView: View {
     @StateObject var vm: MainVM = MainVM()
     var body: some View {
@@ -50,7 +50,7 @@ struct MainView: View {
                        
                         ForEach(vm.salesResult, id: \.objectID) { item in
                            
-                            PharmCard(item: item)
+                            PharmCard(item: item, vm: vm)
                             }
                         }
                     
@@ -110,6 +110,11 @@ enum MainScreenButtons: Int ,Identifiable, CaseIterable {
 struct PharmCard: View {
     var item : ResultSalePharm
     @State var isPresented = false
+   
+    @ObservedObject var vm: MainVM
+    @ObservedResults(CartItem.self) var realmBD
+    @State var count = 0
+    var id: String?
     var body: some View {
         Button {
             isPresented.toggle()
@@ -145,30 +150,19 @@ struct PharmCard: View {
                               }
                                Spacer()
                               Button {
-                                  print("minus")
+                                  vm.addOrDeleteItemInCart(item: item)
                               } label: {
-                               
-                                  Image(systemName: "minus")
-                                      .padding(.vertical,16)
-                                      .padding(.horizontal, 8)
+                             
+                                  Image(systemName: realmBD.contains{$0.itemId == item.objectID}  ? "minus" : "plus")
                                       .foregroundColor(.green)
-                                      .background(.thinMaterial)
-                                      .font(.system(size: 20))
+                                      .font(.system(size: 25))
+                                      .frame(width: 40, height: 40)
+                                      .background(.gray)
                                       .mask(Circle())
+                                  
                               }
-                              
-                              Text("1")
-                                  .multilineTextAlignment(.center)
-                              Button {
-                                  print("add")
-                              } label: {
-                                  Image(systemName: "plus")
-                                      .padding(8)
-                                      .foregroundColor(.green)
-                                      .background(.thinMaterial)
-                                      .font(.system(size: 20))
-                                      .mask(Circle())
-                              }
+
+                             
                               
                               
                               

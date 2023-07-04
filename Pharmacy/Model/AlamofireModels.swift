@@ -98,3 +98,21 @@ struct ResultCategories: Decodable {
         case name, createdAt, updatedAt
     }
 }
+
+struct Orders:Decodable {
+    let results: [OrdersResult]
+}
+
+struct OrdersResult: Decodable {
+    let objectID: String?
+    let price: Double?
+    let paymentMethod, address: String?
+    let isDelivered: Bool?
+    let createdAt, updatedAt: String?
+
+    enum CodingKeys: String, CodingKey {
+        case objectID = "objectId"
+        case address, price, paymentMethod, isDelivered, createdAt, updatedAt
+    }
+}
+
