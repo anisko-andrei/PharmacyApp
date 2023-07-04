@@ -22,10 +22,7 @@ struct OrderHistoryView: View {
                 List {
                 
                     ForEach (vm.allOrders, id: \.objectID) { order in
-                        HStack {
-                            Text(order.address ?? "")
-                            Text(String(order.price ?? 0))
-                        }
+                        orderHistoryRow(item: order)
                     }
                 }
             }
@@ -48,3 +45,81 @@ struct OrderHistoryView_Previews: PreviewProvider {
     }
 }
 
+struct orderHistoryRow : View {
+    var item : OrdersResult
+    var body: some View {
+        VStack (spacing: 16) {
+            HStack {
+                Text("Order ID")
+                Spacer()
+                Text(item.objectID ?? "orderID")
+            }
+          //  .padding()
+            HStack {
+                Text("Price")
+                Spacer()
+                Text(String.localizedStringWithFormat(NSLocalizedString("r.", comment: ""), item.price ?? 0))
+            }
+          //  .padding()
+            
+            HStack {
+                Text("Address")
+                Spacer()
+                Text(item.address ?? "address")
+                    .multilineTextAlignment(.trailing)
+            }
+          //  .padding()
+            HStack {
+                Text("Created date")
+                Spacer()
+                Text(item.createdAt?.dateToString() ?? "date")
+                    .multilineTextAlignment(.center)
+            }
+            //.padding()
+            
+            HStack {
+                Text("Status")
+                Spacer()
+                if item.isDelivered ?? false {
+                    Text("Delivered")
+                        .multilineTextAlignment(.center)
+                        .padding(4)
+                        .background(.green)
+                        .cornerRadius(4)
+                }
+                else {
+                    Text("Not delivered")
+                        .multilineTextAlignment(.center)
+                        .padding(4)
+                        .background(.red)
+                        .cornerRadius(4)
+                }
+                
+            }
+           
+           
+        }
+       
+        .font(.system(size: 16))
+        .padding(.horizontal)
+        
+    }
+    
+ 
+    
+}
+
+extension String {
+    func dateToString() -> Self {
+        
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [
+            .withInternetDateTime,
+            .withFractionalSeconds
+        ]
+        let dateN = formatter.date(from: self)
+        let dateF = DateFormatter()
+        dateF.dateFormat = "YYYY-MM-dd HH:MM"
+        return dateF.string(from: dateN ?? .now)
+    }
+}

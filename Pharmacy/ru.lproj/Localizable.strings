@@ -54,3 +54,13 @@
 "Add new" = "Добавить";
 "Enter all data" = "Введите все данные";
 "Ordering is complete" = "Заказ оформлен";
+"Delivered" = "Доставлен";
+"Not delivered" = "Не досставлен";
+"Created date" = "Дата создания";
+"Status" = "Статус";
+"Address" = "Адрес";
+"Price" = "Цена";
+"Order ID" = "ID заказа";
+"Select your address:" = "  Выберите адрес доставки:";
+"Select your payment method:" = "Выберите способ оплаты:";
+"Order" = "Заказать";

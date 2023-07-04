@@ -17,7 +17,7 @@ struct PlaceOrderView: View {
                 VStack(alignment: .leading) {
                   
                         Text("Select your address:")
-                        .padding()
+                         .padding(.horizontal, 8)
                     HStack(spacing: 8){
                         Menu(content: {
                             ForEach(vm.addresses.results, id: \.objectID) { item in

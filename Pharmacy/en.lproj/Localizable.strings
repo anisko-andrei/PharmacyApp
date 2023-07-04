@@ -54,3 +54,13 @@
 "Add new" = "Add new";
 "Enter all data" = "Enter all data";
 "Ordering is complete" = "Ordering is complete";
+"Delivered" = "Delivered";
+"Not delivered" = "Not delivered";
+"Created date" = "Created date";
+"Status" = "Status";
+"Address" = "Address";
+"Price" = "Price";
+"Order ID" = "Order ID";
+"Select your address:" = "Select your address:";
+"Select your payment method:" = "Select your payment method:";
+"Order" = "Order";
