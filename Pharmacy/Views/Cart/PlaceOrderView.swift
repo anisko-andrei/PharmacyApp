@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlaceOrderView: View {
    
-    @ObservedObject var vm: cartVM
+    @ObservedObject var vm: CartVM
     var body: some View {
         NavigationView {
             ZStack {
@@ -18,7 +18,7 @@ struct PlaceOrderView: View {
                   
                         Text("Select your address:")
                         .padding()
-                    HStack{
+                    HStack(spacing: 8){
                         Menu(content: {
                             ForEach(vm.addresses.results, id: \.objectID) { item in
                                 Button {
@@ -29,40 +29,62 @@ struct PlaceOrderView: View {
                                 
                                 
                             }}, label: {
-                                Text(vm.selected ?? "Select")
+                                Text(vm.selected ?? String(localized: "Select"))
+                               
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 16))
+                                    .frame(maxWidth: .infinity, maxHeight: 40)
+                                    .background(Color.green)
+                                    .cornerRadius(14)
+                                    .padding(.leading, 16)
                             })
                         
                         .foregroundColor(.green)
-                        
-                        Spacer()
-                        
+                
                         Button(action: {
                             vm.newAddressAdd.toggle()
                         }, label: {
-                            Text("Add new")
+                            Image(systemName: "plus")
+                            
+                                .foregroundColor(.black)
+                                .font(.system(size: 16))
+                                .frame(maxWidth: 40, maxHeight: 40)
+                                .background(Color.green)
+                                .cornerRadius(14)
+                                .padding(.trailing, 16)
                         })
                         .foregroundColor(.green)
                     }
                     .padding(.horizontal)
-                    HStack() {
+                    
+                    VStack(alignment: .leading) {
                         Text("Select your payment method:")
+                            
                         Menu(content: {
                             ForEach(PaymentMethod.allCases, id: \.id) { item in
                                 Button {
                                     vm.payment = item
                                 } label: {
-                                    Text(item.rawValue)
+                                    Text(item.localized)
+                                    
                                 }
                                 
                                 
                             }}, label: {
-                                Text(vm.payment?.rawValue ?? "Select")
+                                Text(vm.payment?.localized ?? "Select")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 16))
+                                    .frame(maxWidth: .infinity, maxHeight: 40)
+                                    .background(Color.green)
+                                    .cornerRadius(14)
+                                    .padding(.horizontal, 16)
                             })
                         
                         .foregroundColor(.green)
                         .listStyle(.grouped)
                         
                     }
+                    .padding(.horizontal)
                     Spacer()
                     OTPButton(title: "Order") {
                         vm.newOrder()
@@ -114,7 +136,11 @@ struct PlaceOrderView: View {
                     
                 }
                 }
-                
+            .alert(vm.alertBody?.title ?? String(localized: "Error"), isPresented: $vm.alertIsPresented, presenting: vm.alertBody) { _ in
+                Button("ok", role: .cancel) {}
+            } message: { bodyM in
+                Text(bodyM.message)
+            }
 
             }
             
@@ -128,80 +154,23 @@ struct PlaceOrderView: View {
 struct PlaceOrderView_Previews: PreviewProvider {
     
     static var previews: some View {
-        PlaceOrderView(vm: cartVM())
+        PlaceOrderView(vm: CartVM())
     }
 }
 
 
 enum PaymentMethod : String, CaseIterable, Identifiable {
-   
-    
     var id: String {self.rawValue}
-    
     case card = "Card"
     case cash = "Cash"
     
+    var localized : LocalizedStringKey {
+        switch self {
+        case .card:
+            return "Card"
+        case .cash:
+            return "Cash"
+        }
+    }
     
 }
-
-//class PlaceOrderVM : ObservableObject {
-//    @Published var selected: String?
-//    @Published var addresses: Addresses = Addresses(results: [])
-//    @Published var payment: PaymentMethod?
-//    @Published var newAddress: String = ""
-//    @Published var newAddressAdd: Bool = false
-//
-//    let AFManager: AlamofireManagerProtocol = AlamofireManager()
-//
-//    func loadAdres() async{
-//
-//            do{
-//                let result = try await AFManager.getSaved()
-//                await MainActor.run(body: {
-//                    addresses = result
-//                })
-//                print(addresses)
-//            }
-//            catch {
-//                print("eror")
-//            }
-//
-//    }
-//
-//    func addNew(newAddress: String) {
-//        Task {
-//            do {
-//                try await AFManager.addAddress(newAddress: newAddress)
-//                let newV = try await AFManager.getSaved()
-//                await MainActor.run(body: {
-//                    addresses = newV
-//                    selected = newAddress
-//                    cancelButtonTaped()
-//
-//                })
-//            }
-//            catch{
-//                print("eerrr")
-//            }
-//        }
-//    }
-//
-//    func newOrder() {
-//        guard let address = selected,
-//              let paymentM = payment?.rawValue else {return}
-//        Task {
-//
-//            do{
-//                try await AFManager.sendOrder(price: 1, paymentMethod: paymentM, address: address)
-//
-//                await MainActor.run {
-//
-//                }
-//            }
-//        }
-//    }
-//    func cancelButtonTaped() {
-//        newAddressAdd.toggle()
-//        newAddress = ""
-//    }
-//}

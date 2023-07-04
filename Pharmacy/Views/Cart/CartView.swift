@@ -9,7 +9,7 @@ import SwiftUI
 import RealmSwift
 struct CartView: View {
     @ObservedResults(CartItem.self) var cartValues
-    @StateObject var vm = cartVM()
+    @StateObject var vm = CartVM()
     var body: some View {
         VStack {
             LogoView()
@@ -107,86 +107,12 @@ extension CartItem {
                                        "price": 5.6,
                                        "logo": "https://www.mongodb.com/developer/_next/image/?url=https%3A%2F%2Fimages.contentstack.io%2Fv3%2Fassets%2Fblt39790b633ee0d5a7%2Fblt8c5aec4b7f6a4881%2F647a2dfe095bb782e057f817%2Frealm-mobile.jpg&w=3840&q=75",
                                        "count": 1,
-                                       "itemId": ""])
+                                       "itemId": ""] as [String : Any])
 }
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
         CartView()
         // CartRow(item: CartItem.test )
-    }
-}
-
-class cartVM: ObservableObject {
-    @Published var isContinue = false
-    @Published var selected: String?
-    @Published var addresses: Addresses = Addresses(results: [])
-    @Published var payment: PaymentMethod?
-    @Published var newAddress: String = ""
-    @Published var newAddressAdd: Bool = false
-    @Published var totalPrice: Double = 0
-    let AFManager: AlamofireManagerProtocol = AlamofireManager()
-    
-    func loadAdres() async{
-       
-            do{
-                let result = try await AFManager.getSaved()
-                await MainActor.run(body: {
-                    addresses = result
-                })
-                print(addresses)
-            }
-            catch {
-                print("eror")
-            }
-        
-    }
-    
-    func addNew(newAddress: String) {
-        Task {
-            do {
-                try await AFManager.addAddress(newAddress: newAddress)
-                let newV = try await AFManager.getSaved()
-                await MainActor.run(body: {
-                    addresses = newV
-                    selected = newAddress
-                    cancelButtonTaped()
-                    
-                })
-            }
-            catch{
-                print("eerrr")
-            }
-        }
-    }
-    
-    func newOrder() {
-        guard let address = selected,
-              let paymentM = payment?.rawValue else {return}
-        Task {
-            
-            do{
-                try await AFManager.sendOrder(price: totalPrice , paymentMethod: paymentM, address: address)
-                
-                await MainActor.run {
-                    cleanCart()
-                }
-            }
-            catch {
-                print(error
-                    .localizedDescription)
-            }
-        }
-    }
-    func cancelButtonTaped() {
-        newAddressAdd.toggle()
-        newAddress = ""
-    }
-    func cleanCart() {
-        if let realm = try? Realm(){
-            try? realm.write({
-                realm.deleteAll()
-            })
-        }
     }
 }
 

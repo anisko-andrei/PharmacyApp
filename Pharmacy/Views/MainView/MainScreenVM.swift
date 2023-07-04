@@ -43,7 +43,7 @@ class MainVM : ObservableObject {
                                              "price":item.price,
                                              "logo":item.logo,
                                              "count": 1,
-                                             "itemId": item.objectID]))
+                                             "itemId": item.objectID] as [String : Any]))
         }
     
     func deleteFromCart(item: CartItem) {

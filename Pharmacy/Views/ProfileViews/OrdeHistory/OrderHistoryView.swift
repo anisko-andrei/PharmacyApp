@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OrderHistoryView: View {
-    @State var vm: OrderHistoryVM = OrderHistoryVM()
+    @StateObject var vm: OrderHistoryVM = OrderHistoryVM()
     var body: some View {
         NavigationView {
             if vm.allOrders.isEmpty {
@@ -29,6 +29,8 @@ struct OrderHistoryView: View {
                     }
                 }
             }
+        
+       
         }
         .task {
             await vm.getOrders()

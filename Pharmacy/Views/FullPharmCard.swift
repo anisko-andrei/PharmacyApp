@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct FullPharmCard: View {
     var item : ResultSalePharm
+    
+    @ObservedResults(CartItem.self) var realmDB
+    
     var body: some View {
         VStack {
             AsyncImage(url: URL(string: item.logo)) { logo in
@@ -48,24 +52,9 @@ struct FullPharmCard: View {
                     Spacer()
                     
                     Button {
-                        print("minus")
+                       addOrDeleteItemInCart(item: item)
                     } label: {
-                         
-                        Image(systemName: "minus")
-                            .padding(.vertical,16)
-                            .padding(.horizontal, 8)
-                            .foregroundColor(.green)
-                            .background(.thinMaterial)
-                            .font(.system(size: 25))
-                            .mask(Circle())
-                        }
-                        
-                    Text("1")
-                        .multilineTextAlignment(.center)
-                    Button {
-                        print("add")
-                    } label: {
-                        Image(systemName: "plus")
+                        Image(systemName: realmDB.contains{$0.itemId == item.objectID}  ? "minus" : "plus")
                             .padding(8)
                             .foregroundColor(.green)
                             .background(.thinMaterial)
@@ -83,6 +72,27 @@ struct FullPharmCard: View {
             .padding(.horizontal)
         }
        
+    }
+    func addOrDeleteItemInCart(item: ResultSalePharm) {
+        if let itemInCart = realmDB.first(where: {$0.itemId == item.objectID}) {
+            deleteFromCart(item: itemInCart)
+        }
+        else {
+            addToCart(item: item)
+        }
+    }
+    
+    func addToCart(item: ResultSalePharm) {
+            $realmDB.append(CartItem(value: ["title":item.title,
+                                             "price":item.price,
+                                             "logo":item.logo,
+                                             "count": 1,
+                                             "itemId": item.objectID] as [String : Any]))
+        }
+    
+    func deleteFromCart(item: CartItem) {
+       
+        $realmDB.remove(item)
     }
 }
 

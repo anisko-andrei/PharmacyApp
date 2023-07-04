@@ -37,6 +37,7 @@
 		34C9E30F2A52BD0E00EB96BD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34C9E30E2A52BD0E00EB96BD /* RealmSwift */; };
 		34C9E3132A52CD7F00EB96BD /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9E3122A52CD7F00EB96BD /* RealmModel.swift */; };
 		34C9E3152A5378F100EB96BD /* PlaceOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9E3142A5378F100EB96BD /* PlaceOrderView.swift */; };
+		34C9E3182A541A2500EB96BD /* CartVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9E3172A541A2500EB96BD /* CartVM.swift */; };
 		34CB213F2A4A1423007FC873 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34CB213E2A4A1423007FC873 /* KeychainSwift */; };
 		34CB21412A4A2A49007FC873 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CB21402A4A2A49007FC873 /* LoadingView.swift */; };
 		34CB21432A4A2F1C007FC873 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CB21422A4A2F1C007FC873 /* User.swift */; };
@@ -78,6 +79,7 @@
 		348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationView.swift; sourceTree = "<group>"; };
 		34C9E3122A52CD7F00EB96BD /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		34C9E3142A5378F100EB96BD /* PlaceOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderView.swift; sourceTree = "<group>"; };
+		34C9E3172A541A2500EB96BD /* CartVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVM.swift; sourceTree = "<group>"; };
 		34CB21402A4A2A49007FC873 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		34CB21422A4A2F1C007FC873 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		34D5317B2A50529E001CE36D /* MainScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVM.swift; sourceTree = "<group>"; };
@@ -251,6 +253,16 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		34C9E3162A54199E00EB96BD /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				34D531892A52027E001CE36D /* CartView.swift */,
+				34C9E3172A541A2500EB96BD /* CartVM.swift */,
+				34C9E3142A5378F100EB96BD /* PlaceOrderView.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
 		34CC9F3F2A3C576700D7291D /* ContentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,8 +275,7 @@
 		34CC9F402A3C577A00D7291D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				34D531892A52027E001CE36D /* CartView.swift */,
-				34C9E3142A5378F100EB96BD /* PlaceOrderView.swift */,
+				34C9E3162A54199E00EB96BD /* Cart */,
 				34D5317E2A50534E001CE36D /* FullPharmCard.swift */,
 				34D531802A505E3D001CE36D /* DeliveryScreen.swift */,
 				34D531882A507F3B001CE36D /* Catalog */,
@@ -410,6 +421,7 @@
 				3403577C2A35D211005220F1 /* PharmacyApp.swift in Sources */,
 				348FEFF72A41C99C002CB8D5 /* TabBarNavigationVM.swift in Sources */,
 				3408787B2A4C4B6A00F3BFC7 /* SavedAdresses.swift in Sources */,
+				34C9E3182A541A2500EB96BD /* CartVM.swift in Sources */,
 				3423EF8C2A4E2695009EB6A9 /* MainView.swift in Sources */,
 				34CB21412A4A2A49007FC873 /* LoadingView.swift in Sources */,
 				3423EF842A4D7B85009EB6A9 /* ChangeProfileInfoVM.swift in Sources */,
