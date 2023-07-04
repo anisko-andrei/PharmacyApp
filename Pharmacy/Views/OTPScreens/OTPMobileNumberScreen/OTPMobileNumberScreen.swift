@@ -53,7 +53,7 @@ struct OTPMobileNumberScreen: View {
                 vm.getOTPCode()
             }
             Spacer()
-                .alert(vm.alertBody?.title ?? String(localized: "Error"), isPresented: $vm.alertIsPresented, presenting: vm.alertBody) { _ in
+                .alert(vm.alertBody.title, isPresented: $vm.alertIsPresented, presenting: vm.alertBody) { _ in
                     Button("ok", role: .cancel) {}
                 } message: { bodyM in
                     Text(bodyM.message)

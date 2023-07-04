@@ -26,7 +26,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
     @Published var sheetToShow : OTPScreens?
     @Published var name: String = ""
     @Published var lastName: String = ""
-    @Published var alertBody : AppAlert? {
+    @Published var alertBody : AppAlert = AppAlert(message: "") {
         didSet {
             self.alertIsPresented.toggle()
         }
@@ -128,7 +128,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
 struct AppAlert : Identifiable {
     var id: String {message}
     var message: String
-    var title: String
+    var title: String = String(localized: "Error")
 }
 
 enum OTPScreens: Int, Identifiable {

@@ -58,7 +58,7 @@ struct orderHistoryRow : View {
             HStack {
                 Text("Price")
                 Spacer()
-                Text(String.localizedStringWithFormat(NSLocalizedString("r.", comment: ""), item.price ?? 0))
+                Text(String(format: "%.2f", item.price ?? 0)) + Text("r.")
             }
           //  .padding()
             

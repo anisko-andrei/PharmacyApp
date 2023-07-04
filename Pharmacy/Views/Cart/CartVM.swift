@@ -17,7 +17,7 @@ class CartVM: ObservableObject {
     @Published var totalPrice: Double = 0
     let AFManager: AlamofireManagerProtocol = AlamofireManager()
     @Published var alertIsPresented = false
-    @Published var alertBody : AppAlert? {
+    @Published var alertBody : AppAlert = AppAlert(message: "") {
         didSet {
             self.alertIsPresented.toggle()
         }
@@ -41,6 +41,35 @@ class CartVM: ObservableObject {
             }
         
     }
+    
+    func editItemCountMinus(item: CartItem) {
+        if item.count > 1 {
+            if let thawedItem = item.thaw() {
+                try? thawedItem.realm?.write {
+                    thawedItem.count -= 1
+                }
+            }
+        }
+        else {
+            if let thawedItem = item.thaw() {
+                try? thawedItem.realm?.write {
+                    thawedItem.realm?.delete(thawedItem)
+                }
+            }
+            
+        }
+    }
+    
+     func editItemCountPlus(item: CartItem) {
+       
+            if let thawedItem = item.thaw() {
+                try? thawedItem.realm?.write {
+                    thawedItem.count += 1
+                }
+            }
+    }
+        
+    
     
     func addNew(newAddress: String) {
         Task {

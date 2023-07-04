@@ -7,8 +7,9 @@
 
 import Foundation
 import RealmSwift
+import SwiftUI
 
-class MainVM : ObservableObject {
+class MainVM : ObservableObject, DynamicProperty {
     @Published var sheetToOpen: MainScreenButtons?
     @Published var sheetItem : ResultSalePharm?
     var AFManager: AlamofireManagerProtocol = AlamofireManager()

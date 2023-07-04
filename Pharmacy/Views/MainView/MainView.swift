@@ -113,7 +113,7 @@ struct PharmCard: View {
    
     @ObservedObject var vm: MainVM
     @ObservedResults(CartItem.self) var realmBD
-    @State var count = 0
+    
     var id: String?
     var body: some View {
         Button {
@@ -161,11 +161,7 @@ struct PharmCard: View {
                                       .mask(Circle())
                                   
                               }
-
-                             
-                              
-                              
-                              
+   
                           }
                           
                       }

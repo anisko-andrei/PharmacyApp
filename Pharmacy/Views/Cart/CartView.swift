@@ -29,10 +29,8 @@ struct CartView: View {
                 ScrollView {
                     ForEach(cartValues, id: \._id) { item in
                         
-                        CartRow(item: item)
+                        CartRow(item: item, vm: vm)
                     }
-                    
-                    .onDelete(perform: $cartValues.remove)
                 }
                 .listStyle(.inset)
             }
@@ -81,9 +79,10 @@ struct CartView: View {
                     .bold()
                     .foregroundColor(.black)
                 Spacer()
-                Text(String.localizedStringWithFormat(NSLocalizedString("r.", comment: ""), cartValues.reduce(0, { $0 + ($1.price * Double($1.count))
-                })))
-                
+                Group {
+                    Text(String(cartValues.reduce(0, { $0 + ($1.price * Double($1.count))
+                    }))) + Text("r.")
+                }
                     .font(.title3)
                     .bold()
                     .foregroundColor(.black)
@@ -116,7 +115,7 @@ struct CartView_Previews: PreviewProvider {
 
 struct CartRow: View {
     @ObservedRealmObject var item : CartItem
-    
+    @ObservedObject var vm : CartVM
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: item.logo)) { logo in
@@ -150,11 +149,12 @@ struct CartRow: View {
                     .font(.system(size: 20))
                     .padding(.leading, 4)
                 HStack {
-                
-                    Text("Total:")
-                        .padding(.leading, 4)
-                    Text(String.localizedStringWithFormat(NSLocalizedString("r.", comment: ""), (Double(item.count) * item.price)))
+                    Group{
+                    Text("Total:") +
                     
+                    Text(String(format: "%.2f", Double(item.count) * item.price)) +
+                    Text("r.")
+                }
                         .font(.system(size: 16))
                        
                     
@@ -163,17 +163,7 @@ struct CartRow: View {
                     HStack() {
                         
                         Button {
-                            if $item.count.wrappedValue > 1 {
-                                $item.count.wrappedValue -= 1
-                            }
-                            else {
-                                if let thawedItem = item.thaw() {
-                                    try? thawedItem.realm?.write {
-                                        thawedItem.realm?.delete(thawedItem)
-                                    }
-                                }
-                                
-                            }
+                            vm.editItemCountMinus(item: item)
                         } label: {
                             Image(systemName: "minus")
                                 .foregroundColor(.green)
@@ -186,7 +176,7 @@ struct CartRow: View {
                             .padding(4)
                         Spacer()
                         Button {
-                            $item.count.wrappedValue += 1
+                            vm.editItemCountPlus(item: item)
                             
                         } label: {
                             Image(systemName: "plus")

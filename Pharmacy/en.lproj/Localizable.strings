@@ -42,8 +42,8 @@
 "Orders" = "Orders";
 "Catalog" = "Catalog";
 "Delivery" = "Delivery";
-"Total:" = "Total:";
-"r." = "%.2f r.";
+"Total:" = "Total: ";
+"r." = " r.";
 "Your cart is empty" = "Your cart is empty";
 "Clean" = "Clean";
 "Place an order" = "Place an order";
