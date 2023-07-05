@@ -91,7 +91,7 @@ struct MainView: View {
                 }
         }
         }
-    }
+           }
 }
 
 struct MainView_Previews: PreviewProvider {
@@ -151,7 +151,7 @@ struct SearchButton: View {
                     .foregroundColor(.green)
                     .padding(.leading,8)
                 Text("Catalog Search")
-                    .foregroundColor(.green)
+                    .foregroundColor(Color(UIColor.label))
                     .padding(.vertical, 16)
                 Spacer()
             }
