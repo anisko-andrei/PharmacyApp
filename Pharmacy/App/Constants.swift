@@ -18,6 +18,7 @@ class Constants {
     static let salesPramUrl = "https://parseapi.back4app.com/classes/salePharm"
     static let categoriesPramUrl = "https://parseapi.back4app.com/classes/categories"
     static let pramUrl = "https://parseapi.back4app.com/classes/"
+    static let ordersUrl = "https://parseapi.back4app.com/classes/orders"
     // Images
     
     static let pharmacyLogoImage = "loadingImage"

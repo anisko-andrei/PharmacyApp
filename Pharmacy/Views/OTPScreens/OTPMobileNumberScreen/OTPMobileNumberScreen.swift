@@ -53,7 +53,7 @@ struct OTPMobileNumberScreen: View {
                 vm.getOTPCode()
             }
             Spacer()
-                .alert("error", isPresented: $vm.alertIsPresented, presenting: vm.alertBody) { _ in
+                .alert(vm.alertBody.title, isPresented: $vm.alertIsPresented, presenting: vm.alertBody) { _ in
                     Button("ok", role: .cancel) {}
                 } message: { bodyM in
                     Text(bodyM.message)
@@ -85,7 +85,7 @@ struct OTPButton: View {
             action()
         } label: {
             Text(title)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .font(.system(size: 20))
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 .background(Color.green)

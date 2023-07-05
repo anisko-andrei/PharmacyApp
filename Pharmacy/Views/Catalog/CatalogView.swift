@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CatalogView: View {
     @StateObject var vm: CatalogVM = CatalogVM()
+   
     var body: some View {
         NavigationView {
             VStack {
@@ -21,16 +22,10 @@ struct CatalogView: View {
                     ForEach(vm.categories, id: \.objectID) { item in
                         NavigationLink {
                             PharmCatalogView(vm: vm, item: item)
-                               //.onAppear {
-                                   
-                              //  }
                         } label: {
                             Button {
                                 print(item.objectID)
                             } label: {
-                                
-                                
-                                
                                 Label {
                                     Text(item.name)
                                 } icon: {

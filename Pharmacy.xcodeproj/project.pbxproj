@@ -33,6 +33,12 @@
 		344731712A41C29F0013B513 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344731702A41C29F0013B513 /* RegistrationView.swift */; };
 		348FEFF72A41C99C002CB8D5 /* TabBarNavigationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FEFF62A41C99C002CB8D5 /* TabBarNavigationVM.swift */; };
 		348FEFF92A41C9CC002CB8D5 /* TabBarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */; };
+		34B771522A555000001E4C2C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B771512A555000001E4C2C /* RealmManager.swift */; };
+		34C9E30D2A52BD0E00EB96BD /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 34C9E30C2A52BD0E00EB96BD /* Realm */; };
+		34C9E30F2A52BD0E00EB96BD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34C9E30E2A52BD0E00EB96BD /* RealmSwift */; };
+		34C9E3132A52CD7F00EB96BD /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9E3122A52CD7F00EB96BD /* RealmModel.swift */; };
+		34C9E3152A5378F100EB96BD /* PlaceOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9E3142A5378F100EB96BD /* PlaceOrderView.swift */; };
+		34C9E3182A541A2500EB96BD /* CartVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9E3172A541A2500EB96BD /* CartVM.swift */; };
 		34CB213F2A4A1423007FC873 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34CB213E2A4A1423007FC873 /* KeychainSwift */; };
 		34CB21412A4A2A49007FC873 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CB21402A4A2A49007FC873 /* LoadingView.swift */; };
 		34CB21432A4A2F1C007FC873 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CB21422A4A2F1C007FC873 /* User.swift */; };
@@ -42,6 +48,7 @@
 		34D531832A505F11001CE36D /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D531822A505F11001CE36D /* CatalogView.swift */; };
 		34D531852A507E88001CE36D /* CatalogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D531842A507E88001CE36D /* CatalogVM.swift */; };
 		34D531872A507EBC001CE36D /* PharmCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D531862A507EBC001CE36D /* PharmCatalogView.swift */; };
+		34D5318A2A52027E001CE36D /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D531892A52027E001CE36D /* CartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +78,10 @@
 		344731702A41C29F0013B513 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		348FEFF62A41C99C002CB8D5 /* TabBarNavigationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationVM.swift; sourceTree = "<group>"; };
 		348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationView.swift; sourceTree = "<group>"; };
+		34B771512A555000001E4C2C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		34C9E3122A52CD7F00EB96BD /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		34C9E3142A5378F100EB96BD /* PlaceOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderView.swift; sourceTree = "<group>"; };
+		34C9E3172A541A2500EB96BD /* CartVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVM.swift; sourceTree = "<group>"; };
 		34CB21402A4A2A49007FC873 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		34CB21422A4A2F1C007FC873 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		34D5317B2A50529E001CE36D /* MainScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVM.swift; sourceTree = "<group>"; };
@@ -79,6 +90,7 @@
 		34D531822A505F11001CE36D /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		34D531842A507E88001CE36D /* CatalogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogVM.swift; sourceTree = "<group>"; };
 		34D531862A507EBC001CE36D /* PharmCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmCatalogView.swift; sourceTree = "<group>"; };
+		34D531892A52027E001CE36D /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +100,8 @@
 			files = (
 				34CB213F2A4A1423007FC873 /* KeychainSwift in Frameworks */,
 				3403579E2A36027B005220F1 /* iPhoneNumberField in Frameworks */,
+				34C9E30D2A52BD0E00EB96BD /* Realm in Frameworks */,
+				34C9E30F2A52BD0E00EB96BD /* RealmSwift in Frameworks */,
 				341FC7C82A3C80AE00E1FBF5 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				340BDAB32A41B4D600F34B66 /* AlamofireManager.swift */,
+				34B771512A555000001E4C2C /* RealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -172,6 +187,7 @@
 			children = (
 				340BDAB62A41B58800F34B66 /* AlamofireModels.swift */,
 				34CB21422A4A2F1C007FC873 /* User.swift */,
+				34C9E3122A52CD7F00EB96BD /* RealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -240,6 +256,16 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		34C9E3162A54199E00EB96BD /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				34D531892A52027E001CE36D /* CartView.swift */,
+				34C9E3172A541A2500EB96BD /* CartVM.swift */,
+				34C9E3142A5378F100EB96BD /* PlaceOrderView.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
 		34CC9F3F2A3C576700D7291D /* ContentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,7 +278,7 @@
 		34CC9F402A3C577A00D7291D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				34D5317E2A50534E001CE36D /* FullPharmCard.swift */,
+				34C9E3162A54199E00EB96BD /* Cart */,
 				34D531802A505E3D001CE36D /* DeliveryScreen.swift */,
 				34D531882A507F3B001CE36D /* Catalog */,
 				34D5317D2A505318001CE36D /* MainView */,
@@ -282,6 +308,7 @@
 				34D531822A505F11001CE36D /* CatalogView.swift */,
 				34D531842A507E88001CE36D /* CatalogVM.swift */,
 				34D531862A507EBC001CE36D /* PharmCatalogView.swift */,
+				34D5317E2A50534E001CE36D /* FullPharmCard.swift */,
 			);
 			path = Catalog;
 			sourceTree = "<group>";
@@ -306,6 +333,8 @@
 				3403579D2A36027B005220F1 /* iPhoneNumberField */,
 				341FC7C72A3C80AE00E1FBF5 /* Alamofire */,
 				34CB213E2A4A1423007FC873 /* KeychainSwift */,
+				34C9E30C2A52BD0E00EB96BD /* Realm */,
+				34C9E30E2A52BD0E00EB96BD /* RealmSwift */,
 			);
 			productName = Pharmacy;
 			productReference = 340357782A35D211005220F1 /* Pharmacy.app */;
@@ -340,6 +369,7 @@
 				3403579C2A36027B005220F1 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 				341FC7C62A3C80AE00E1FBF5 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				34CB213D2A4A1423007FC873 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				34C9E30B2A52BD0E00EB96BD /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 340357792A35D211005220F1 /* Products */;
 			projectDirPath = "";
@@ -368,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34D5318A2A52027E001CE36D /* CartView.swift in Sources */,
 				344731712A41C29F0013B513 /* RegistrationView.swift in Sources */,
 				3423EF872A4D9578009EB6A9 /* OrderHistoryView.swift in Sources */,
 				340BDAB72A41B58800F34B66 /* AlamofireModels.swift in Sources */,
@@ -378,8 +409,10 @@
 				3423EF822A4D7B5C009EB6A9 /* ChangeProfileInfoView.swift in Sources */,
 				340357902A35D640005220F1 /* OTPCodeScreen.swift in Sources */,
 				3403578A2A35D5B7005220F1 /* OTPMobileNumberScreen.swift in Sources */,
+				34C9E3152A5378F100EB96BD /* PlaceOrderView.swift in Sources */,
 				3423EF7E2A4CE2BD009EB6A9 /* SavedAddressesVM.swift in Sources */,
 				34D531832A505F11001CE36D /* CatalogView.swift in Sources */,
+				34C9E3132A52CD7F00EB96BD /* RealmModel.swift in Sources */,
 				34D5317F2A50534E001CE36D /* FullPharmCard.swift in Sources */,
 				348FEFF92A41C9CC002CB8D5 /* TabBarNavigationView.swift in Sources */,
 				34CB21432A4A2F1C007FC873 /* User.swift in Sources */,
@@ -388,9 +421,11 @@
 				340BDABA2A41B66800F34B66 /* Constants.swift in Sources */,
 				340BDAB42A41B4D600F34B66 /* AlamofireManager.swift in Sources */,
 				3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */,
+				34B771522A555000001E4C2C /* RealmManager.swift in Sources */,
 				3403577C2A35D211005220F1 /* PharmacyApp.swift in Sources */,
 				348FEFF72A41C99C002CB8D5 /* TabBarNavigationVM.swift in Sources */,
 				3408787B2A4C4B6A00F3BFC7 /* SavedAdresses.swift in Sources */,
+				34C9E3182A541A2500EB96BD /* CartVM.swift in Sources */,
 				3423EF8C2A4E2695009EB6A9 /* MainView.swift in Sources */,
 				34CB21412A4A2A49007FC873 /* LoadingView.swift in Sources */,
 				3423EF842A4D7B85009EB6A9 /* ChangeProfileInfoVM.swift in Sources */,
@@ -629,6 +664,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		34C9E30B2A52BD0E00EB96BD /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.41.0;
+			};
+		};
 		34CB213D2A4A1423007FC873 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
@@ -649,6 +692,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 341FC7C62A3C80AE00E1FBF5 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		34C9E30C2A52BD0E00EB96BD /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34C9E30B2A52BD0E00EB96BD /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		34C9E30E2A52BD0E00EB96BD /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34C9E30B2A52BD0E00EB96BD /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		34CB213E2A4A1423007FC873 /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;

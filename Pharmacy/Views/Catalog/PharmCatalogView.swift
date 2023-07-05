@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PharmCatalogView :View {
     @ObservedObject var vm : CatalogVM
-    
+   
     var item: ResultCategories
     var body: some View {
         VStack {
@@ -17,7 +17,7 @@ struct PharmCatalogView :View {
                 .padding()
             ScrollView {
                 ForEach(vm.pharm, id: \.objectID) { item in
-                    PharmCard(item: item)
+                    PharmCard(item: item, vm: vm)
                 }
             }
         

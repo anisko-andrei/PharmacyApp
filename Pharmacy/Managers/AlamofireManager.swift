@@ -19,9 +19,29 @@ protocol AlamofireManagerProtocol {
     func getSales() async throws -> SalePharm
     func getCategories() async throws -> Categories
     func getPharm(path: String) async throws -> SalePharm
+    func getOrders() async throws -> Orders
+    func sendOrder(price: Double, paymentMethod: String, address: String) async throws
 }
 
 class AlamofireManager : AlamofireManagerProtocol {
+    func sendOrder(price: Double, paymentMethod: String, address: String) async throws {
+        let _ = try await AF.request(Constants.ordersUrl,
+                             method: .post,
+                                     parameters: ["address": address,
+                                                  "price": price,
+                                                  "paymentMethod": paymentMethod],
+                             encoding: JSONEncoding.default,
+                             headers: Constants.back4appHeader).serializingDecodable(OrdersResult.self).value
+    
+    }
+    
+    func getOrders() async throws -> Orders {
+        return try await AF.request(Constants.ordersUrl,
+                                        method: .get,
+                                    headers: Constants.back4appHeader)
+                                .serializingDecodable(Orders.self).value
+    }
+    
     func getPharm(path: String) async throws -> SalePharm {
         return try await AF.request(Constants.pramUrl.appending(path),
                                         method: .get,

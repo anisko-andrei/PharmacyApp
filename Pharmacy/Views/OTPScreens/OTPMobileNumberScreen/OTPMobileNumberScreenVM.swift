@@ -26,7 +26,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
     @Published var sheetToShow : OTPScreens?
     @Published var name: String = ""
     @Published var lastName: String = ""
-    @Published var alertBody : AppAlert? {
+    @Published var alertBody : AppAlert = AppAlert(message: "") {
         didSet {
             self.alertIsPresented.toggle()
         }
@@ -75,7 +75,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
             }
         }
         else {
-            alertBody = AppAlert(message: String(localized: "Invalid phone number"))
+            alertBody = AppAlert(message: String(localized: "Invalid phone number"), title: String(localized: "Error"))
         }
     }
     
@@ -107,7 +107,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
                                                                phone: mobile,
                                                                otp: otpText)
                 case .none:
-                    alertBody = AppAlert(message: String(localized: "Eror"))
+                    alertBody = AppAlert(message: String(localized: "Error"), title: String(localized: "Error"))
                 }
                 
                 keychain.set(user?.token ?? "", forKey: "userToken")
@@ -118,7 +118,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
             }
             catch {
                 await MainActor.run(body: {
-                    alertBody = AppAlert(message: String(localized: "Invalid OTP code"))
+                    alertBody = AppAlert(message: String(localized: "Invalid OTP code"), title: String(localized: "Error"))
                 })
             }
         }
@@ -128,6 +128,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
 struct AppAlert : Identifiable {
     var id: String {message}
     var message: String
+    var title: String = String(localized: "Error")
 }
 
 enum OTPScreens: Int, Identifiable {

@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct FullPharmCard: View {
     var item : ResultSalePharm
+    @ObservedObject var vm : MainVM
+        // @ObservedResults(CartItem.self) var realmDB
+    
     var body: some View {
         VStack {
             AsyncImage(url: URL(string: item.logo)) { logo in
@@ -48,24 +52,9 @@ struct FullPharmCard: View {
                     Spacer()
                     
                     Button {
-                        print("minus")
+                        vm.addOrDeleteItemInCart(item: item)
                     } label: {
-                         
-                        Image(systemName: "minus")
-                            .padding(.vertical,16)
-                            .padding(.horizontal, 8)
-                            .foregroundColor(.green)
-                            .background(.thinMaterial)
-                            .font(.system(size: 25))
-                            .mask(Circle())
-                        }
-                        
-                    Text("1")
-                        .multilineTextAlignment(.center)
-                    Button {
-                        print("add")
-                    } label: {
-                        Image(systemName: "plus")
+                        Image(systemName: vm.checkInCart(item: item)  ? "minus" : "plus")
                             .padding(8)
                             .foregroundColor(.green)
                             .background(.thinMaterial)
@@ -84,10 +73,11 @@ struct FullPharmCard: View {
         }
        
     }
+    
 }
 
 struct FullPharmCard_Previews: PreviewProvider {
     static var previews: some View {
-        FullPharmCard(item: (ResultSalePharm(objectID: "", title: "АУГМЕНТИН ЕС", logo: "https://static5.asna.ru/imgprx/9EGtLnHETZb5k2wg_VvV0fPY_UKzJQ4ZXlV9ARw82DQ/rs:fit:800:800:1/g:no/aHR0cHM6Ly9pbWdzLmFzbmEucnUvaWJsb2NrLzAyMS8wMjExMDM5NGY4OWRiMjA1M2E4NmFkMGI4YjY1YTBlMi84NzEwNDc5LmpwZw.jpg", price: 5.45, oldPrice: nil, description: "ПОР. Д/ПРИГ. 100МЛ СУСП. Д/ПРИЕМА ВНУТРЬ 600МГ+42,9МГ/5МЛ ФЛ. №1 GLAXO WELLCOME PRODUCTION-ФРАНЦИЯ", createdAt: "", updatedAt: "")))
+        FullPharmCard(item: (ResultSalePharm(objectID: "", title: "АУГМЕНТИН ЕС", logo: "https://static5.asna.ru/imgprx/9EGtLnHETZb5k2wg_VvV0fPY_UKzJQ4ZXlV9ARw82DQ/rs:fit:800:800:1/g:no/aHR0cHM6Ly9pbWdzLmFzbmEucnUvaWJsb2NrLzAyMS8wMjExMDM5NGY4OWRiMjA1M2E4NmFkMGI4YjY1YTBlMi84NzEwNDc5LmpwZw.jpg", price: 5.45, oldPrice: nil, description: "ПОР. Д/ПРИГ. 100МЛ СУСП. Д/ПРИЕМА ВНУТРЬ 600МГ+42,9МГ/5МЛ ФЛ. №1 GLAXO WELLCOME PRODUCTION-ФРАНЦИЯ", createdAt: "", updatedAt: "")), vm: MainVM())
     }
 }

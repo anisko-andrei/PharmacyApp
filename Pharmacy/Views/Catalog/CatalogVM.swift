@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class CatalogVM : ObservableObject {
+class CatalogVM : MainVM {
     @Published var categories: [ResultCategories] = []
 
     @Published var pharm : [ResultSalePharm] = []
