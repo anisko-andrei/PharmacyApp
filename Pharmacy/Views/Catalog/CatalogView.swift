@@ -14,7 +14,7 @@ struct CatalogView: View {
         NavigationStack {
             VStack {
                 LogoView()
-                    .padding(.vertical)
+                    .padding()
                 NavigationLink {
                     SearchView()
                 } label: {
@@ -48,6 +48,8 @@ struct CatalogView: View {
              
                 .listStyle(.inset)
             }
+            .navigationTitle("Catalog")
+            .navigationBarTitleDisplayMode(.inline)
         }
         
         .task {
