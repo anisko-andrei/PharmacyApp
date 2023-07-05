@@ -26,6 +26,9 @@ final class OTPMobileNumberScreenVM: ObservableObject {
     @Published var sheetToShow : OTPScreens?
     @Published var name: String = ""
     @Published var lastName: String = ""
+    @Published var appStateM: LoadingStatus = .showResult
+    @Published var appStateO: LoadingStatus = .showResult
+    @Published var appStateR: LoadingStatus = .showResult
     @Published var alertBody : AppAlert = AppAlert(message: "") {
         didSet {
             self.alertIsPresented.toggle()
@@ -55,7 +58,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
        
         if mobile.count == 13 {
             print(mobile)
-            
+            appStateM = .loading
             Task{
                 do{
                     let sendOTPStatus = try await AFManager.sendPhone(phone: mobile)
@@ -64,12 +67,15 @@ final class OTPMobileNumberScreenVM: ObservableObject {
                         //showCodeScreen.toggle()
                         sheetToShow = .otpCodeScreen
                         profileLoginStatus = .alradyExistProfile
+                        appStateM = .showResult
                     })
                 }
                 catch {
                     await MainActor.run(body: {
                         sheetToShow = .registration
                         profileLoginStatus = .newProfile
+                        appStateM = .showResult
+                        
                     })
                 }
             }
@@ -93,7 +99,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
     }
     
     func verifyAndSend() {
-    
+        appStateO = .loading
         Task {
             do{
                 switch profileLoginStatus {
@@ -114,11 +120,14 @@ final class OTPMobileNumberScreenVM: ObservableObject {
                await User.shared.writeUserData(userName: user?.customer.firstName, userLastName: user?.customer.lastName, userMobilePhone: mobile)
                 await MainActor.run(body: {
                     showTabBar.toggle()
+                    appStateO = .showResult
                 })
             }
             catch {
                 await MainActor.run(body: {
                     alertBody = AppAlert(message: String(localized: "Invalid OTP code"), title: String(localized: "Error"))
+                    appStateO = .showResult
+                   
                 })
             }
         }
