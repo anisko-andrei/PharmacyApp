@@ -9,13 +9,22 @@ import SwiftUI
 
 struct DeliveryScreen: View {
     var body: some View {
-        VStack() {
-            LogoView()
-                .padding()
-            Text("Something about delivery, will add text later")
-            Spacer()
+        NavigationStack {
+            VStack() {
+                LogoView()
+                    .padding()
+                Text("Something about delivery, will add text later")
+                Spacer()
+            }
+            .navigationTitle("Delivery")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(
+            leading: NavigationCustomBackButton())
         }
+       
     }
+        
 }
 
 struct DeliveryScreen_Previews: PreviewProvider {

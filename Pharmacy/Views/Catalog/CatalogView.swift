@@ -50,7 +50,11 @@ struct CatalogView: View {
             }
             .navigationTitle("Catalog")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(
+            leading: NavigationCustomBackButton())
         }
+        
         
         .task {
           await vm.getCategories()
