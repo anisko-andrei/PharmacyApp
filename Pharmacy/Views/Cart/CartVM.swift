@@ -7,7 +7,8 @@
 
 import Foundation
 import RealmSwift
-class CartVM: ObservableObject {
+import SwiftUI
+class CartVM: ObservableObject, DynamicProperty {
     @Published var isContinue = false
     @Published var selected: String?
     @Published var addresses: Addresses = Addresses(results: [])
@@ -22,6 +23,36 @@ class CartVM: ObservableObject {
             self.alertIsPresented.toggle()
         }
     }
+   // @Published var realmDB: [CartItem] = []
+    var notificationToken: NotificationToken?
+    var realmManager: RealmManagerProtocol = RealmManager()
+   
+          
+    
+        
+    func startObserv() {
+       
+        guard let realm = realmManager.realm else {return}
+        notificationToken = realm.objects(CartItem.self).observe({ (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial(let cartItems):
+                self.totalPrice = cartItems.compactMap{$0}.reduce(0, {$0 + (Double($1.count) * $1.price)})
+            case .update(let cartItems, _, _, _):
+                self.totalPrice = cartItems.compactMap{$0}.reduce(0, {$0 + (Double($1.count) * $1.price)})
+            case .error(_):
+                self.notificationToken?.invalidate()
+            }
+        })
+    }
+    
+    deinit {
+        notificationToken?.invalidate()
+    }
+    
+    init() {
+        startObserv()
+    }
+    
     func placeOrderButtonTaped(total: Double) {
         totalPrice = total
         isContinue.toggle()
@@ -43,30 +74,37 @@ class CartVM: ObservableObject {
     }
     
     func editItemCountMinus(item: CartItem) {
-        if item.count > 1 {
-            if let thawedItem = item.thaw() {
-                try? thawedItem.realm?.write {
-                    thawedItem.count -= 1
-                }
+//        if item.count > 1 {
+//            if let thawedItem = item.thaw() {
+//                try? thawedItem.realm?.write {
+//                    thawedItem.count -= 1
+//                }
+//            }
+//        }
+//        else {
+//            if let thawedItem = item.thaw() {
+//                try? thawedItem.realm?.write {
+//                    thawedItem.realm?.delete(thawedItem)
+//                }
+//            }
+//
+//        }
+        Task {
+       await     MainActor.run {
+                realmManager.editItemCountMinus(item: item)
             }
-        }
-        else {
-            if let thawedItem = item.thaw() {
-                try? thawedItem.realm?.write {
-                    thawedItem.realm?.delete(thawedItem)
-                }
-            }
-            
+           
         }
     }
     
      func editItemCountPlus(item: CartItem) {
-       
-            if let thawedItem = item.thaw() {
-                try? thawedItem.realm?.write {
-                    thawedItem.count += 1
-                }
-            }
+//
+//            if let thawedItem = item.thaw() {
+//                try? thawedItem.realm?.write {
+//                    thawedItem.count += 1
+//                }
+//            }
+         realmManager.editItemCountPlus(item: item)
     }
         
     
@@ -101,7 +139,7 @@ class CartVM: ObservableObject {
         Task {
             
             do{
-                try await AFManager.sendOrder(price: totalPrice , paymentMethod: paymentM, address: address)
+                try await AFManager.sendOrder(price: totalPrice, paymentMethod: paymentM, address: address)
                 
                 await MainActor.run {
                     alertBody = AppAlert(message: String(localized: "Ordering is complete"), title: String(localized: "Ordering"))
@@ -121,11 +159,12 @@ class CartVM: ObservableObject {
         newAddress = ""
     }
     func cleanCart() {
-        if let realm = try? Realm(){
-            try? realm.write({
-                realm.deleteAll()
-            })
-        }
+//        if let realm = try? Realm(){
+//            try? realm.write({
+//                realm.deleteAll()
+//            })
+//        }
+        realmManager.cleanCart()
     }
 }
 

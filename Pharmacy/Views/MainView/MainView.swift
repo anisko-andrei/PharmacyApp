@@ -57,6 +57,7 @@ struct MainView: View {
                 }
             }
         }
+        
         .task {
          await vm.getSales()
         }
@@ -65,7 +66,7 @@ struct MainView: View {
             case .myOrders :
                 OrderHistoryView()
             case .catalog :
-                CatalogView(mainViewVM: vm)
+                CatalogView()
             case .delivery :
                 DeliveryScreen()
             }
@@ -110,10 +111,7 @@ enum MainScreenButtons: Int ,Identifiable, CaseIterable {
 struct PharmCard: View {
     var item : ResultSalePharm
     @State var isPresented = false
-   
     @ObservedObject var vm: MainVM
-    @ObservedResults(CartItem.self) var realmBD
-    
     var id: String?
     var body: some View {
         Button {
@@ -153,13 +151,12 @@ struct PharmCard: View {
                                   vm.addOrDeleteItemInCart(item: item)
                               } label: {
                              
-                                  Image(systemName: realmBD.contains{$0.itemId == item.objectID}  ? "minus" : "plus")
+                                  Image(systemName:  vm.checkInCart(item: item) ? "minus" : "plus")
                                       .foregroundColor(.green)
                                       .font(.system(size: 25))
                                       .frame(width: 40, height: 40)
                                       .background(.gray)
                                       .mask(Circle())
-                                  
                               }
    
                           }
@@ -171,7 +168,7 @@ struct PharmCard: View {
 
         .foregroundColor(.black)
         .sheet(isPresented: $isPresented, content: {
-            FullPharmCard(item: item, mainViewVM: vm)
+            FullPharmCard(item: item, vm: vm)
         })
         .frame(maxWidth: .infinity)
         .frame(height:  110)

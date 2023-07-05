@@ -15,4 +15,12 @@ final class CartItem: Object, ObjectKeyIdentifiable {
     @Persisted var count: Int
     @Persisted var itemId: String
     
+   convenience init(title: String, price: Double, logo: String, count: Int, itemId: String) {
+        self.init()
+        self.title = title
+        self.price = price
+        self.logo = logo
+        self.count = count
+        self.itemId = itemId
+    }
 }

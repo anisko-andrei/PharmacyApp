@@ -34,7 +34,7 @@ struct TabBarNavigationView: View {
             
             
             ZStack{
-                CustomTabBar(selectedTab: $vm.tabSelected)
+                CustomTabBar(selectedTab: $vm.tabSelected, countInCart: $vm.countInCart)
                     .padding(.bottom, -14)
             }
         }
@@ -66,7 +66,7 @@ struct CustomTabBar: View {
     private var fillImage: String {
         selectedTab.rawValue.appending(".fill")
     }
-    @ObservedResults(CartItem.self) var realmDB
+    @Binding var countInCart: Int
     var body: some View {
        HStack {
            ForEach(Tab.allCases, id: \.rawValue) { tab in
@@ -79,8 +79,8 @@ struct CustomTabBar: View {
                            .scaleEffect(tab == selectedTab ? 1.25 : 1.0)
                            .foregroundColor(tab == selectedTab ? .green : .gray)
                            .font(.system(size: 20))
-                       if tab == .cart, selectedTab != .cart, realmDB.count > 0 {
-                           Text(String(realmDB.count))
+                       if tab == .cart, selectedTab != .cart, countInCart > 0 {
+                           Text(String(countInCart))
                                .lineLimit(1)
                                .foregroundColor(.white)
                                .font(.system(size: 20))

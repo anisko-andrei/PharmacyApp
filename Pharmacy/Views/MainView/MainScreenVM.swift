@@ -8,14 +8,37 @@
 import Foundation
 import RealmSwift
 import SwiftUI
-
+import Combine
 class MainVM : ObservableObject, DynamicProperty {
     @Published var sheetToOpen: MainScreenButtons?
     @Published var sheetItem : ResultSalePharm?
     var AFManager: AlamofireManagerProtocol = AlamofireManager()
     @Published var salesResult: [ResultSalePharm] = []
-    @ObservedResults(CartItem.self) var realmDB
+   // @ObservedResults(CartItem.self) var realmDB
+    @Published var realmDB: [CartItem] = []
+    var notificationToken: NotificationToken?
+    var realmManager: RealmManagerProtocol = RealmManager()
+
     
+        
+    func startObserv() {
+       
+        guard let realm = realmManager.realm else {return}
+        notificationToken = realm.observe({ notification, realm in
+            self.realmDB = realm.objects(CartItem.self).compactMap{$0}
+            
+                
+        })
+        
+    }
+    deinit {
+        notificationToken?.invalidate()
+    }
+    init() {
+        guard let realm = realmManager.realm else {return}
+        self.realmDB = realm.objects(CartItem.self).compactMap{$0}
+        startObserv()
+    }
     func getSales() async {
     
             do {
@@ -32,25 +55,16 @@ class MainVM : ObservableObject, DynamicProperty {
     
     func addOrDeleteItemInCart(item: ResultSalePharm) {
         if let itemInCart = realmDB.first(where: {$0.itemId == item.objectID}) {
-            deleteFromCart(item: itemInCart)
+            realmManager.deleteFromCart(item: itemInCart)
         }
         else {
-            addToCart(item: item)
+            realmManager.addToCart(item: item)
         }
     }
     
-    func addToCart(item: ResultSalePharm) {
-            $realmDB.append(CartItem(value: ["title":item.title,
-                                             "price":item.price,
-                                             "logo":item.logo,
-                                             "count": 1,
-                                             "itemId": item.objectID] as [String : Any]))
-        }
     
-    func deleteFromCart(item: CartItem) {
-       
-        $realmDB.remove(item)
-    }
+    
+   
     func checkInCart(item: ResultSalePharm) -> Bool {
         return realmDB.contains{$0.itemId == item.objectID}
     }

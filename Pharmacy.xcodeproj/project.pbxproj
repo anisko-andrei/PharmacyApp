@@ -33,6 +33,7 @@
 		344731712A41C29F0013B513 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344731702A41C29F0013B513 /* RegistrationView.swift */; };
 		348FEFF72A41C99C002CB8D5 /* TabBarNavigationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FEFF62A41C99C002CB8D5 /* TabBarNavigationVM.swift */; };
 		348FEFF92A41C9CC002CB8D5 /* TabBarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */; };
+		34B771522A555000001E4C2C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B771512A555000001E4C2C /* RealmManager.swift */; };
 		34C9E30D2A52BD0E00EB96BD /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 34C9E30C2A52BD0E00EB96BD /* Realm */; };
 		34C9E30F2A52BD0E00EB96BD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34C9E30E2A52BD0E00EB96BD /* RealmSwift */; };
 		34C9E3132A52CD7F00EB96BD /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9E3122A52CD7F00EB96BD /* RealmModel.swift */; };
@@ -77,6 +78,7 @@
 		344731702A41C29F0013B513 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		348FEFF62A41C99C002CB8D5 /* TabBarNavigationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationVM.swift; sourceTree = "<group>"; };
 		348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationView.swift; sourceTree = "<group>"; };
+		34B771512A555000001E4C2C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		34C9E3122A52CD7F00EB96BD /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		34C9E3142A5378F100EB96BD /* PlaceOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderView.swift; sourceTree = "<group>"; };
 		34C9E3172A541A2500EB96BD /* CartVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVM.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				340BDAB32A41B4D600F34B66 /* AlamofireManager.swift */,
+				34B771512A555000001E4C2C /* RealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				340BDABA2A41B66800F34B66 /* Constants.swift in Sources */,
 				340BDAB42A41B4D600F34B66 /* AlamofireManager.swift in Sources */,
 				3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */,
+				34B771522A555000001E4C2C /* RealmManager.swift in Sources */,
 				3403577C2A35D211005220F1 /* PharmacyApp.swift in Sources */,
 				348FEFF72A41C99C002CB8D5 /* TabBarNavigationVM.swift in Sources */,
 				3408787B2A4C4B6A00F3BFC7 /* SavedAdresses.swift in Sources */,

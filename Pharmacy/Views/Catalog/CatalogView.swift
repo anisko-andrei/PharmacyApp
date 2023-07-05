@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CatalogView: View {
     @StateObject var vm: CatalogVM = CatalogVM()
-    @ObservedObject var mainViewVM : MainVM
+   
     var body: some View {
         NavigationView {
             VStack {
@@ -21,17 +21,11 @@ struct CatalogView: View {
                 List {
                     ForEach(vm.categories, id: \.objectID) { item in
                         NavigationLink {
-                            PharmCatalogView(vm: vm, mainViewVM: mainViewVM, item: item)
-                               //.onAppear {
-                                   
-                              //  }
+                            PharmCatalogView(vm: vm, item: item)
                         } label: {
                             Button {
                                 print(item.objectID)
                             } label: {
-                                
-                                
-                                
                                 Label {
                                     Text(item.name)
                                 } icon: {
@@ -61,7 +55,7 @@ struct CatalogView: View {
 
 struct CatalogView_Previews: PreviewProvider {
     static var previews: some View {
-        CatalogView(mainViewVM: MainVM())
+        CatalogView()
     }
 }
 

@@ -14,7 +14,7 @@ struct CartView: View {
         VStack {
             LogoView()
                 .padding()
-            if cartValues.count < 1 {
+            if cartValues.count  < 1 {
                 VStack {
                     Spacer()
                     Image(systemName: "cart.badge.minus")
@@ -27,7 +27,7 @@ struct CartView: View {
             
            else {
                 ScrollView {
-                    ForEach(cartValues, id: \._id) { item in
+                    ForEach (cartValues, id: \._id) { item in
                         
                         CartRow(item: item, vm: vm)
                     }
@@ -53,8 +53,8 @@ struct CartView: View {
                     .padding(4)
                     Spacer()
                     Button {
-                        vm.placeOrderButtonTaped(total: cartValues.reduce(0, { $0 + ($1.price * Double($1.count))
-                        }))
+                        vm.placeOrderButtonTaped(total: vm.totalPrice)
+                       
                     } label: {
                         
                         Text("Place an order")
@@ -80,8 +80,7 @@ struct CartView: View {
                     .foregroundColor(.black)
                 Spacer()
                 Group {
-                    Text(String(cartValues.reduce(0, { $0 + ($1.price * Double($1.count))
-                    }))) + Text("r.")
+                    Text(String(format: "%.2f", vm.totalPrice)) + Text("r.")
                 }
                     .font(.title3)
                     .bold()
@@ -114,7 +113,7 @@ struct CartView_Previews: PreviewProvider {
 }
 
 struct CartRow: View {
-    @ObservedRealmObject var item : CartItem
+    var item : CartItem
     @ObservedObject var vm : CartVM
     var body: some View {
         HStack {
@@ -163,7 +162,7 @@ struct CartRow: View {
                     HStack() {
                         
                         Button {
-                            vm.editItemCountMinus(item: item)
+                            vm.editItemCountMinus(item: item.thaw() ?? CartItem())
                         } label: {
                             Image(systemName: "minus")
                                 .foregroundColor(.green)
@@ -176,7 +175,7 @@ struct CartRow: View {
                             .padding(4)
                         Spacer()
                         Button {
-                            vm.editItemCountPlus(item: item)
+                            vm.editItemCountPlus(item: item.thaw() ?? CartItem())
                             
                         } label: {
                             Image(systemName: "plus")
