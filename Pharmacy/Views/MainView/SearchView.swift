@@ -19,6 +19,7 @@ struct SearchView: View {
             }
            .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always))
         }
+        .animation(nil, value: UUID())
         .autocorrectionDisabled()
         .navigationTitle("Search")
         .task {
