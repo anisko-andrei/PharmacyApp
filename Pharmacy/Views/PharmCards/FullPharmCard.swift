@@ -63,7 +63,7 @@ struct FullPharmCard: View {
                             Group {
                                     Text(String(format: "%.2f", oldPrice)) + Text("r.")
                                   }
-                                .bold()
+                                
                                 .font(.system(size: 20))
                                 .strikethrough()
                         }

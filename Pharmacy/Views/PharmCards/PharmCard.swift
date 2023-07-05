@@ -58,7 +58,7 @@ struct PharmCard: View {
                                 Group {
                                         Text(String(format: "%.2f", oldPrice)) + Text("r.")
                                       }
-                                    .bold()
+                                    
                                     .strikethrough()
                             }
                                 Group {

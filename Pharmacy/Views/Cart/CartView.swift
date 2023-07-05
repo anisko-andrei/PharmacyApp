@@ -107,8 +107,8 @@ extension CartItem {
 }
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView()
-        // CartRow(item: CartItem.test )
+       // CartView()
+        CartRow(item: CartItem.test, vm: CartVM() )
     }
 }
 
@@ -118,34 +118,41 @@ struct CartRow: View {
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: item.logo)) { logo in
-                ZStack {
-                    Rectangle()
-                        .frame (maxWidth: 60,  maxHeight: 60)
-                        .foregroundColor(.white)
-                        .cornerRadius(9)
-                    logo
+                    ZStack{
+                        Rectangle()
+                            .frame (maxWidth: 80,  maxHeight: 80)
+                            .cornerRadius(9)
+                            .foregroundColor(.white)
+                            
+                        logo
+                            .resizable()
+                            .scaledToFit()
+                            .padding(8)
+                            .frame (maxWidth: 80,  maxHeight: 80)
+                            .cornerRadius(9)
+                    
+                    }
+                }
+                placeholder: {
+                    Image(Constants.pharmPlaceholder)
                         .resizable()
                         .scaledToFit()
-                        .frame (maxWidth: 60,  maxHeight: 60)
-                        .cornerRadius(9)
+                        .padding(8)
+                        .frame (maxWidth: 80,  maxHeight: 80)
                 }
-            } placeholder: {
-                Image(Constants.pharmPlaceholder)
-                    .resizable()
-                    .scaledToFit()
-                    .frame (maxWidth: 60,  maxHeight: 60)
-            }
             .overlay(
-              RoundedRectangle(cornerRadius: 9)
-                .inset(by: 0.5)
-                .stroke(.green)
-            )
+                RoundedRectangle(cornerRadius: 9)
+                    .inset(by: 0.5)
+                    .stroke(.green)
+                )
+            
             .padding(.leading, 8)
             .padding(.vertical, 8)
             
             VStack(alignment: .leading) {
                 Text(item.title.capitalized)
-                    .font(.system(size: 20))
+                    .font(.system(size: 18))
+                    .bold()
                     .padding(.leading, 4)
                 HStack {
                     Group{
@@ -155,7 +162,7 @@ struct CartRow: View {
                     Text("r.")
                 }
                         .font(.system(size: 16))
-                       
+                        .padding(.leading, 4)
                     
                     Spacer()
                     
@@ -171,8 +178,11 @@ struct CartRow: View {
                         }
                         Spacer()
                         Text(String(item.count))
-                            .foregroundColor(.black)
-                            .padding(4)
+                            .minimumScaleFactor(0.5)
+                            .scaledToFit()
+                            .foregroundColor(Color(UIColor.label))
+                            .padding(.horizontal,8)
+                           
                         Spacer()
                         Button {
                             vm.editItemCountPlus(item: item.thaw() ?? CartItem())
@@ -186,10 +196,10 @@ struct CartRow: View {
                         }
                      
                     }
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal, 8)
                     .padding(.vertical, 8)
                     .frame(width: 120)
-                    .background(.white)
+                    .background(Color.green.opacity(0.2))
                     .cornerRadius(9)
                     .overlay(
                       RoundedRectangle(cornerRadius: 9)
