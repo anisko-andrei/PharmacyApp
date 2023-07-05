@@ -120,6 +120,8 @@ struct PlaceOrderView: View {
                                 OTPButton(title: "Save") {
                                     vm.addNew(newAddress: vm.newAddress)
                                 }
+                                .opacity(!vm.newAddress.isEmpty ? 1 : 0.5)
+                                .disabled(vm.newAddress.isEmpty)
                                 .padding(.horizontal, -8)
                                 OTPButton(title: "Cancel") {
                                     vm.cancelButtonTaped()
