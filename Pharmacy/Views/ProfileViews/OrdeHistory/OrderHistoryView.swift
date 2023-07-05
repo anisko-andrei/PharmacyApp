@@ -58,7 +58,7 @@ struct orderHistoryRow : View {
             HStack {
                 Text("Price")
                 Spacer()
-                Text(String(format: "%.2f", item.price ?? 0)) + Text("r.")
+                Text("\(item.price ?? 0, specifier: "%.2f")") + Text("r.")
             }
           //  .padding()
             

@@ -80,7 +80,7 @@ struct CartView: View {
                     .foregroundColor(.black)
                 Spacer()
                 Group {
-                    Text(String(format: "%.2f", vm.totalPrice)) + Text("r.")
+                    Text("\(vm.totalPrice, specifier: "%.2f")")  + Text("r.")
                 }
                     .font(.title3)
                     .bold()
@@ -158,7 +158,7 @@ struct CartRow: View {
                     Group{
                     Text("Total:") +
                     
-                    Text(String(format: "%.2f", Double(item.count) * item.price)) +
+                        Text("\(Double(item.count) * item.price, specifier: "%.2f")")  +
                     Text("r.")
                 }
                         .font(.system(size: 16))

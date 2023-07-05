@@ -56,13 +56,13 @@ struct PharmCard: View {
                         VStack {
                             if let oldPrice = item.oldPrice {
                                 Group {
-                                        Text(String(format: "%.2f", oldPrice)) + Text("r.")
+                                    Text("\(oldPrice, specifier: "%.2f")")  + Text("r.")
                                       }
                                     
                                     .strikethrough()
                             }
                                 Group {
-                                        Text(String(format: "%.2f", item.price)) + Text("r.")
+                                    Text("\(item.price, specifier: "%.2f")") + Text("r.")
                                       
                                 }
                                     .font(.system(size: 20))
