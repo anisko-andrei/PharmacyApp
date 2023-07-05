@@ -121,7 +121,7 @@ struct CartRow: View {
                 ZStack {
                     Rectangle()
                         .frame (maxWidth: 60,  maxHeight: 60)
-                        .background(.white)
+                        .foregroundColor(.white)
                         .cornerRadius(9)
                     logo
                         .resizable()

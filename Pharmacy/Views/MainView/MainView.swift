@@ -58,7 +58,7 @@ struct MainView: View {
                     }
                 case .showResult :
                     if vm.salesResult.isEmpty {
-                        NoResulLogo(text: "Sorry, there are no discounts right now.", imageName: "nosign")
+                        NoResultLogo(text: "Sorry, there are no discounts right now.", imageName: "nosign")
                     }
                     else {
                             ScrollView{
@@ -73,7 +73,7 @@ struct MainView: View {
                         }
                     }
                 case .noResult :
-                   NoResulLogo(text: "Something's wrong try again later", imageName: "gear.badge.xmark")
+                   NoResultLogo(text: "Something's wrong try again later", imageName: "gear.badge.xmark")
                 }
             }
             
@@ -128,74 +128,18 @@ enum MainScreenButtons: Int ,Identifiable, CaseIterable {
     case delivery = 3
 }
 
-struct PharmCard: View {
-    var item : ResultSalePharm
-    @State var isPresented = false
-    @ObservedObject var vm: MainVM
-    var id: String?
+struct NoResultLogo: View {
+    var text: LocalizedStringKey
+    var imageName: String
     var body: some View {
-        Button {
-            isPresented.toggle()
-        } label: {
-            HStack {
-                      AsyncImage(url: URL(string: item.logo)) { logo in
-                          logo
-                              .resizable()
-                              .scaledToFit()
-                              .frame (maxWidth: 80,  maxHeight: 80)
-                              .cornerRadius(9)
-                      } placeholder: {
-                          Image(Constants.pharmPlaceholder)
-                              .resizable()
-                              .scaledToFit()
-                              .frame (maxWidth: 80,  maxHeight: 80)
-                      }
-                      .padding(.leading, 8)
-                      .padding(.vertical, 8)
-                      
-                      VStack(alignment: .leading) {
-                          Text(item.title.capitalized)
-                              .font(.system(size: 20))
-                          HStack {
-                              VStack {
-                                  if let oldPrice = item.oldPrice {
-                                      Text(String(format: "%.2f", oldPrice))
-                                          .strikethrough()
-                                  }
-                                  Text(String(format: "%.2f", item.price))
-                                      .font(.system(size: 20))
-                                      .foregroundColor(.red)
-                              }
-                               Spacer()
-                              Button {
-                                  vm.addOrDeleteItemInCart(item: item)
-                              } label: {
-                             
-                                  Image(systemName:  vm.checkInCart(item: item) ? "minus" : "plus")
-                                      .foregroundColor(.green)
-                                      .font(.system(size: 25))
-                                      .frame(width: 40, height: 40)
-                                      .background(.gray)
-                                      .mask(Circle())
-                              }
-   
-                          }
-                          
-                      }
-                      Spacer()
-                  }
+        VStack {
+            Spacer()
+            Image(systemName: imageName)
+                .font(.system(size: 30))
+                .foregroundColor(.green)
+            Text(text)
+            Spacer()
         }
-
-        .foregroundColor(.black)
-        .sheet(isPresented: $isPresented, content: {
-            FullPharmCard(item: item, vm: vm)
-        })
-        .frame(maxWidth: .infinity)
-        .frame(height:  110)
-        .background(.thinMaterial)
-        .cornerRadius(9)
-        .padding(.horizontal)
-       
     }
 }
 
@@ -217,18 +161,4 @@ struct SearchButton: View {
             .padding(.horizontal,40)
         }
     
-}
-struct NoResulLogo: View {
-    var text: LocalizedStringKey
-    var imageName: String
-    var body: some View {
-        VStack {
-            Spacer()
-            Image(systemName: imageName)
-                .font(.system(size: 30))
-                .foregroundColor(.green)
-            Text(text)
-            Spacer()
-        }
-    }
 }
