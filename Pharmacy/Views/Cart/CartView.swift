@@ -53,7 +53,7 @@ struct CartView: View {
                     .padding(4)
                     Spacer()
                     Button {
-                        vm.placeOrderButtonTaped(total: vm.totalPrice)
+                        vm.placeOrderButtonTaped()
                        
                     } label: {
                         

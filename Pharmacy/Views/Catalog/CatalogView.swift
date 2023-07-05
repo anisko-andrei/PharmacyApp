@@ -15,9 +15,12 @@ struct CatalogView: View {
             VStack {
                 LogoView()
                     .padding(.vertical)
-                SearchButton()
+                NavigationLink {
+                    SearchView()
+                } label: {
+                    SearchButton()
+                }
                    
-                
                 List {
                     ForEach(vm.categories, id: \.objectID) { item in
                         NavigationLink {

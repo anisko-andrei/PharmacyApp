@@ -64,3 +64,5 @@
 "Select your address:" = "  Выберите адрес доставки:";
 "Select your payment method:" = "Выберите способ оплаты:";
 "Order" = "Заказать";
+"Something's wrong try again later" = "Что-то не так, попробуйте позже ";
+"Sorry, there are no discounts right now." = "Извините, сейчас нет скидок.";
