@@ -9,12 +9,18 @@ import Foundation
 import RealmSwift
 import SwiftUI
 import Combine
+
+enum LoadingStatus {
+    case loading, noResult, showResult
+}
+
 class MainVM : ObservableObject, DynamicProperty {
     @Published var sheetToOpen: MainScreenButtons?
     @Published var sheetItem : ResultSalePharm?
     var AFManager: AlamofireManagerProtocol = AlamofireManager()
     @Published var salesResult: [ResultSalePharm] = []
     @Published var realmDB: [CartItem] = []
+    @Published var loadingStatus: LoadingStatus = .loading
     var notificationToken: NotificationToken?
     var realmManager: RealmManagerProtocol = RealmManager()
 
@@ -44,10 +50,15 @@ class MainVM : ObservableObject, DynamicProperty {
                 let result = try await AFManager.getSales()
                 await MainActor.run(body: {
                     salesResult = result.results
+                    loadingStatus = .showResult
                 })
             }
             catch {
                 print("nezagr")
+                await MainActor.run(body: {
+                    
+                    loadingStatus = .noResult
+                })
             }
         
     }
@@ -68,3 +79,4 @@ class MainVM : ObservableObject, DynamicProperty {
         return realmDB.contains{$0.itemId == item.objectID}
     }
 }
+

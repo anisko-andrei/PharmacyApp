@@ -49,19 +49,31 @@ struct MainView: View {
                     }
                 }
                 .padding()
-                ScrollView{
-                    if vm.salesResult.isEmpty {
+                switch vm.loadingStatus {
+                case .loading :
+                    VStack{
+                        Spacer()
                         ProgressView()
-                    } else {
-                        VStack {
-                           
-                            ForEach(vm.salesResult, id: \.objectID) { item in
-                               
-                                PharmCard(item: item, vm: vm)
-                                }
-                            }
-                        
+                        Spacer()
                     }
+                case .showResult :
+                    if vm.salesResult.isEmpty {
+                        NoResulLogo(text: "Sorry, there are no discounts right now.", imageName: "nosign")
+                    }
+                    else {
+                            ScrollView{
+                            VStack {
+                               
+                                ForEach(vm.salesResult, id: \.objectID) { item in
+                                   
+                                    PharmCard(item: item, vm: vm)
+                                    }
+                                }
+                            
+                        }
+                    }
+                case .noResult :
+                   NoResulLogo(text: "Something's wrong try again later", imageName: "gear.badge.xmark")
                 }
             }
             
@@ -205,4 +217,18 @@ struct SearchButton: View {
             .padding(.horizontal,40)
         }
     
+}
+struct NoResulLogo: View {
+    var text: LocalizedStringKey
+    var imageName: String
+    var body: some View {
+        VStack {
+            Spacer()
+            Image(systemName: imageName)
+                .font(.system(size: 30))
+                .foregroundColor(.green)
+            Text(text)
+            Spacer()
+        }
+    }
 }

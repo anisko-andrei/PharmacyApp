@@ -6,20 +6,33 @@
 //
 
 import Foundation
+import Combine
 class SearchVM : MainVM {
     @Published var pharms: [ResultSalePharm] = []
     @Published var searchResult: [ResultSalePharm] = []
-    @Published var searchText: String = "" {
-        didSet {
-            if searchText.isEmpty {
-                searchResult = pharms
-            } else {
-                searchResult = pharms.filter{$0.title.contains(searchText.lowercased())}
-            }
-        }
+    @Published var searchText: String = ""
+   
+    private var cancellableSet : Set<AnyCancellable> = []
+    
+    override init() {
+        super.init()
+        $searchText
+            .sink(receiveValue: {[weak self] sText in
+                guard let self else {return}
+                if sText.isEmpty {
+                    self.searchResult = self.pharms
+                            } else {
+                                self.searchResult = self.pharms.filter{$0.title.contains(sText.lowercased())}
+                            }
+            })
+            .store(in: &cancellableSet)
     }
-
+  
+    deinit {
+        cancellableSet.removeAll()
+    }
     func getPharms() async {
+    
         do {
             let result = try await AFManager.getPharm(path: "allCases")
             await MainActor.run(body: {
