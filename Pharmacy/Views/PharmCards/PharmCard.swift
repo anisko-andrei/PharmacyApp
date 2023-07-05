@@ -27,6 +27,7 @@ struct PharmCard: View {
                             logo
                                 .resizable()
                                 .scaledToFit()
+                                .padding(8)
                                 .frame (maxWidth: 80,  maxHeight: 80)
                                 .cornerRadius(9)
                         
@@ -36,6 +37,7 @@ struct PharmCard: View {
                         Image(Constants.pharmPlaceholder)
                             .resizable()
                             .scaledToFit()
+                            .padding(8)
                             .frame (maxWidth: 80,  maxHeight: 80)
                     }
                 .overlay(

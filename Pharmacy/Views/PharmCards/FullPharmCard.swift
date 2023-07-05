@@ -16,50 +16,77 @@ struct FullPharmCard: View {
     var body: some View {
         VStack {
             AsyncImage(url: URL(string: item.logo)) { logo in
-                logo
-                    .resizable()
-                    .scaledToFit()
-                    .frame (maxWidth: 200,  maxHeight: 200)
-                    .cornerRadius(9)
-            } placeholder: {
-                Image(Constants.pharmPlaceholder)
-                    .resizable()
-                    .scaledToFit()
-                    .frame (maxWidth: 200,  maxHeight: 200)
-            }
+                    ZStack{
+                        Rectangle()
+                            .frame (maxWidth: 200,  maxHeight: 200)
+                            .cornerRadius(9)
+                            .foregroundColor(.white)
+                            
+                        logo
+                            .resizable()
+                            .scaledToFit()
+                            .padding()
+                            .frame (maxWidth: 200,  maxHeight: 200)
+                            .cornerRadius(9)
+                    
+                    }
+                }
+                placeholder: {
+                    Image(Constants.pharmPlaceholder)
+                        .resizable()
+                        .scaledToFit()
+                        .padding()
+                        .frame (maxWidth: 200,  maxHeight: 200)
+                }
+            .overlay(
+                RoundedRectangle(cornerRadius: 9)
+                    .inset(by: 0.5)
+                    .stroke(.green)
+                )
             .padding(.leading, 8)
             .padding(.vertical, 8)
             
             Text(item.title.capitalized)
                 .font(.system(size: 26))
+                .bold()
                 .multilineTextAlignment(.center)
             
             Text(item.description)
                 .padding()
+                .foregroundColor(Color(UIColor.label).opacity(0.6))
+                .italic()
             Spacer()
             HStack {
                 HStack {
                     VStack {
                         if let oldPrice = item.oldPrice {
-                            Text(String(format: "%.2f", oldPrice))
+                            Group {
+                                    Text(String(format: "%.2f", oldPrice)) + Text("r.")
+                                  }
+                                .bold()
+                                .font(.system(size: 20))
                                 .strikethrough()
                         }
-                        Text(String(format: "%.2f", item.price))
-                            .font(.system(size: 25))
-                            .foregroundColor(.red)
-                    }
+                            Group {
+                                    Text(String(format: "%.2f", item.price)) + Text("r.")
+                                  
+                            }
+                                .font(.system(size: 25))
+                                .bold()
+                              
+                          }
                     .padding()
                     Spacer()
                     
                     Button {
                         vm.addOrDeleteItemInCart(item: item)
                     } label: {
-                        Image(systemName: vm.checkInCart(item: item)  ? "minus" : "plus")
-                            .padding(8)
-                            .foregroundColor(.green)
-                            .background(.thinMaterial)
-                            .font(.system(size: 25))
-                            .mask(Circle())
+                        Image(systemName:  vm.checkInCart(item: item) ? "minus" : "plus")
+                          .foregroundColor(.green)
+                          .font(.system(size: 28))
+                          .frame(width: 50, height: 50)
+                          .background(.green.opacity(0.2))
+                          .mask(Circle())
                     }
                     .padding(.trailing, 8)
                 }
@@ -78,6 +105,6 @@ struct FullPharmCard: View {
 
 struct FullPharmCard_Previews: PreviewProvider {
     static var previews: some View {
-        FullPharmCard(item: (ResultSalePharm(objectID: "", title: "АУГМЕНТИН ЕС", logo: "https://static5.asna.ru/imgprx/9EGtLnHETZb5k2wg_VvV0fPY_UKzJQ4ZXlV9ARw82DQ/rs:fit:800:800:1/g:no/aHR0cHM6Ly9pbWdzLmFzbmEucnUvaWJsb2NrLzAyMS8wMjExMDM5NGY4OWRiMjA1M2E4NmFkMGI4YjY1YTBlMi84NzEwNDc5LmpwZw.jpg", price: 5.45, oldPrice: nil, description: "ПОР. Д/ПРИГ. 100МЛ СУСП. Д/ПРИЕМА ВНУТРЬ 600МГ+42,9МГ/5МЛ ФЛ. №1 GLAXO WELLCOME PRODUCTION-ФРАНЦИЯ", createdAt: "", updatedAt: "")), vm: MainVM())
+        FullPharmCard(item: (ResultSalePharm(objectID: "", title: "АУГМЕНТИН ЕС", logo: "https://static5.asna.ru/imgprx/9EGtLnHETZb5k2wg_VvV0fPY_UKzJ Q4ZXlV9ARw82DQ/rs:fit:800:800:1/g:no/aHR0cHM6Ly9pbWdzLmFzbmEucnUvaWJsb2NrLzAyMS8wMjExMDM5NGY4OWRiMjA1M2E4NmFkMGI4YjY1YTBlMi84NzEwNDc5LmpwZw.jpg", price: 5.45, oldPrice: 34, description: "ПОР. Д/ПРИГ. 100МЛ СУСП. Д/ПРИЕМА ВНУТРЬ 600МГ+42,9МГ/5МЛ ФЛ. №1 GLAXO WELLCOME PRODUCTION-ФРАНЦИЯ", createdAt: "", updatedAt: "")), vm: MainVM())
     }
 }
