@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import KeychainSwift
 
 class TabBarNavigationVM : ObservableObject {
     @Published var tabSelected: Tab = .house
@@ -16,7 +17,12 @@ class TabBarNavigationVM : ObservableObject {
     var notificationToken: NotificationToken?
     var realmManager: RealmManagerProtocol = RealmManager()
 
-    
+    func logOut() {
+        isLogOut.toggle()
+        KeychainSwift().delete("userToken")
+        realmManager.cleanCart()
+        
+    }
         
     func startObserv() {
        

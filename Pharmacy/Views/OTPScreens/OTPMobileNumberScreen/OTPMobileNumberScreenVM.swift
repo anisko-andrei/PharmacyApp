@@ -74,7 +74,7 @@ final class OTPMobileNumberScreenVM: ObservableObject {
                     await MainActor.run(body: {
                         sheetToShow = .registration
                         profileLoginStatus = .newProfile
-                        appStateM = .showResult
+                       // appStateM = .showResult
                         
                     })
                 }

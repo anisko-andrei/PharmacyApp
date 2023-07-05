@@ -80,8 +80,7 @@ struct ProfileView: View {
                 .scrollDisabled(true)
                 Spacer()
                 OTPButton(title: "Log Out") {
-                    tabBarVM.isLogOut.toggle()
-                    KeychainSwift().delete("userToken")
+                    tabBarVM.logOut()
                 }
                 .padding()
                 
