@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import iPhoneNumberField
+import PhoneNumberKit
 
 struct ChangeProfileInfoView: View {
     @StateObject var vm: ChangeProfileInfoVM = ChangeProfileInfoVM()
@@ -20,14 +22,30 @@ struct ChangeProfileInfoView: View {
                             .padding(.vertical,8)
                             .focused($focusField, equals: .name)
                             .submitLabel(.next)
+                        
                         RegistrationTextField(labelText: "Last name", inputText: $vm.lastName)
                             .padding(.vertical,8)
                             .focused($focusField, equals: .lastName)
                             .submitLabel(.next)
-                        RegistrationTextField(labelText: "Phone", inputText: $vm.phoneNumber)
+                        
+                        
+                        iPhoneNumberField("+375-29-111-11-11", text: $vm.phoneNumber)
+                            .prefixHidden(false)
+                           
+                            .maximumDigits(9)
+                          
+                            
+                            .padding(.horizontal,100)
+                            .font(.system(size: 20))
+                            .submitLabel(.done)
+                            
                             .padding(.vertical,8)
                             .focused($focusField, equals: .phone)
                             .submitLabel(.done)
+                        Rectangle()
+                            .frame(maxHeight: 1)
+                            .padding(.horizontal, 90)
+                            .foregroundColor(.green)
                     }
                     .onSubmit {
                         switch focusField {
@@ -44,9 +62,12 @@ struct ChangeProfileInfoView: View {
                         OTPButton(title: "Save") {
                             vm.saveChanges()
                         }
+                        .opacity(vm.checState() ? 1 : 0.3)
+                        .disabled(!vm.checState())
                         OTPButton(title: "Cancel") {
-                            vm.isEditing.toggle()
+                            vm.startStopEditing()
                         }
+                        
                     }
                     .padding(.vertical, 8)
                 } else
@@ -55,15 +76,32 @@ struct ChangeProfileInfoView: View {
                         .padding(.vertical,8)
                     ProfileText(text: User.shared.userLastName ?? "lastName")
                         .padding(.vertical,8)
-                    ProfileText(text: User.shared.userMobilePhone ?? "+3752923232323")
+                    
+                    iPhoneNumberField("+375-29-111-11-11", text: $vm.phoneNumber)
+                        .prefixHidden(false)
+                        .font(.systemFont(ofSize: 20))
+                        .maximumDigits(9)
+                      
+                       
+                        .padding(.horizontal,100)
+                        .font(.system(size: 20))
+                        .submitLabel(.done)
+                        
                         .padding(.vertical,8)
+                        .disabled(true)
+                    Rectangle()
+                        .frame(maxHeight: 1)
+                        .padding(.horizontal, 90)
+                        .foregroundColor(.green)
+                    
+                  
                 }
             }
         }
         .navigationTitle("Change profile")
         .toolbar {
             Button {
-                vm.isEditing.toggle()
+                vm.startStopEditing()
             } label: {
                 Image(systemName: vm.isEditing ? "pencil.circle.fill" : "pencil.circle")
                     .foregroundColor(.green)

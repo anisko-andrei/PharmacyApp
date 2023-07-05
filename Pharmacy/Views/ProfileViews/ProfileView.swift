@@ -7,6 +7,7 @@
 
 import SwiftUI
 import KeychainSwift
+import iPhoneNumberField
 struct ProfileView: View {
     @ObservedObject var tabBarVM: TabBarNavigationVM
     @StateObject var user = User.shared
@@ -22,8 +23,19 @@ struct ProfileView: View {
                     VStack{
                         Text(user.userNamePlusLastName)
                             .font(.system(size: 22))
-                        Text(user.userMobilePhone ?? "23")
-                            .font(.system(size: 18))
+                        
+                      
+                        iPhoneNumberField("+375-29-111-11-11", text: .constant(user.userMobilePhone ?? "23"))
+                                .prefixHidden(false)
+                                .font(.systemFont(ofSize: 18))
+                                .maximumDigits(9)
+                                .multilineTextAlignment(.center)
+                            
+                               
+                                .font(.system(size: 20))
+                              
+                            
+                                .disabled(true)
                     }
                     
                     Spacer()
