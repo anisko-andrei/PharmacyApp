@@ -34,6 +34,7 @@
 		344A1A712A558E3A008E1851 /* SearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344A1A702A558E3A008E1851 /* SearchVM.swift */; };
 		348FEFF72A41C99C002CB8D5 /* TabBarNavigationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FEFF62A41C99C002CB8D5 /* TabBarNavigationVM.swift */; };
 		348FEFF92A41C9CC002CB8D5 /* TabBarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */; };
+		34B2C9B22A55B872009ED359 /* PharmCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B2C9B12A55B872009ED359 /* PharmCard.swift */; };
 		34B771522A555000001E4C2C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B771512A555000001E4C2C /* RealmManager.swift */; };
 		34C9E30D2A52BD0E00EB96BD /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 34C9E30C2A52BD0E00EB96BD /* Realm */; };
 		34C9E30F2A52BD0E00EB96BD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 34C9E30E2A52BD0E00EB96BD /* RealmSwift */; };
@@ -81,6 +82,7 @@
 		344A1A702A558E3A008E1851 /* SearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVM.swift; sourceTree = "<group>"; };
 		348FEFF62A41C99C002CB8D5 /* TabBarNavigationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationVM.swift; sourceTree = "<group>"; };
 		348FEFF82A41C9CC002CB8D5 /* TabBarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigationView.swift; sourceTree = "<group>"; };
+		34B2C9B12A55B872009ED359 /* PharmCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmCard.swift; sourceTree = "<group>"; };
 		34B771512A555000001E4C2C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		34C9E3122A52CD7F00EB96BD /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		34C9E3142A5378F100EB96BD /* PlaceOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderView.swift; sourceTree = "<group>"; };
@@ -260,6 +262,15 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		34B2C9B32A55B880009ED359 /* PharmCards */ = {
+			isa = PBXGroup;
+			children = (
+				34D5317E2A50534E001CE36D /* FullPharmCard.swift */,
+				34B2C9B12A55B872009ED359 /* PharmCard.swift */,
+			);
+			path = PharmCards;
+			sourceTree = "<group>";
+		};
 		34C9E3162A54199E00EB96BD /* Cart */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +293,7 @@
 		34CC9F402A3C577A00D7291D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				34B2C9B32A55B880009ED359 /* PharmCards */,
 				34C9E3162A54199E00EB96BD /* Cart */,
 				34D531802A505E3D001CE36D /* DeliveryScreen.swift */,
 				34D531882A507F3B001CE36D /* Catalog */,
@@ -314,7 +326,6 @@
 				34D531822A505F11001CE36D /* CatalogView.swift */,
 				34D531842A507E88001CE36D /* CatalogVM.swift */,
 				34D531862A507EBC001CE36D /* PharmCatalogView.swift */,
-				34D5317E2A50534E001CE36D /* FullPharmCard.swift */,
 			);
 			path = Catalog;
 			sourceTree = "<group>";
@@ -427,6 +438,7 @@
 				340878772A4C28B300F3BFC7 /* ProfileView.swift in Sources */,
 				340BDABA2A41B66800F34B66 /* Constants.swift in Sources */,
 				340BDAB42A41B4D600F34B66 /* AlamofireManager.swift in Sources */,
+				34B2C9B22A55B872009ED359 /* PharmCard.swift in Sources */,
 				3403579B2A35E90D005220F1 /* ContentViewVM.swift in Sources */,
 				34B771522A555000001E4C2C /* RealmManager.swift in Sources */,
 				3403577C2A35D211005220F1 /* PharmacyApp.swift in Sources */,
@@ -462,6 +474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME[sdk=*]" = systemGreenColor;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -523,6 +536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = systemGreenColor;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

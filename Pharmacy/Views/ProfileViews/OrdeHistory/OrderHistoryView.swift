@@ -10,7 +10,7 @@ import SwiftUI
 struct OrderHistoryView: View {
     @StateObject var vm: OrderHistoryVM = OrderHistoryVM()
     var body: some View {
-        NavigationView {
+        NavigationStack {
             if vm.allOrders.isEmpty {
                 VStack {
                     Image(systemName: "cart.badge.minus")
@@ -58,7 +58,7 @@ struct orderHistoryRow : View {
             HStack {
                 Text("Price")
                 Spacer()
-                Text(String(format: "%.2f", item.price ?? 0)) + Text("r.")
+                Text("\(item.price ?? 0, specifier: "%.2f")") + Text("r.")
             }
           //  .padding()
             

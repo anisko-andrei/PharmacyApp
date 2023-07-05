@@ -20,6 +20,7 @@ struct SearchView: View {
            .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always))
         }
         .autocorrectionDisabled()
+        .navigationTitle("Search")
         .task {
             await vm.getPharms()
         }

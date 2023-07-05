@@ -11,7 +11,7 @@ struct PlaceOrderView: View {
    
     @ObservedObject var vm: CartVM
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 
                 VStack(alignment: .leading) {

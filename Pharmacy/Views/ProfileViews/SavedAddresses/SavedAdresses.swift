@@ -10,7 +10,7 @@ struct SavedAddresses: View {
     @StateObject var vm: SavedAddressesVM = SavedAddressesVM()
     @State var isEditing: Bool = false
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 if vm.addresses.results.isEmpty {
                     VStack {

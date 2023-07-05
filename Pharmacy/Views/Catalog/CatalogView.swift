@@ -11,7 +11,7 @@ struct CatalogView: View {
     @StateObject var vm: CatalogVM = CatalogVM()
    
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 LogoView()
                     .padding(.vertical)

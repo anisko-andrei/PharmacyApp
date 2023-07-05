@@ -11,7 +11,7 @@ struct ProfileView: View {
     @ObservedObject var tabBarVM: TabBarNavigationVM
     @StateObject var user = User.shared
     var body: some View {
-        NavigationView {
+        NavigationStack {
             
             
             VStack {
