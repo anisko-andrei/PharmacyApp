@@ -23,7 +23,7 @@ class CartVM: ObservableObject, DynamicProperty {
             self.alertIsPresented.toggle()
         }
     }
-   // @Published var realmDB: [CartItem] = []
+
     var notificationToken: NotificationToken?
     var realmManager: RealmManagerProtocol = RealmManager()
    
@@ -74,36 +74,10 @@ class CartVM: ObservableObject, DynamicProperty {
     }
     
     func editItemCountMinus(item: CartItem) {
-//        if item.count > 1 {
-//            if let thawedItem = item.thaw() {
-//                try? thawedItem.realm?.write {
-//                    thawedItem.count -= 1
-//                }
-//            }
-//        }
-//        else {
-//            if let thawedItem = item.thaw() {
-//                try? thawedItem.realm?.write {
-//                    thawedItem.realm?.delete(thawedItem)
-//                }
-//            }
-//
-//        }
-        Task {
-       await     MainActor.run {
-                realmManager.editItemCountMinus(item: item)
-            }
-           
-        }
+        realmManager.editItemCountMinus(item: item)
     }
     
      func editItemCountPlus(item: CartItem) {
-//
-//            if let thawedItem = item.thaw() {
-//                try? thawedItem.realm?.write {
-//                    thawedItem.count += 1
-//                }
-//            }
          realmManager.editItemCountPlus(item: item)
     }
         

@@ -14,7 +14,6 @@ class MainVM : ObservableObject, DynamicProperty {
     @Published var sheetItem : ResultSalePharm?
     var AFManager: AlamofireManagerProtocol = AlamofireManager()
     @Published var salesResult: [ResultSalePharm] = []
-   // @ObservedResults(CartItem.self) var realmDB
     @Published var realmDB: [CartItem] = []
     var notificationToken: NotificationToken?
     var realmManager: RealmManagerProtocol = RealmManager()
