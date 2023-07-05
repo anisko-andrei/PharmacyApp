@@ -10,7 +10,7 @@ import RealmSwift
 struct MainView: View {
     @StateObject var vm: MainVM = MainVM()
     var body: some View {
-       NavigationView {
+       NavigationStack {
             VStack {
                 LogoView()
                     .padding()

@@ -11,7 +11,7 @@ struct ChangeProfileInfoView: View {
     @StateObject var vm: ChangeProfileInfoVM = ChangeProfileInfoVM()
     @FocusState var focusField: TextFieldType?
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack{
                 if vm.isEditing {
                     

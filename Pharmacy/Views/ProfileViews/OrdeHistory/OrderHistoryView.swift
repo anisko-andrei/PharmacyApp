@@ -10,7 +10,7 @@ import SwiftUI
 struct OrderHistoryView: View {
     @StateObject var vm: OrderHistoryVM = OrderHistoryVM()
     var body: some View {
-        NavigationView {
+        NavigationStack {
             if vm.allOrders.isEmpty {
                 VStack {
                     Image(systemName: "cart.badge.minus")
