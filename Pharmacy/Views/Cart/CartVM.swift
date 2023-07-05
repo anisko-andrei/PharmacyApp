@@ -53,8 +53,8 @@ class CartVM: ObservableObject, DynamicProperty {
         startObserv()
     }
     
-    func placeOrderButtonTaped(total: Double) {
-        totalPrice = total
+    func placeOrderButtonTaped() {
+       
         isContinue.toggle()
         
     }
@@ -133,11 +133,6 @@ class CartVM: ObservableObject, DynamicProperty {
         newAddress = ""
     }
     func cleanCart() {
-//        if let realm = try? Realm(){
-//            try? realm.write({
-//                realm.deleteAll()
-//            })
-//        }
         realmManager.cleanCart()
     }
 }

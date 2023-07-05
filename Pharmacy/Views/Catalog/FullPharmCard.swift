@@ -30,7 +30,7 @@ struct FullPharmCard: View {
             .padding(.leading, 8)
             .padding(.vertical, 8)
             
-            Text(item.title)
+            Text(item.title.capitalized)
                 .font(.system(size: 26))
                 .multilineTextAlignment(.center)
             

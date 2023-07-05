@@ -10,66 +10,74 @@ import RealmSwift
 struct MainView: View {
     @StateObject var vm: MainVM = MainVM()
     var body: some View {
-        VStack {
-            LogoView()
-                .padding()
-            SearchButton()
-            HStack{
-                ForEach(MainScreenButtons.allCases, id: \.self) { item in
-                    HStack{
-                       
-                        Button(action: {
-                            vm.sheetToOpen = item
-                        }, label: {
-                            Label {
-                                Text(item.name)
-                                    .padding(.vertical, 12)
-                                    .padding(.trailing, 8)
-                                    .font(.system(size: 14))
-                            } icon: {
-                                Image(systemName: item.imageName)
-                                    .padding(.leading, 8)
-                            }
+       NavigationView {
+            VStack {
+                LogoView()
+                    .padding()
+                NavigationLink {
+                    SearchView()
+                } label: {
+                    SearchButton()
+                }
 
-                        })
-                        .foregroundColor(.black)
-                       
-                        .background(.green)
-                        .cornerRadius(9)
+                
+                HStack{
+                    ForEach(MainScreenButtons.allCases, id: \.self) { item in
+                        HStack{
+                           
+                            Button(action: {
+                                vm.sheetToOpen = item
+                            }, label: {
+                                Label {
+                                    Text(item.name)
+                                        .padding(.vertical, 12)
+                                        .padding(.trailing, 8)
+                                        .font(.system(size: 14))
+                                } icon: {
+                                    Image(systemName: item.imageName)
+                                        .padding(.leading, 8)
+                                }
+
+                            })
+                            .foregroundColor(.black)
+                           
+                            .background(.green)
+                            .cornerRadius(9)
+                            
+                        }
                         
                     }
-                    
                 }
-            }
-            .padding()
-            ScrollView{
-                if vm.salesResult.isEmpty {
-                    ProgressView()
-                } else {
-                    VStack {
-                       
-                        ForEach(vm.salesResult, id: \.objectID) { item in
+                .padding()
+                ScrollView{
+                    if vm.salesResult.isEmpty {
+                        ProgressView()
+                    } else {
+                        VStack {
                            
-                            PharmCard(item: item, vm: vm)
+                            ForEach(vm.salesResult, id: \.objectID) { item in
+                               
+                                PharmCard(item: item, vm: vm)
+                                }
                             }
-                        }
-                    
+                        
+                    }
                 }
             }
-        }
-        
-        .task {
-         await vm.getSales()
-        }
-        .sheet(item: $vm.sheetToOpen) { sheet in
-            switch sheet {
-            case .myOrders :
-                OrderHistoryView()
-            case .catalog :
-                CatalogView()
-            case .delivery :
-                DeliveryScreen()
+            
+            .task {
+             await vm.getSales()
             }
+            .sheet(item: $vm.sheetToOpen) { sheet in
+                switch sheet {
+                case .myOrders :
+                    OrderHistoryView()
+                case .catalog :
+                    CatalogView()
+                case .delivery :
+                    DeliveryScreen()
+                }
+        }
         }
     }
 }
@@ -134,7 +142,7 @@ struct PharmCard: View {
                       .padding(.vertical, 8)
                       
                       VStack(alignment: .leading) {
-                          Text(item.title)
+                          Text(item.title.capitalized)
                               .font(.system(size: 20))
                           HStack {
                               VStack {
@@ -181,9 +189,7 @@ struct PharmCard: View {
 
 struct SearchButton: View {
     var body: some View {
-        Button {
-            print("open fullcover search")
-        } label: {
+      
             HStack() {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.green)
@@ -198,5 +204,5 @@ struct SearchButton: View {
             .cornerRadius(9)
             .padding(.horizontal,40)
         }
-    }
+    
 }
