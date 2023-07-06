@@ -16,7 +16,8 @@ struct LoadingView: View {
 
 struct LogoView: View {
     var body: some View {
-        HStack {
+        HStack(alignment: .center) {
+            Spacer()
             Image(Constants.pharmacyLogoImage)
                 .resizable()
                 .scaledToFit()
@@ -27,6 +28,7 @@ struct LogoView: View {
                 Text("Health first")
                     .font(.system(size: 18).italic())
             }
+            Spacer()
         }
     }
 }

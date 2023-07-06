@@ -20,9 +20,19 @@ struct PharmCatalogView :View {
                     PharmCard(item: item, vm: vm)
                 }
             }
-        
+            
         }
-        .navigationTitle(item.name)
+        .toolbar {
+            
+        
+        ToolbarItem(placement: .principal) {
+            Text(item.name).font(.headline)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        
+    }
+   
         .task {
             await vm.getPharm(path: item.objectID)
         }

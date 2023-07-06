@@ -13,12 +13,18 @@ struct SearchView: View {
         VStack{
             
            ScrollView {
-                ForEach(vm.searchResult, id: \.objectID) { item in
-                    PharmCard(item: item, vm: vm)
-                }
+            VStack{
+                   ForEach(vm.searchResult, id: \.objectID) { item in
+                       PharmCard(item: item, vm: vm)
+                   }
+                   if vm.searchResult.isEmpty {
+                       NoResultLogo(text: "Not found", imageName: "text.magnifyingglass")
+                   }
+               }
             }
            .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always))
         }
+        .animation(nil, value: UUID())
         .autocorrectionDisabled()
         .navigationTitle("Search")
         .task {

@@ -35,6 +35,7 @@ class SavedAddressesVM : ObservableObject {
     }
     
     func addNew(newAddress: String) {
+        guard !newAddress.isEmpty else {return}
         Task {
             do {
                 try await AFManager.addAddress(newAddress: newAddress)
